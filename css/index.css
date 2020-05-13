@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.cf:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.wrapper {
+  width: 100%;
+}
+/* topbar */
+.topbar {
+  max-width: 1200px;
+  width: 90%;
+  height: 98px;
+  background: #000000 ;
+  margin-right: auto;
+  margin-left: auto;
+  /* 版面設定 */
+  position: fixed;
+  left: 50%;
+  /* 定位將指定目標粘在整個瀏覽器上(Body) */
+  transform: translateX(-50%);
+  /* 變形 Ｘ軸推移-50％ */
+  z-index: 999;
+  /* 階層先後順序越高越前面 */
+}
+
+.topbar .tb-left {
+  float: left;
+}
+
+.topbar .tb-right {
+  float: right;
+}
+
+.topbar a {
+  display: inline-block;
+  padding: 10px 0px;
+  margin: 25px 20px;
+  color: #808080;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 500ms ease;
+  /* 移動補間動畫 顏色 500毫秒 先快後慢加減速*/
+}
+
+.topbar a:hover {
+  color: #FFF;
+}
+
+.topbar .tb-left-link1 {
+  /* 將文字移出 */
+  width: 60px;
+  height: 49px;
+  margin-left: 40px;
+  text-indent: -9999px;
+  box-sizing: border-box;
+  /* 只針對Pading強制限制在指定寬高上 */
+  background-size: cover;
+  /* 強制背景圖符合設定寬高 */
+  background-image: url('../images/logo_supercell.png');
+}
+
+/* section1 */
+.sec1 {
+  width: 100%;
+  height: 443px;
+  background-color: #f5f5f5;
+}
+
+.sec1 .s1-bg {
+  width: 1024px;
+  height: 443px;
+  background-image: url('../images/bg_hero_frontpage.jpg');
+  /* 圖形設定 */
+  position: relative;
+  /* 定位，後一定會有上下左右需寫 */
+  left: 50%; 
+  margin-left: -512px;
+  /* 僅限Margin有負值呈現 Pading不行 */
+}
+

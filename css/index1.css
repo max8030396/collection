@@ -1,0 +1,213 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  line-height: 1.65;
+}
+.wrapper {
+  widows: 100%;
+}
+
+.cf::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.tb {
+  max-width:1200px;
+  width: 90%;
+  height: 98px;
+  background: #000000;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.tb-left {
+  float: left;
+}
+
+.tb-right {
+  float: right;
+}
+
+.tb a {
+  display: inline-block;
+  color: #888888;
+  font-size: 20px;
+  text-decoration: none;
+  transition: color 500ms ease;
+  padding: 10px 0px;
+  margin: 25px 20px;
+}
+
+a:hover {
+  color: #ffffff;
+}
+
+.tb .tb-left-link1 {
+  width: 60px;
+  height: 49px;
+  margin-left: 40px;
+  text-indent: -99999px;
+  background-image: url('../images/logo_supercell.png');
+  box-sizing: border-box;
+  background-size: cover;
+}
+/* 以下依樣畫葫蘆 */
+.tb-right a {
+  vertical-align: top;
+}
+
+.tb-right #search {
+  opacity: 0.5;
+  transition: opacity 0.4s;
+  /* 調色？ */
+  /* 如何讓搜尋圖案一樣有漸變色？ */
+  width: 98px;
+  height: 100px;
+  margin-top: 0;
+  text-indent: -9999999px;
+  box-sizing: border-box;
+  background-image: url('../images/search-icon.png');
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.sec1 { 
+  width: 100%;
+  height: 443px;
+  background-color: #f5f5f5;
+}
+
+.sec1 .sec1-bg {
+  width: 1024px;
+  height: 443px;
+  background-image: url('../images/bg_hero_frontpage.jpg');
+  margin-left: -512px;
+  left: 50%;
+  position: relative;
+}
+
+.sec1-t {
+  font-size: 18px;
+  max-width: 360px;
+  width: 80%;
+  height: 144px;
+  text-align: center;
+  z-index: 4;
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%,-50%);
+}
+
+.sec2 > ul {
+  width: 90%;
+  max-width: 1640px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0;
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+}
+
+.sec2 > ul > li {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.sec2 > ul > li > .news-title {
+  margin-top: 15px;
+  color: palevioletred;
+}
+
+.sec2 > ul > li > span {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  display: block;
+  text-align: center;
+}
+
+.sec2-news1 > figure {
+  width: 100%;
+  height: 50px;
+  padding-bottom: 62.9%;
+  background-image: url('../images/news/news_tb1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-left: auto;
+  margin-left: auto;
+}
+
+.sec2-news2 > figure {
+  width: 100%;
+  height: 50px;
+  padding-bottom: 62.9%;
+  background-image: url('../images/news/news_tb1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-left: auto;
+  margin-left: auto;
+}
+.sec2-news3 > figure {
+  width: 100%;
+  height: 50px;
+  padding-bottom: 62.9%;
+  background-image: url('../images/news/news_tb1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-left: auto;
+  margin-left: auto;
+}
+
+.sec2-news4 > figure {
+  width: 100%;
+  height: 50px;
+  padding-bottom: 62.9%;
+  background-image: url('../images/news/news_tb1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-left: auto;
+  margin-left: auto;
+}
+
+.sec2-news5 > figure {
+  width: 100%;
+  height: 50px;
+  padding-bottom: 62.9%;
+  background-image: url('../images/news/news_tb1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-left: auto;
+  margin-left: auto;
+}
+
+.sec2-news6 > figure {
+  width: 100%;
+  height: 50px;
+  padding-bottom: 62.9%;
+  background-image: url('../images/news/news_tb1.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  margin-left: auto;
+  margin-left: auto;
+}
+
