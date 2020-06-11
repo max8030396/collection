@@ -1,213 +1,440 @@
 * {
-  margin: 0;
   padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
-body {
-  line-height: 1.65;
-}
+
 .wrapper {
-  widows: 100%;
+  width: 100%;
+  background-color: #f5f5f5;
 }
 
 .cf::after {
   display: block;
-  content: '';
+  content: ('');
   clear: both;
 }
 
+/* topber */
 .tb {
-  max-width:1200px;
+  max-width: 1200px;
   width: 90%;
   height: 98px;
-  background: #000000;
-  margin-left: auto;
+  z-index: 999;
   margin-right: auto;
+  margin-left: auto;
+  background: black;
+  transform: translateX(-50%);
   position: fixed;
   left: 50%;
-  transform: translateX(-50%);
-  z-index: 999;
-}
-
-.tb-left {
-  float: left;
-}
-
-.tb-right {
-  float: right;
 }
 
 .tb a {
-  display: inline-block;
-  color: #888888;
-  font-size: 20px;
-  text-decoration: none;
-  transition: color 500ms ease;
   padding: 10px 0px;
   margin: 25px 20px;
+  font-size: 18px;
+  text-decoration: none;
+  color: #888888;
+  transition: color ease 400ms;
 }
 
-a:hover {
+.tb a:hover {
   color: #ffffff;
+}
+
+.tb-left a {
+  float: left;
+}
+
+.tb-right a {
+  float: right;
 }
 
 .tb .tb-left-link1 {
   width: 60px;
   height: 49px;
-  margin-left: 40px;
-  text-indent: -99999px;
-  background-image: url('../images/logo_supercell.png');
+  margin-left: 30px;
+  text-indent: -999999px;
   box-sizing: border-box;
   background-size: cover;
-}
-/* 以下依樣畫葫蘆 */
-.tb-right a {
-  vertical-align: top;
+  background-image: url('../images/logo_supercell.png');
 }
 
-.tb-right #search {
+#search {
+  width: 22px;
+  height: 22px;
   opacity: 0.5;
   transition: opacity 0.4s;
-  /* 調色？ */
-  /* 如何讓搜尋圖案一樣有漸變色？ */
-  width: 98px;
-  height: 100px;
-  margin-top: 0;
-  text-indent: -9999999px;
+  margin-top: 40px;
+  text-indent: -9999px;
   box-sizing: border-box;
-  background-image: url('../images/search-icon.png');
-  background-size: 20px 20px;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-image: url('../images/search-icon.png');
 }
 
-.sec1 { 
+#search:hover {
+  opacity: 1;
+}
+
+/* section1 */
+.s1 {
   width: 100%;
   height: 443px;
-  background-color: #f5f5f5;
 }
 
-.sec1 .sec1-bg {
+.s1-bg {
   width: 1024px;
   height: 443px;
-  background-image: url('../images/bg_hero_frontpage.jpg');
   margin-left: -512px;
   left: 50%;
   position: relative;
-}
-
-.sec1-t {
-  font-size: 18px;
-  max-width: 360px;
-  width: 80%;
-  height: 144px;
-  text-align: center;
   z-index: 4;
-  position: absolute;
-  left: 50%;
-  top: 42%;
-  transform: translate(-50%,-50%);
+  background-image: url('../images/bg_hero_frontpage.jpg');
 }
 
-.sec2 > ul {
+.s1-t {
+  height: 144px;
+  width: 280px;
+  left: 50%;
+  top: 221.5px;
+  margin-left: -140px;
+  z-index: 5;
+  position: absolute;
+  font-size: 18px;
+  text-align: center;
+}
+
+/* section2 */
+.sec2 ul {
   width: 90%;
-  max-width: 1640px;
-  margin-left: auto;
+  max-width: 1024px;
   margin-right: auto;
-  font-size: 0;
+  margin-left: auto;
+  font-size: 0px;
+  /* 影響圖片不能併排 */
   margin-top: 80px;
   margin-bottom: 80px;
-
 }
 
-.sec2 > ul > li {
+.sec2 ul li {
   display: inline-block;
   box-sizing: border-box;
   width: 50%;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 60px;
 }
 
-.sec2 > ul > li > .news-title {
+.sec2 ul li a {
+  width: 100%;
+  display: inline-block;
+}
+
+.sec2 ul li .news-title {
   margin-top: 15px;
+  margin-bottom: 5px;
   color: palevioletred;
 }
 
-.sec2 > ul > li > span {
-  margin-bottom: 20px;
-  font-weight: bold;
+.sec2 ul li span {
   font-size: 16px;
+  font-weight: bold;
   display: block;
   text-align: center;
+  margin-bottom: 20px;
 }
-
-.sec2-news1 > figure {
+/* for-test */
+/* .s2-news figure {
+  overflow: hidden;
   width: 100%;
-  height: 50px;
-  padding-bottom: 62.9%;
-  background-image: url('../images/news/news_tb1.png');
+  height: 0px;
+  padding-bottom: 75.29%;
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
   margin-left: auto;
   margin-left: auto;
+  transition: transform 250ms ease,filter 1500ms ease;
+  background-image: url('../images/news/news_tb2.jpg');
+} */
+/* for-test */
+
+.s2-news figure {
+  overflow: hidden;
 }
 
-.sec2-news2 > figure {
+.s2-news figure div {
   width: 100%;
-  height: 50px;
-  padding-bottom: 62.9%;
-  background-image: url('../images/news/news_tb1.png');
+  height: 0px;
+  padding-bottom: 75.29%;
   background-size: cover;
   background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto;
   overflow: hidden;
-  margin-left: auto;
-  margin-left: auto;
-}
-.sec2-news3 > figure {
-  width: 100%;
-  height: 50px;
-  padding-bottom: 62.9%;
-  background-image: url('../images/news/news_tb1.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  margin-left: auto;
-  margin-left: auto;
+  transition: transform 250ms ease,filter 1500ms ease;
 }
 
-.sec2-news4 > figure {
-  width: 100%;
-  height: 50px;
-  padding-bottom: 62.9%;
-  background-image: url('../images/news/news_tb1.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  margin-left: auto;
-  margin-left: auto;
+.s2-news figure div:hover{
+  transform: scale(1.1);
+  filter: brightness(1.3);
 }
 
-.sec2-news5 > figure {
-  width: 100%;
-  height: 50px;
-  padding-bottom: 62.9%;
+.sec2-news1 figure div {
   background-image: url('../images/news/news_tb1.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  margin-left: auto;
-  margin-left: auto;
 }
 
-.sec2-news6 > figure {
-  width: 100%;
-  height: 50px;
-  padding-bottom: 62.9%;
-  background-image: url('../images/news/news_tb1.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  margin-left: auto;
-  margin-left: auto;
+.sec2-news2 figure div {
+  background-image: url('../images/news/news_tb2.jpg');
+}
+.sec2-news3 figure div {
+  background-image: url('../images/news/news_tb3.jpg');
 }
 
+.sec2-news4 figure div {
+  background-image: url('../images/news/news_tb4.jpg');
+}
+
+.sec2-news5 figure div {
+  background-image: url('../images/news/news_tb5.jpg');
+}
+
+.sec2-news6 figure div {
+  background-image: url('../images/news/news_tb6.jpg');
+}
+
+.s3 {
+  position: relative;
+  width: 100%;
+  height: 594px;
+  background-size: cover;
+  background-position: center top;
+  background-image: url('../images/bg_brawlstars.jpg');
+}
+
+.s3 .gameM {
+  position: absolute;
+  width: 392px;
+  height: 504px;
+  bottom: 0;
+  margin-left: 100px;
+  left: 58%;
+  background-size: cover;
+  background-image: url('../images/fp_brawlstars.png');
+  /* 圖片大小怎麼算的？ */
+}
+
+.s3 .gameI {
+  width: 510px;
+  color:#ffffff;
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  top: 150px;
+  margin-left: -576px;
+  /* width: 590px;
+  margin-left: 230px;
+  padding-top: 190px; */
+  /* 這個應該可以不用用position的方式對吧？不過position應該是比較專業的做法？ */
+  /* ANS會跑版 */
+}
+
+.s3 .gameI > span {
+  display: block;
+  margin-top: 10px;
+}
+
+.s3 .gameI .gameTT {
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+.s3 .gameI >a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #ffffff;
+  color: black;
+  padding: 10px 25px ;
+  border-radius: 15px;
+  margin-top: 30px;
+}
+
+/* section4 */
+.s4 {
+  width: 100%;
+  height: 594px;
+  background-image: url('../images/bg_fp.jpg');
+  position: relative;
+  background-position: center;
+  background-size:cover;
+}
+/* 圖片底下有黑線，該如何清除？ 然後背景要如何自動縮放？*/
+.s4 .s4-I {
+  font-size: 20px;
+  width: 580px;
+  position: absolute;
+  left: 50%;
+  top: 30%;  
+  color: #ffffff;
+}
+
+.s4 .s4-I .s4-TT {
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+.s4 .s4-I > span {
+  display: block;
+  margin-top: 10px;
+}
+
+.s4 .s4-I > a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 10px 25px;
+  margin-top: 30px;
+}
+/* footer */
+footer {
+  background-color: black;
+  color: #ffffff;    
+  width: 100%;
+}
+
+/* ft-l */
+.ft-tp {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  border-bottom: 1px solid #333 ;
+}
+
+.ft-l {
+  margin: 80px 0px 20px;
+  /* float: left; */
+  display: inline-block;
+}
+
+.ft-l > ul {
+ margin-top: 20px;
+}
+
+.ft-l li {
+  display: inline-block;
+}
+
+.ft-l a {
+  margin-right:10px;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.ft-l-icon1 a { 
+  width: 30px;
+  height: 22px;
+  background-image: url('../images/icons/some_youtube.png');
+}
+
+.ft-l-icon2 a {
+  width: 23px;
+  height: 23px;
+  background-image: url('../images/icons/some_facebook.png');
+}
+
+.ft-l-icon3 a {
+  width: 27px;
+  height: 23px;
+  background-image: url('../images/icons/some_twitter.png');
+}
+.ft-l-icon4 a {
+  width: 23px;
+  height: 23px;
+  background-image:url('../images/icons/some_instagram.png');
+}
+
+.ft-l-icon5 a {
+  width: 23px;
+  height: 23px;
+  background-image: url('../images/icons/some_linkedin.png');
+}
+
+.ft-l-icon6 a {
+  width: 28px;
+  height: 23px;
+  background-image: url('../images/icons/some_glassdoor.png');
+}
+/* ft-r */
+.ft-r {
+  margin: 100px 0px 20px;
+  float: right;
+}
+
+.ft-r a {
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.AP {
+  width: 166px;
+  height: 49px;
+  background-image: url('../images/icons/footer_googleplay.png');
+}
+
+.IP {
+  width: 147px;
+  height: 49px;
+  background-image: url('../images/icons/footer_appstore.png');
+}
+
+/* ft-bt */
+.ft-bt {
+  width: 90%;
+  height: 300px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ft-bt-t {
+  padding: 20px 0px;
+}
+
+.ft-bt-t > li {
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.ft-bt-t a {
+  text-decoration: none;
+  color: rgb(110, 109, 109);
+}
+
+.ft-bt-t a:hover {
+  color: #ffffff;
+  text-decoration: #ffffff77 underline;
+  transition: ease 200ms;
+}
+
+.ft-bt-b {
+  color: #333;
+}
+
+.ft-bt-b li {
+  margin: 3px 0px;
+  font-size: 14px;
+}
+
+.ft-bt-icon {
+  float: right;
+  width: 60px;
+  height: 49px;
+  background-size: contain;
+  background-image: url('../images/logo_supercell.png');
+}
