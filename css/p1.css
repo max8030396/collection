@@ -267,7 +267,9 @@
   background-image: url('../images/bg_fp.jpg');
   position: relative;
   background-position: center;
-  background-size:cover;
+  background-size:auto 100%;
+  background-repeat: no-repeat;
+  background-color: #09090b;
 }
 /* 圖片底下有黑線，該如何清除？ 然後背景要如何自動縮放？*/
 .s4 .s4-I {
@@ -396,10 +398,12 @@ footer {
 /* ft-bt */
 .ft-bt {
   width: 90%;
-  height: 300px;
+  /* height: 300px;  為了日後好調整 */
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  padding-bottom: 30px;
 }
 
 .ft-bt-t {
@@ -432,7 +436,10 @@ footer {
 }
 
 .ft-bt-icon {
-  float: right;
+  /* float: right; */
+  position: absolute;
+  right: 8px;
+  bottom: 38px;
   width: 60px;
   height: 49px;
   background-size: contain;
