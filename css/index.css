@@ -455,7 +455,7 @@ footer {
   background-size: contain;
   background-image: url('../images/logo_supercell.png');
 }
-4
+
 /* tablet */
 @media all and (min-width:731px) and (max-width:1279px) {
   .tb {
