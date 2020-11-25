@@ -50,6 +50,15 @@
   box-sizing: border-box;
 }
 
+.calculator .interface > .clear-rwd {
+  display: none;
+  margin-top: 4px;
+  box-shadow: none;
+  background-color: #f7a537;
+  color: #000;
+  box-sizing: border-box;
+}
+
 .calculator .interface li:active {
   background-color: #333;
   transform: translateY(3px);
@@ -74,4 +83,19 @@
 
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #eee;
+}
+
+@media all and (max-width:731px) {
+
+  .calculator .interface > .clear {
+   display: none;
+  }
+
+  .calculator .interface > .clear-rwd {
+    width: 100%;
+    display: block;
+    margin: 35px 0 0;
+
+   }
+
 }
