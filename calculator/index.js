@@ -5,6 +5,7 @@ $(document).ready(function() {
   var multipliedName = '.btn3';
   var dividedName = '.btn4';
   var resultBtnName = '.btn5';
+  var clearBtnName = '.clear';
 
   // input get value
   // var inputer = document.getElementById('inputer');
@@ -14,6 +15,7 @@ $(document).ready(function() {
   var multipliedBtn = $(multipliedName)
   var dividedBtn = $(dividedName);
   var resultBtn = $(resultBtnName);
+  var clearBtn = $(clearBtnName);
 
   var step1Value = '';
   var step2Value = '';
@@ -78,6 +80,19 @@ $(document).ready(function() {
     }
   });
 
+  clearBtn.on('click', function () {
+    howToCount = 'clear';
+
+    if (inputer.val() === '') {
+      alert('已清除');
+    } else {
+      console.log('Click clear !!!!', inputer.val());
+      // step1Value = inputer.val();
+      console.log('clear', step1Value, howToCount);
+      inputer.val('');
+    }
+  });
+
   resultBtn.on('click', function () {
     if (inputer.val() === '') {
       alert('e04!不會打第二個數字喔！');
@@ -103,6 +118,11 @@ $(document).ready(function() {
 
       if (howToCount === '/') {
         var finalValue = Number(step1Value) / Number(step2Value);
+        inputer.val(finalValue);
+      }
+
+      if (howToCount === 'clear') {
+        var finalValue ='';
         inputer.val(finalValue);
       }
       console.log('運算出來的結果是： ', finalValue);
