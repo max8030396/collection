@@ -5,7 +5,7 @@ $(document).ready(function() {
   var multipliedName = '.btn3';
   var dividedName = '.btn4';
   var resultBtnName = '.btn5';
-  var clearBtnName = '.clear';
+  var clearBtnName = '.clear,.clear-rwd';
 
   // input get value
   // var inputer = document.getElementById('inputer');
@@ -131,6 +131,5 @@ $(document).ready(function() {
 
   // * 是乘
   // / 是除
-
 })
 
