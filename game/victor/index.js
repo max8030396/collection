@@ -60,12 +60,12 @@ $(document).ready(() => {
       fallSpeed = 20;
     }, 10000);
     // setInterval(() => {
-      // fallLong = fallLong + speed;
+    //   fallLong = fallLong + speed;
 
-      // if (fallLong >= 500) {
-      //   fallLong = -200;
-      // }
-      // $stone[0].css('top', `${fallLong}px`);
+    //   if (fallLong >= 500) {
+    //     fallLong = -200;
+    //   }
+    //   $stone[0].css('top', `${fallLong}px`);
     // }, 100);
     console.log('redraw');
     fallLong = fallLong + fallSpeed;
