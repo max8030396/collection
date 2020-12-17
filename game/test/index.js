@@ -102,6 +102,7 @@ $(document).ready(() => {
       if ($stone[i].posY >= 500) {
         $stone[i].posY = -120;
         $stone[i].posX = getRandomArbitrary(0, $scene.width() - 47);
+        $stone[i].speed = getRandomArbitrary(5,12);
         scroePoint = scroePoint + 1;
        }
       $stone[i].target.css('top', `${$stone[i].posY}px`);
