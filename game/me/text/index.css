@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #eeeeee;
+}
+
+.wrapper {
+    width: 800px;
+    height: 500px;
+    background-color: #ffffff;
+    margin: auto;
+    margin-top: 50px;
+    border-style: solid;
+    position: relative;
+    overflow: hidden;
+}
+
+.wrapper .startPress {
+    width: 242px;
+    height: 52px;
+    background-image: url('img/startpress.png');
+    background-size: cover;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    left: 50%;
+    top: 150px;
+    transform: translateX(-50%);
+
+}
+
+.wrapper .man {
+    width: 47px;
+    height: 105px;
+    bottom: 0;
+    left: 0;
+    background-image: url('img/man.png');
+    background-size: cover;
+    position: absolute;
+}
+
+
+.wrapper .stone {
+    width: 47px;
+    height: 105px;
+    background-color: #5f5858;
+    border: 2px;
+    border-style:solid ;
+    position: absolute;
+    top: -120px;
+    /* display: none; */
+}
+
+/* .wrapper .stone-1 {
+    display: block;
+} */
