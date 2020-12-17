@@ -15,19 +15,19 @@ $(document).ready(() => {
       target: $('.stone-1'),
       posX:getRandomArbitrary(0, $scene.width() - 47),
       posY: -120,
-      speed:getRandomArbitrary(5, 20)
+      speed:getRandomArbitrary(5,12)
     },
     {
       target: $('.stone-2'),
       posX:getRandomArbitrary(0, $scene.width() - 47),
       posY: -120,
-      speed:getRandomArbitrary(5, 20)
+      speed:getRandomArbitrary(5,12)
     },
     {
       target: $('.stone-3'),
       posX:getRandomArbitrary(0, $scene.width() - 47),
       posY: -120,
-      speed:getRandomArbitrary(5, 20)
+      speed:getRandomArbitrary(5,12)
     }
   ];
 
@@ -40,7 +40,7 @@ $(document).ready(() => {
 
   // 取得隨機素質
 	function getRandomArbitrary(min, max) {
-	return Math.random() * (max - min) + min;
+    return Math.floor(Math.random() * (max - min) + min);
   }
   
   // 遊戲初始化設定
