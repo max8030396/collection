@@ -2,7 +2,7 @@ $(document).ready(() => {
 
   const dev = false;
 
-	const $startBtn = $('.mask')
+	const $startBtn = $('.mask') //遮罩
 	const $window = $(window);
 	const $man = $('.man');
   const $scene = $('.wrapper');
@@ -73,7 +73,7 @@ $(document).ready(() => {
 
 		$window.on('keypress', function (e) {
 			if (e.keyCode === 97 || e.keyCode === 12551) {
-				// alert('to left')
+        // alert('to left')
 				moveLong = moveLong - manSpeed;
 				if (moveLong <= 0) { moveLong = 0; }
 				// console.log('moveLong', moveLong);
@@ -115,5 +115,10 @@ $(document).ready(() => {
 	manKeyPressControl();
 	randomFallStone();
 })
+
+// 加上簡單、困難難易度選擇（不能直接開始一定要選擇）
+// 磚塊掉落後顏色更換
+// 挑戰撞擊判斷
+// 結束重新開始按鈕
 
 
