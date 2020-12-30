@@ -116,9 +116,52 @@ $(document).ready(() => {
 	randomFallStone();
 })
 
-// 加上簡單、困難難易度選擇（不能直接開始一定要選擇）
+// 加上簡單、困難難易度選擇（不能直接開始一定要選擇）o
 // 磚塊掉落後顏色更換
 // 挑戰撞擊判斷
 // 結束重新開始按鈕
 
 
+//TEST
+
+let $stoneLeft = $('.stone').position().left;
+let $stoneTop = $('.stone').position().top;
+let $stoneLeftWidth = $stoneLeft + 47;
+let $manLeft = $('.man').position().left;
+let $manLeftWidth = $('.man').position().left + 47;
+
+
+
+if($stoneTop >= 290) {
+  if($stoneLeft >= $manLeft&&stoneLeft <= $manLeftWidth||$stoneLeftWidth >= $manLeft&$stoneLeftWidth <= $manLeftWidth) {
+    console.log('目前高度', $manLeft);
+    isActive = false;
+    alert('撞到囉');
+    return;
+  }
+} else {
+  isActive = true;
+  alert('沒事');
+}
+
+
+
+
+if($stone[i].posY >= 290) {
+  alert('撞到囉');
+}
+
+
+
+
+
+
+
+function stoneImpact () {
+  $.each($(".stone"),function() {
+    stoneA[0] = $(this).position().top;
+    stoneB[1] = $(this).position().left;
+    stoneC[2] = $(this).position().top + $(this).height();
+    stoneD[3] = $(this).position().left + $(this).width();
+  })
+}

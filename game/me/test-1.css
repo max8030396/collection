@@ -18,6 +18,54 @@ body {
   overflow: hidden;
 }
 
+.wrapper .point {
+z-index: 10;
+padding: 10px 15px;
+font-size: 20px;
+color: #ffffff;
+background-color: #333333;
+position: absolute;
+top:0;
+left: 0;
+}
+
+.wrapper .timer {
+z-index: 10;
+padding: 10px 15px;
+font-size: 20px;
+color: #ffffff;
+background-color: #f00;
+position: absolute;
+top:0;
+right: 0;
+}
+
+.wrapper .man {
+  width: 47px;
+  height: 105px;
+  bottom: 0;
+  left: 0;
+  background-image: url('img/man.png');
+  background-size: cover;
+  position: absolute;
+}
+
+
+.wrapper .stone {
+  width: 47px;
+  height: 105px;
+  background-color: #3e392f;s
+  border: 2px;
+  border-style:solid ;
+  position: absolute;
+  top: -120px;
+  /* display: none; */
+}
+
+.wrapper .stone-1 {
+  /* background-color:#faf */
+}
+
 .wrapper .mask {
   position: relative;
   left: 50%;
@@ -65,6 +113,18 @@ body {
   right: -25px;
 }
 
+.wrapper .mask .choose .resetFinal {
+  width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('img/1152277.gif');
+  cursor: pointer;
+  position: absolute;
+  right: -25px;
+}
+
 .wrapper .mask .startPress {
   width: 242px;
   height: 52px;
@@ -79,52 +139,4 @@ body {
   /* margin-left: auto; */
   transform: translateX(-50%);
   cursor: pointer;
-}
-
-.wrapper .point {
-z-index: 10;
-padding: 10px 15px;
-font-size: 20px;
-color: #ffffff;
-background-color: #333333;
-position: absolute;
-top:0;
-left: 0;
-}
-
-.wrapper .timer {
-z-index: 10;
-padding: 10px 15px;
-font-size: 20px;
-color: #ffffff;
-background-color: #f00;
-position: absolute;
-top:0;
-right: 0;
-}
-
-.wrapper .man {
-  width: 47px;
-  height: 105px;
-  bottom: 0;
-  left: 0;
-  background-image: url('img/man.png');
-  background-size: cover;
-  position: absolute;
-}
-
-
-.wrapper .stone {
-  width: 47px;
-  height: 105px;
-  background-color: #5f5858;
-  border: 2px;
-  border-style:solid ;
-  position: absolute;
-  top: -120px;
-  /* display: none; */
-}
-
-.wrapper .stone-1 {
-  /* background-color:#faf */
 }
