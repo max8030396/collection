@@ -4,9 +4,10 @@ const $window = $(window);
 const $man = $('.man');
 const $scene = $('.wrapper');
 const $mask = $('.mask');
-const $easy = $('#E');
-const $normal = $('#N');
-const $hard = $('#H');
+// const $easy = $('#E');
+// const $normal = $('#N');
+// const $hard = $('#H');
+const $modeBtn = $('.option');
 const $reset = $('.reset');
 const $startPress = $('.startPress');
 const $scoreTimer = $('.timer');
@@ -43,6 +44,7 @@ let moveSpeed = 100;
 let $maxSceneWidth = $scene.width() - $man.width();
 let scorePoint = 0;
 let speedIncrease = 0;
+let currentMode = '';
 //取得隨機素質公式
 function getRandomArbitrary(min,max){
   return Math.floor (Math.random() * (max - min) + min);
@@ -60,51 +62,76 @@ function getRandomArbitrary(min,max){
     }
     //難度選擇
     function modeSelection () {
-        //重新選擇模式
-      $reset.click(() => {
-        $easy.show();
-        $hard.show();
-        $normal.show();
-        $reset.hide();
-        $startPress.hide();
-        // isActive = false;
-      })
+        //點擊難度按鈕後做的事情
+        function _showCurrentModeBtn(target) {
+          $modeBtn.hide();
+          target.show();
+          $startPress.show();
+          $reset.show();
+        }
+
+        $modeBtn.on('click', function () {
+          let $this = $(this);
+          currentMode = $this.attr('data-mode');
+
+          switch (currentMode) {
+            case '1':
+              break;
+            case '2':
+              speedIncrease = 3;
+              break;
+            case '3':
+              speedIncrease = 5;
+              break;
+            default:
+              break;
+          }
+          _showCurrentModeBtn($this);
+        });
+
+      // $reset.click(() => {
+      //   $easy.show();
+      //   $hard.show();
+      //   $normal.show();
+      //   $reset.hide();
+      //   $startPress.hide();
+      //   // isActive = false;
+      // })
 
       //簡單模式
-      $easy.click(() => {
-        $normal.hide();
-        $hard.hide();
-        $reset.hide();
-        if ($normal.hide(),$normal.hide()) {
-          $startPress.show();
-          $reset.show();
-        }
-
-      })
+      // $easy.click(() => {
+      //   $normal.hide();
+      //   $hard.hide();
+      //   $reset.hide();
+      //   if ($normal.hide(),$normal.hide()) {
+      //     $startPress.show();
+      //     $reset.show();
+      //   }
+      // })
 
       //普通模式
-      $normal.click(() => {
-        $easy.hide();
-        $hard.hide();
-        $reset.hide();
-        speedIncrease = 3;
-        if ($easy.hide(),$hard.hide()) {
-          $startPress.show();
-          $reset.show();
-        }
-      })
+      // $normal.click(() => {
+      //   $easy.hide();
+      //   $hard.hide();
+      //   $reset.hide();
+      //   speedIncrease = 3;
+      //   if ($easy.hide(),$hard.hide()) {
+      //     $startPress.show();
+      //     $reset.show();
+      //   }
+      // })
 
       //困難模式
-      $hard.click(() => {
-        $easy.hide();
-        $normal.hide();
-        $reset.hide();
-        speedIncrease = 10;
-        if ($easy.hide(),$normal.hide()) {
-          $startPress.show();
-          $reset.show();
-        }
-      })
+      // $hard.click(() => {
+      //   $easy.hide();
+      //   $normal.hide();
+      //   $reset.hide();
+      //   speedIncrease = 10;
+      //   if ($easy.hide(),$normal.hide()) {
+      //     $startPress.show();
+      //     $reset.show();
+      //   }
+      // })
 
     }
 

@@ -55,7 +55,7 @@ right: 0;
   width: 47px;
   height: 105px;
   background-color: #3e392f;s
-  border: 2px;
+  border: 2px;border
   border-style:solid ;
   position: absolute;
   top: -120px;
@@ -97,9 +97,9 @@ right: 0;
   transform: translate(0,-20px);
 }
 
-#E {background-color: #afa;}
-#N {background-color: #ffa;}
-#H {background-color: #faa;}
+.easy-mode {background-color: #afa;}
+.normal-mode {background-color: #ffa;}
+.hard-mode {background-color: #faa;}
 
 .wrapper .mask .choose .reset {
   width: 25px;
