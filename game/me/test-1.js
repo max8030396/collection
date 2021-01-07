@@ -21,19 +21,19 @@ const $stone = [
     target: $('.stone-1'),
     posX: getRandomArbitrary(0, $scene.width() - 47),
     posY: -120,
-    speed: getRandomArbitrary(3,8)
+    speed: getRandomArbitrary(3,8),
   },
   {
     target: $('.stone-2'),
     posX: getRandomArbitrary(0, $scene.width() - 47),
     posY: -120,
-    speed: getRandomArbitrary(3,8)
+    speed: getRandomArbitrary(3,8),
   },
   {
     target: $('.stone-3'),
     posX: getRandomArbitrary(0, $scene.width() - 47),
     posY: -120,
-    speed: getRandomArbitrary(3,8)
+    speed: getRandomArbitrary(3,8),
   }
 ];
 let currenTime = 100;
@@ -115,7 +115,7 @@ function getRandomArbitrary(min,max){
       $scoreTimer.text(`剩下${currenTime}秒`);
       const endGame = setInterval(() => {
         currenTime = currenTime - 1;
-        if(currenTime < 0 ) {
+        if(currenTime < 0) {
           isActive = false
           alert(`你的得分是${scorePoint}`);
           clearInterval(endGame)
@@ -156,20 +156,18 @@ function getRandomArbitrary(min,max){
    
     for(let i = 0; i < $stone.length; i = i + 1) {
       $stone[i].posY = $stone[i].posY + $stone[i].speed + speedIncrease;
-
       let $stoneLeft = $('.stone').position().left;
       let $stoneTop = $('.stone').position().top;
       let $stoneLeftWidth = $stoneLeft + 47;
-      let $stoneLeftHeight = $stoneTop - 105;
+      // let $stoneLeftHeight = $stoneTop - 105;
       let $manLeft = $('.man').position().left;
       let $manTop = $('.man').position().top;
       let $manLeftWidth = $manLeft + 47;
-      let $manLeftHeight = $manTop + 105;
-      console.log('石頭高度Y', $stoneTop);
-      console.log('石頭底部X1.X2', $stoneLeft,$stoneLeftWidth);
-      console.log('人物高度Y', $manTop);
-      console.log('人物頂部X1.X2', $manLeft,$manLeftWidth);
-
+      // let $manLeftHeight = $manTop + 105;
+      // console.log('石頭高度Y', $stoneTop);
+      // console.log('石頭底部X1.X2', $stoneLeft,$stoneLeftWidth);
+      // console.log('人物高度Y', $manTop);
+      // console.log('人物頂部X1.X2', $manLeft,$manLeftWidth);
       if($stoneTop >= 290) {
         if($stoneLeft >= $manLeft&&$stoneLeft <= $manLeftWidth||$stoneLeftWidth >= $manLeft&$stoneLeftWidth <= $manLeftWidth) {
           isActive = false;
@@ -178,14 +176,12 @@ function getRandomArbitrary(min,max){
         }
       }
 
-
       // console.log('increase', $stone[i].speed + speedIncrease);
       if ($stone[i].posY >= 500) {
         $stone[i].posY = -120;
         $stone[i].posX = getRandomArbitrary(0,$scene.width() - 47);
         scorePoint = scorePoint + 1;
       }
-
       $stone[i].target.css('top', `${$stone[i].posY}px`);
       $stone[i].target.css('left', `${$stone[i].posX}px`);
       $scoreBorad.text(`得${scorePoint}分`);

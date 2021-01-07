@@ -132,7 +132,7 @@ let $manLeftWidth = $('.man').position().left + 47;
 
 
 
-if($stoneTop >= 290) {
+if($stoneTop === $man) {
   if($stoneLeft >= $manLeft&&stoneLeft <= $manLeftWidth||$stoneLeftWidth >= $manLeft&$stoneLeftWidth <= $manLeftWidth) {
     console.log('目前高度', $manLeft);
     isActive = false;
@@ -163,5 +163,105 @@ function stoneImpact () {
     stoneB[1] = $(this).position().left;
     stoneC[2] = $(this).position().top + $(this).height();
     stoneD[3] = $(this).position().left + $(this).width();
+
+    for(let i = 0, i < $('.stone').length; i = i + 1;){
+      manA[]
+      manB[]
+      manC[]
+      manD[]
+    }
   })
+}
+
+const blockHit = new Array;
+let $manLeft = $('.man').position().left;
+let $manTop = $('.man').position().top;
+let $manLeftWidth = $manLeft + 47;
+
+$('.stone').each(function(){
+  blockHit[0] = $(this).position().left;
+  blockHit[1] = $(this).position().top;
+  blockHit[2] = $(this).position().left + 47;
+
+  for(let i = 0;i < $('.stone').length);i = i + 1){
+    if($manTop === 395){
+      if(blockHit[0] >= $manLeft&&blockHit[0] <= $manLeftWidth||$blockHit[2] >= $manLeft&&blockHit[2] <= $manLeftWidth){
+        isActive = false;
+        alert('撞到囉');
+        return;
+      }
+    }
+  }
+})
+
+
+///成功一顆
+let $stoneLeft = $('.stone').position().left;
+let $stoneTop = $('.stone').position().top;
+let $stoneLeftWidth = $stoneLeft + 47;
+// let $stoneLeftHeight = $stoneTop - 105;
+let $manLeft = $('.man').position().left;
+let $manTop = $('.man').position().top;
+let $manLeftWidth = $manLeft + 47;
+// let $manLeftHeight = $manTop + 105;
+// console.log('石頭高度Y', $stoneTop);
+// console.log('石頭底部X1.X2', $stoneLeft,$stoneLeftWidth);
+// console.log('人物高度Y', $manTop);
+// console.log('人物頂部X1.X2', $manLeft,$manLeftWidth);
+
+if($stoneTop >= $manTop) {
+  if($stoneLeft >= $manLeft&&$stoneLeft <= $manLeftWidth||$stoneLeftWidth >= $manLeft&$stoneLeftWidth <= $manLeftWidth) {
+    isActive = false;
+    alert('撞到囉');
+    return;
+  }
+}
+
+//
+if($stone[i].posY >=290 ) {
+  if(posX >= $manLeft&&$posX <= $manLeftWidth||$posX1 >= $manLeft&&$posX1 <= $manLeftWidth){
+    isActive = false;
+    alert('撞到囉');
+    return;
+  }
+}
+//
+const stoneBox = new Array;
+const manBox = new Array;
+function hittest (){
+  $.each($('.stone'), function(){
+    stoneBox[0] = $(this).position().left;
+    stoneBox[1] = $(this).position().top;
+    stoneBox[2] = $(this).position().left + $(this).width();
+    stoneBox[3] = $(this).position().top + (this).height();
+  })
+  for(let i = 0;i < $('.stone'.length; i = i + 1;) {
+ 
+  })
+}
+const $hitBox = [
+  stoneLeft = $('.stone').position().left,
+  stoneTop = $('.stone').position().top,
+  $stoneLeftWidth = $('.stone').position().left + 47,
+]
+const $playerBox = [
+  manLeft = $('.man').position().left,
+  manTop = $('.man').position().top,
+  manLeftWidth = $('.man').position().left + 47
+]
+
+if($('.stone').eq(i).children('div').hasclass('stone')){
+  $(this).alart('撞到囉')
+}
+
+
+
+//////
+function crashTest (){
+  const stoneBox[
+    x = $('.stone')
+  ]
+
+  需要去追尋三個石頭的Ｙ軸
+  三個石頭到達一個值後判斷
 }
