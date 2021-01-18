@@ -9,8 +9,13 @@ $(document).ready(() => {
   const $scoreBoard = $('.point');
   const $scoreTimer = $('.timer');
 
+  let $manStatus = {
+    posX:0,
+    posY: $scene.height() - $man.height()
+  }
+  console.log('H', $manStatus.posY);
   //各磚塊狀態、值
-	const $stone = [
+	let $stone = [
     {
       target: $('.stone-1'),
       posX:getRandomArbitrary(0, $scene.width() - 47),

@@ -13,8 +13,15 @@ const $startPress = $('.startPress');
 const $scoreTimer = $('.timer');
 const $scoreBorad = $('.point');
 
+const $stoneSize = {
+  width:$('.stone-1').width(),
+  height:$('.stone-1').height()
+}
 
-
+let $manStatus = {
+  posX:0,
+  posY: $scene.height() - $man.height()
+}
 
 //磚塊陣列值
 const $stone = [
@@ -163,6 +170,7 @@ function getRandomArbitrary(min,max){
       if (e.keyCode === 97 || e.keyCode === 12551) {
         moveLong = moveLong - moveSpeed;
         if (moveLong <= 0) {moveLong = 0};
+        $manStatus.posX = moveLong;
         $man.css('left', `${moveLong}px`);
       }
     })
@@ -171,6 +179,7 @@ function getRandomArbitrary(min,max){
       if (e.keyCode === 100 || e.keyCode === 12558) {
         moveLong = moveLong + moveSpeed;
         if (moveLong >= $maxSceneWidth) {moveLong = $maxSceneWidth};
+        $manStatus.posX = moveLong;
         $man.css('left', `${moveLong}px`);
       }
     })
@@ -183,26 +192,28 @@ function getRandomArbitrary(min,max){
    
     for(let i = 0; i < $stone.length; i = i + 1) {
       $stone[i].posY = $stone[i].posY + $stone[i].speed + speedIncrease;
-      let $stoneLeft = $('.stone').position().left;
-      let $stoneTop = $('.stone').position().top;
-      let $stoneLeftWidth = $stoneLeft + 47;
-      // let $stoneLeftHeight = $stoneTop - 105;
-      let $manLeft = $('.man').position().left;
-      let $manTop = $('.man').position().top;
-      let $manLeftWidth = $manLeft + 47;
-      // let $manLeftHeight = $manTop + 105;
-      // console.log('石頭高度Y', $stoneTop);
-      // console.log('石頭底部X1.X2', $stoneLeft,$stoneLeftWidth);
-      // console.log('人物高度Y', $manTop);
-      // console.log('人物頂部X1.X2', $manLeft,$manLeftWidth);
-      if($stoneTop >= 290) {
-        if($stoneLeft >= $manLeft&&$stoneLeft <= $manLeftWidth||$stoneLeftWidth >= $manLeft&$stoneLeftWidth <= $manLeftWidth) {
-          isActive = false;
-          alert('撞到囉');
-          return;
-        }
+    //   let $stoneLeft = $('.stone').position().left;
+    //   let $stoneTop = $('.stone').position().top;
+    //   let $stoneLeftWidth = $stoneLeft + 47;
+    //   // let $stoneLeftHeight = $stoneTop - 105;
+    //   let $manLeft = $('.man').position().left;
+    //   let $manTop = $('.man').position().top;
+    //   let $manLeftWidth = $manLeft + 47;
+    //   // let $manLeftHeight = $manTop + 105;
+    //   // console.log('石頭高度Y', $stoneTop);
+    //   // console.log('石頭底部X1.X2', $stoneLeft,$stoneLeftWidth);
+    //   // console.log('人物高度Y', $manTop);
+    //   // console.log('人物頂部X1.X2', $manLeft,$manLeftWidth);
+    //   if($stoneTop >= 290) {
+    //     if($stoneLeft >= $manLeft&&$stoneLeft <= $manLeftWidth||$stoneLeftWidth >= $manLeft&$stoneLeftWidth <= $manLeftWidth) {
+    //       isActive = false;
+    //       alert('撞到囉');
+    //       return;
+    //     }
+    //   }
+      if ($stone[i].posY + $stoneSize.height -10 >= $manStatus.posY ) {
+        alert('posY撞到囉');
       }
-
       // console.log('increase', $stone[i].speed + speedIncrease);
       if ($stone[i].posY >= 500) {
         $stone[i].posY = -120;
@@ -214,21 +225,6 @@ function getRandomArbitrary(min,max){
       $scoreBorad.text(`得${scorePoint}分`);
     }
   }
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   startGameInit();
