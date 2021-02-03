@@ -1,17 +1,14 @@
 $(document).ready(() => {
-  
 const $window = $(window);
 const $man = $('.man');
 const $scene = $('.wrapper');
 const $mask = $('.mask');
-// const $easy = $('#E');
-// const $normal = $('#N');
-// const $hard = $('#H');
 const $modeBtn = $('.option');
 const $reset = $('.reset');
 const $startPress = $('.startPress');
 const $scoreTimer = $('.timer');
 const $scoreBorad = $('.point');
+const $reStartBtn = $('.reStart');
 
 const $stoneSize = {
   width:$('.stone-1').width(),
@@ -19,7 +16,7 @@ const $stoneSize = {
 }
 
 let $manStatus = {
-  posX:0,
+  posX: 0,
   posY: $scene.height() - $man.height()
 }
 
@@ -44,6 +41,11 @@ const $stone = [
     speed: getRandomArbitrary(3,8),
   }
 ];
+//測試區
+
+//測試區
+
+let gameOver = false;
 let currenTime = 100;
 let isActive = false;
 let moveLong = 0;
@@ -57,101 +59,128 @@ function getRandomArbitrary(min,max){
   return Math.floor (Math.random() * (max - min) + min);
 }
 
+//測試區
+  //排行榜設定
+  
+
+
+
+
+//測試區
+
 //遊戲初始化設定
   function startGameInit (){
-    //開始及重新選擇隱藏
     
+    //空白鍵暫停遊戲功能鍵
+  function pasueBtn () {
+    $window.on('keypress', (e) => {
+      // console.log('',e);
+      if(e.keyCode === 32) {
+        isActive = !isActive;
+      }
+    })}
+    pasueBtn();
+    //開始及重新選擇隱藏
     $startPress.hide();
     $reset.hide();
+    $reStartBtn.hide();
+
+        
 //磚塊Ｘ軸隨機位置
     for (let i = 0; i < $stone.length; i = i +1) {
       $stone[i].target.css('left', `${$stone[i].posX}px`);
     }
     //難度選擇
     function modeSelection () {
-        //點擊難度按鈕後做的事情
+        // 點擊難度按鈕後做的事情
         function _showCurrentModeBtn(target) {
           $modeBtn.hide();
-          target.show();
           $startPress.show();
+          target.css('display',`block`);
           $reset.show();
+        }
+        function _hideCurrentModeBtn(target) {
+          $modeBtn.show();
+          $startPress.hide();
+          target.css('display',`none`);
         }
 
         $modeBtn.on('click', function () {
           let $this = $(this);
           currentMode = $this.attr('data-mode');
-
+          console.log('', currentMode);
           switch (currentMode) {
             case '1':
+              setTimeout(() => {
+                speedIncrease = 100;
+              }, 10000);
+              setTimeout(() => {
+                speedIncrease = 0;
+              }, 10100);
+              setTimeout(() => {
+                speedIncrease = 100;
+              }, 20000);
+              setTimeout(() => {
+                speedIncrease = 0;
+              }, 20100);
+              setTimeout(() => {
+                speedIncrease = 100;
+              }, 99000);
+              setTimeout(() => {
+                speedIncrease = 0;
+              }, 99100);
+              _showCurrentModeBtn($this);
               break;
             case '2':
-              speedIncrease = 3;
+              _showCurrentModeBtn($this);
+              speedIncrease = 8;
+              setTimeout(() => {
+                speedIncrease = 10;
+              }, 15000);
+              setTimeout(() => {
+                speedIncrease = 15;
+              }, 60000);
               break;
             case '3':
-              speedIncrease = 5;
+              _showCurrentModeBtn($this);
+              speedIncrease = 12;
+              setTimeout(() => {
+                speedIncrease = 20;
+              }, 15000);
+              setTimeout(() => {
+                speedIncrease = 30;
+              }, 55000);
               break;
-            default:
+            case '4':
+              _hideCurrentModeBtn($this);
               break;
-          }
-          _showCurrentModeBtn($this);
+              default:
+                break;
+            }
         });
-
-      // $reset.click(() => {
-      //   $easy.show();
-      //   $hard.show();
-      //   $normal.show();
-      //   $reset.hide();
-      //   $startPress.hide();
-      //   // isActive = false;
-      // })
-
-      //簡單模式
-      // $easy.click(() => {
-      //   $normal.hide();
-      //   $hard.hide();
-      //   $reset.hide();
-      //   if ($normal.hide(),$normal.hide()) {
-      //     $startPress.show();
-      //     $reset.show();
-      //   }
-      // })
-
-      //普通模式
-      // $normal.click(() => {
-      //   $easy.hide();
-      //   $hard.hide();
-      //   $reset.hide();
-      //   speedIncrease = 3;
-      //   if ($easy.hide(),$hard.hide()) {
-      //     $startPress.show();
-      //     $reset.show();
-      //   }
-      // })
-
-      //困難模式
-      // $hard.click(() => {
-      //   $easy.hide();
-      //   $normal.hide();
-      //   $reset.hide();
-      //   speedIncrease = 10;
-      //   if ($easy.hide(),$normal.hide()) {
-      //     $startPress.show();
-      //     $reset.show();
-      //   }
-      // })
-
     }
 
     //遊戲是否啟動,時間設定,最終得分
     $startPress.click(() => {
       $mask.hide();
       isActive = true;
+      // if(ganeOver){$reStartBtn.show()}
       $scoreTimer.text(`剩下${currenTime}秒`);
       const endGame = setInterval(() => {
         currenTime = currenTime - 1;
         if(currenTime < 0) {
           isActive = false
-          alert(`你的得分是${scorePoint}`);
+          alert(`時間到,你的得分是${scorePoint}`);
+          clearInterval(endGame)
+          gameOver = true;
+          $reStartBtn.show();
+          console.log('',gameOver);
+          return;
+        } else if (gameOver) {
+          isActive = false
+          alert(`撞到了,你的得分是${scorePoint}`);
+          $scoreTimer.text(`剩下0秒`);
+          $reStartBtn.show();
           clearInterval(endGame)
           return;
         } 
@@ -159,7 +188,6 @@ function getRandomArbitrary(min,max){
       }, 1000);
       
     })
-
     modeSelection();
   }
 
@@ -168,6 +196,7 @@ function getRandomArbitrary(min,max){
   //人物左移動
     $window.on('keypress', (e) => {
       if (e.keyCode === 97 || e.keyCode === 12551) {
+        if (gameOver) {moveSpeed = 0};
         moveLong = moveLong - moveSpeed;
         if (moveLong <= 0) {moveLong = 0};
         $manStatus.posX = moveLong;
@@ -177,6 +206,7 @@ function getRandomArbitrary(min,max){
   //人物右移動
     $window.on('keypress', (e) => {
       if (e.keyCode === 100 || e.keyCode === 12558) {
+        if (gameOver) {moveSpeed = 0};
         moveLong = moveLong + moveSpeed;
         if (moveLong >= $maxSceneWidth) {moveLong = $maxSceneWidth};
         $manStatus.posX = moveLong;
@@ -189,30 +219,13 @@ function getRandomArbitrary(min,max){
   function randomFallStone () {
     requestAnimationFrame(randomFallStone);
     if (!isActive) { return;}
-   
     for(let i = 0; i < $stone.length; i = i + 1) {
       $stone[i].posY = $stone[i].posY + $stone[i].speed + speedIncrease;
-    //   let $stoneLeft = $('.stone').position().left;
-    //   let $stoneTop = $('.stone').position().top;
-    //   let $stoneLeftWidth = $stoneLeft + 47;
-    //   // let $stoneLeftHeight = $stoneTop - 105;
-    //   let $manLeft = $('.man').position().left;
-    //   let $manTop = $('.man').position().top;
-    //   let $manLeftWidth = $manLeft + 47;
-    //   // let $manLeftHeight = $manTop + 105;
-    //   // console.log('石頭高度Y', $stoneTop);
-    //   // console.log('石頭底部X1.X2', $stoneLeft,$stoneLeftWidth);
-    //   // console.log('人物高度Y', $manTop);
-    //   // console.log('人物頂部X1.X2', $manLeft,$manLeftWidth);
-    //   if($stoneTop >= 290) {
-    //     if($stoneLeft >= $manLeft&&$stoneLeft <= $manLeftWidth||$stoneLeftWidth >= $manLeft&$stoneLeftWidth <= $manLeftWidth) {
-    //       isActive = false;
-    //       alert('撞到囉');
-    //       return;
-    //     }
-    //   }
       if ($stone[i].posY + $stoneSize.height -10 >= $manStatus.posY ) {
-        alert('posY撞到囉');
+        if($manStatus.posX >= $stone[i].posX -45&&$manStatus.posX <= $stone[i].posX + 45) {
+          isActive = false;
+          gameOver = true;
+        }
       }
       // console.log('increase', $stone[i].speed + speedIncrease);
       if ($stone[i].posY >= 500) {
