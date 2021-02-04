@@ -105,51 +105,40 @@ function getRandomArbitrary(min,max){
           target.css('display',`none`);
         }
 
+        
+
         $modeBtn.on('click', function () {
           let $this = $(this);
           currentMode = $this.attr('data-mode');
           console.log('', currentMode);
+          //普通、困難時間加速器
+          function _increaseSpeed(){
+            speedIncrease = speedIncrease + 2;
+            setTimeout(_increaseSpeed,20000);
+          };
+          //簡易模式陷阱,超級加速器
+          function _evilMode(){
+            speedIncrease = 150;
+            setTimeout(() => {
+              speedIncrease = 0;
+            }, 150);
+            setTimeout(_evilMode,20000);//讓setTimeOut在執行自己的任務一次無限巡迴
+          }
+        
           switch (currentMode) {
             case '1':
-              setTimeout(() => {
-                speedIncrease = 100;
-              }, 10000);
-              setTimeout(() => {
-                speedIncrease = 0;
-              }, 10100);
-              setTimeout(() => {
-                speedIncrease = 100;
-              }, 20000);
-              setTimeout(() => {
-                speedIncrease = 0;
-              }, 20100);
-              setTimeout(() => {
-                speedIncrease = 100;
-              }, 99000);
-              setTimeout(() => {
-                speedIncrease = 0;
-              }, 99100);
+              setTimeout(_evilMode,20000);
               _showCurrentModeBtn($this);
               break;
             case '2':
               _showCurrentModeBtn($this);
-              speedIncrease = 8;
-              setTimeout(() => {
-                speedIncrease = 10;
-              }, 15000);
-              setTimeout(() => {
-                speedIncrease = 15;
-              }, 60000);
+              speedIncrease = 6;
+              setTimeout(_increaseSpeed,20000);
               break;
             case '3':
               _showCurrentModeBtn($this);
-              speedIncrease = 12;
-              setTimeout(() => {
-                speedIncrease = 20;
-              }, 15000);
-              setTimeout(() => {
-                speedIncrease = 30;
-              }, 55000);
+              speedIncrease = 10;
+              setTimeout(_increaseSpeed,20000);
               break;
             case '4':
               _hideCurrentModeBtn($this);
