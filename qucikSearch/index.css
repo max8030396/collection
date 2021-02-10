@@ -143,6 +143,7 @@
   background-size: contain;
   background-repeat: no-repeat;
   box-sizing: border-box;
+  background-position: center;
 }
 
 /* Section04 */
@@ -176,6 +177,30 @@
 
 /* RWD內容 */
 @media all and (max-width:731px) {
+  /* 內容無法撐開div */
+  .wrapper .sec2 {
+    padding-top: 0px;
+    height: 75px;
+  }
+
+  .wrapper .sec2 .s2_block .s2_nav1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .wrapper .sec2 .s2_block .s2_nav2 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(50%);
+  }
+  /* rwd超出畫面該如何處理 */
+  .wrapper .sec2 .s2_block .s2_nav3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(150%);
+  }
+
   .wrapper .sec3 .s3_block .s3_block_left{
     width: 100%;
   }
