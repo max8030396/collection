@@ -136,19 +136,19 @@
   margin-left: 1%;
   margin-right: 1%;
   width: 48%;
+  height: 350px;
   /* background-color:#f00; */
   float: right;
-}
-
-.wrapper .sec3 .s3_block .s3_block_right img {
-  width: 500px;
-  height: 300px;
-  
+  background-image: url('img/—Pngtree—fast\ seconds\ hand\ pointer\ chronograph_5455087.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
 }
 
 /* Section04 */
 .wrapper .sec4 .s4_block {
   width: 100%;
+  height: 1000px;
 }
 
 .wrapper .sec4 .s4_block .textCloud1{
