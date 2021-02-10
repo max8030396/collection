@@ -6,7 +6,7 @@
 
 .cf::after {
   display: block;
-  content: ('');
+  content: '';
   clear: both;
 }
 
@@ -173,11 +173,9 @@
   float: right;
 }
 
-/* 怪了為什麼sec3、sec4沒有被內容物撐篙？ */
 
 /* RWD內容 */
 @media all and (max-width:731px) {
-  /* 內容無法撐開div */
   .wrapper .sec2 {
     padding-top: 0px;
     height: 75px;
