@@ -1,8 +1,11 @@
 $(document).ready(function() {
-    $('.slick-Test').slick();
+  $('.slick-test').slick();
 
-    var scene = document.getElementById('parallax');
-    var parallaxInstance = new Parallax(parallax);
+  var scene = document.getElementById('parallax');
+  var parallaxInstance = new Parallax(scene);
 
-    $('.test-calculator').calculator();
+  $('.test-calculator').calculator({
+    placeholder: '周子搖',
+    bgColor: '#f00',
+  })
 })
