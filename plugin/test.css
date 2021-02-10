@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+}
+
+#parallax {
+  width: 300px;
+  height: 300px;
+}
+
+#parallax div {
+  width: 300px;
+  height: 300px;
+  opacity: 0.2;
+}
+
+#parallax .parallax-1 {
+  background-color: #f00;
+}
+
+
+#parallax .parallax-2 {
+  background-color: #0f0;
+}
+
+#parallax .parallax-3 {
+  background-color: #00f;
+}
