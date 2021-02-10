@@ -1,0 +1,194 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+}
+
+.cf::after {
+  display: block;
+  content: ('');
+  clear: both;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1920px;
+}
+
+.wrapper section {
+  text-align: center;
+}
+
+.wrapper .sec1 .s1_block {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto 30px;
+  /* background-color: #333333; */
+}
+
+.wrapper .sec1 .s1_block .s1_block_logo {
+  width: 200px;
+  height: 100px;
+  background-color: #f00;
+  display: block;
+  margin: 0 auto;
+}
+
+.wrapper .sec1 .s1_block .s1_inputer {
+  width: 95%;
+  font-size: 18px;
+  color: #333333;
+  margin: 20px auto 0;
+  display: block;
+  padding: 17px 60px 15px 20px;
+  box-sizing: border-box;
+}
+
+.wrapper .sec1 .s1_search{
+  font-size: 18px;
+  margin: 10px auto;
+  color: #ffffff;
+  background-color: #4caf50;
+  display: inline-block;
+  padding: 15px 100px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper .sec1 .s1_search:hover{
+  background-color: #55bc59;
+}
+/* Section02 */
+.wrapper .sec2 {
+  padding-top: 100px;
+}
+.wrapper .sec2 .s2_block {
+  width: 100%;
+  max-width: 600px;
+  border-bottom: 1px solid #dbdbdb;
+  margin: 0 auto;
+}
+
+.wrapper .sec2 .s2_block .s2_block_nav {
+  position: relative;
+  width: 33.33%;
+  padding: 15px 0 ;
+  /* background-color: #dbdbdb; */
+  display: inline-block;
+  font-size: 20px;
+  color: #999999;
+  cursor: pointer;
+}
+
+.wrapper .sec2 .s2_block .js_active {
+  color: #000000;
+  font-weight: bolder;
+}
+
+.wrapper .sec2 .s2_block .js_active::after {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  content: '';
+  display: inline-block;
+  background-color: black;
+  height: 3px;
+  width: 100%;
+}
+
+/* Section03 */
+.wrapper .sec3 .s3_block {
+  width: 100%;
+  max-width: 1920px;
+  height: 350px;
+}
+
+.wrapper .sec3 .s3_block .s3_block_left {
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 48%;
+  /* background-color: blue; */
+  float: left;
+  text-align: left;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.wrapper .sec3 .s3_block .s3_block_left h1 {
+  font-size: 28px;
+  border-bottom: #000000 solid 1px;
+}
+
+.wrapper .sec3 .s3_block .s3_block_left li {
+  border-bottom: #000 solid 1px;
+  color: blue;
+  cursor: pointer;
+  display: block;
+  font-size: 18px;
+}
+
+.wrapper .sec3 .s3_block .s3_block_left li:hover {
+  color: rgb(0, 120, 249);
+}
+
+.wrapper .sec3 .s3_block .s3_block_right {
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 48%;
+  /* background-color:#f00; */
+  float: right;
+}
+
+.wrapper .sec3 .s3_block .s3_block_right img {
+  width: 500px;
+  height: 300px;
+  
+}
+
+/* Section04 */
+.wrapper .sec4 .s4_block {
+  width: 100%;
+}
+
+.wrapper .sec4 .s4_block .textCloud1{
+  width: 48%;
+  height: 300px;
+  padding: 0% 1%;
+  box-sizing: border-box;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-image: url('/qucikSearch/img/文字雲假圖.png');
+  float: left;
+  }
+
+.wrapper .sec4 .s4_block .textCloud2 {
+  width: 48%;
+  height: 300px;
+  padding: 0% 1%;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-image: url('/qucikSearch/img/文字雲假圖.png');
+  float: right;
+}
+
+/* 怪了為什麼sec3、sec4沒有被內容物撐篙？ */
+
+/* RWD內容 */
+@media all and (max-width:731px) {
+  .wrapper .sec3 .s3_block .s3_block_left{
+    width: 100%;
+  }
+
+  .wrapper .sec3 .s3_block .s3_block_right{
+    width: 100%;
+  }
+
+  .wrapper .sec4 .s4_block .textCloud1 {
+    width: 100%;
+  }
+
+  .wrapper .sec4 .s4_block .textCloud2 {
+    width: 100%;
+  }
+}
