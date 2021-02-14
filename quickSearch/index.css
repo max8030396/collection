@@ -58,16 +58,6 @@
 }
 
 .wrapper .sec1 .s1_block .s1_rwd_search {
-  background-color: #4caf50;
-  border-radius: 20px;
-  cursor: pointer;
-  color: #ffffff;
-  position: absolute;
-  display: inline-block;
-  font-size: 18px;
-  right: 3px;
-  bottom: 0;
-  padding: 16px 22px;
   display: none;  
 }
 
@@ -88,7 +78,7 @@
 .wrapper .sec2 .s2_block .s2_block_nav {
   position: relative;
   width: 33.33%;
-  padding: 19.5px 0 ;
+  padding: 15px 0 ;
   /* background-color: #dbdbdb; */
   display: inline-block;
   font-size: 20px;
@@ -206,6 +196,7 @@
   .wrapper .sec1 .s1_search {
     display: none;
   }
+
   .wrapper .sec1 .s1_block .s1_inputer {
     padding: 17px 85px 15px 20px;
     width: 90%;
@@ -213,8 +204,19 @@
   }
 
   .wrapper .sec1 .s1_block .s1_rwd_search {
+    background-color: #4caf50;
+    border-radius: 20px;
+    cursor: pointer;
+    color: #ffffff;
+    position: absolute;
+    display: inline-block;
+    font-size: 18px;
+    right: 3px;
+    bottom: 0;
+    padding: 15px 22px;
     display: block;
   }
+
   /* Sec02 */
   .wrapper .sec2 {
     padding-top: 0px;
