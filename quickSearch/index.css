@@ -61,7 +61,7 @@
 }
 /* Section02 */
 .wrapper .sec2 {
-  padding-top: 100px;
+  padding-top: 40px;
 }
 .wrapper .sec2 .s2_block {
   width: 100%;
@@ -98,10 +98,15 @@
 }
 
 /* Section03 */
+.wrapper .sec3 {
+  padding-top: 14px;
+}
+
 .wrapper .sec3 .s3_block {
   width: 100%;
   max-width: 1920px;
-  height: 350px;
+  /* height: 350px; */
+  /* background-color: red; */
 }
 
 .wrapper .sec3 .s3_block .s3_block_left {
@@ -118,14 +123,20 @@
 .wrapper .sec3 .s3_block .s3_block_left h1 {
   font-size: 28px;
   border-bottom: #000000 solid 1px;
+  color: rgb(255, 98, 0);
 }
 
 .wrapper .sec3 .s3_block .s3_block_left li {
+  padding: 5px 0px 0px 2px;
   border-bottom: #000 solid 1px;
-  color: blue;
+  color: rgb(24, 23, 23);
   cursor: pointer;
   display: block;
-  font-size: 18px;
+  font-size: 19px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  letter-spacing: 3px;
 }
 
 .wrapper .sec3 .s3_block .s3_block_left li:hover {
@@ -136,7 +147,7 @@
   margin-left: 1%;
   margin-right: 1%;
   width: 48%;
-  height: 350px;
+  height:395px;
   /* background-color:#f00; */
   float: right;
   background-image: url('img/—Pngtree—fast\ seconds\ hand\ pointer\ chronograph_5455087.png');
@@ -179,6 +190,11 @@
   .wrapper .sec2 {
     padding-top: 0px;
     height: 75px;
+    overflow: hidden;
+  }
+
+  .wrapper .sec2 .s2_block .s2_block_nav {
+    padding: 28px 0 13px;
   }
 
   .wrapper .sec2 .s2_block .s2_nav1 {
@@ -199,11 +215,24 @@
     transform: translateX(150%);
   }
 
-  .wrapper .sec3 .s3_block .s3_block_left{
+  .wrapper .sec3 {
+    padding: 0;
+  }
+
+  .wrapper .sec3 .s3_block .s3_block_left {
     width: 100%;
   }
 
-  .wrapper .sec3 .s3_block .s3_block_right{
+  .wrapper .sec3 .s3_block .s3_block_left h1 {
+    display: none;
+  }
+
+  .wrapper .sec3 .s3_block .s3_block_left li {
+    padding: 5px 5px 1px 0;
+  }
+
+
+  .wrapper .sec3 .s3_block .s3_block_right {
     width: 100%;
   }
 
