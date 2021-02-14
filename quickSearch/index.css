@@ -23,6 +23,7 @@
   width: 100%;
   max-width: 600px;
   margin: 40px auto 30px;
+  position: relative;
   /* background-color: #333333; */
 }
 
@@ -54,6 +55,20 @@
   border-radius: 5px;
   cursor: pointer;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper .sec1 .s1_block .s1_rwd_search {
+  background-color: #4caf50;
+  border-radius: 20px;
+  cursor: pointer;
+  color: #ffffff;
+  position: absolute;
+  display: inline-block;
+  font-size: 18px;
+  right: 3px;
+  bottom: 0;
+  padding: 16px 22px;
+  display: none;  
 }
 
 .wrapper .sec1 .s1_search:hover{
@@ -187,14 +202,32 @@
 
 /* RWD內容 */
 @media all and (max-width:731px) {
+  /* Sec01 */
+  .wrapper .sec1 .s1_search {
+    display: none;
+  }
+  .wrapper .sec1 .s1_block .s1_inputer {
+    padding: 17px 85px 15px 20px;
+    width: 90%;
+    margin: 20px 5px 0;
+  }
+
+  .wrapper .sec1 .s1_block .s1_rwd_search {
+    display: block;
+  }
+  /* Sec02 */
   .wrapper .sec2 {
     padding-top: 0px;
-    height: 75px;
+    height: 38px;
     overflow: hidden;
   }
 
+  .wrapper .sec2 .s2_block {
+    border-bottom:none;
+  }
+
   .wrapper .sec2 .s2_block .s2_block_nav {
-    padding: 28px 0 13px;
+    padding: 0 0 13px;
   }
 
   .wrapper .sec2 .s2_block .s2_nav1 {
@@ -215,6 +248,7 @@
     transform: translateX(150%);
   }
 
+  /* Sec03 */
   .wrapper .sec3 {
     padding: 0;
   }
@@ -236,6 +270,7 @@
     width: 100%;
   }
 
+  /* Sec04 */
   .wrapper .sec4 .s4_block .textCloud1 {
     width: 100%;
   }
