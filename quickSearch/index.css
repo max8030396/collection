@@ -104,7 +104,7 @@
 
 /* Section03 */
 .wrapper .sec3 {
-  padding-top: 14px;
+  padding-top: 5px;
 }
 
 .wrapper .sec3 .s3_block {
@@ -115,9 +115,9 @@
 }
 
 .wrapper .sec3 .s3_block .s3_block_left {
-  margin-left: 1%;
-  margin-right: 1%;
-  width: 48%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 46%;
   /* background-color: blue; */
   float: left;
   text-align: left;
@@ -128,7 +128,7 @@
 .wrapper .sec3 .s3_block .s3_block_left h1 {
   font-size: 28px;
   border-bottom: #000000 solid 1px;
-  color: rgb(255, 98, 0);
+  color: rgb(0 120 249);
 }
 
 .wrapper .sec3 .s3_block .s3_block_left li {
@@ -145,13 +145,13 @@
 }
 
 .wrapper .sec3 .s3_block .s3_block_left li:hover {
-  color: rgb(0, 120, 249);
+  color: rgba(13, 81, 227, 0.749);
 }
 
 .wrapper .sec3 .s3_block .s3_block_right {
-  margin-left: 1%;
-  margin-right: 1%;
-  width: 48%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 46%;
   height:395px;
   /* background-color:#f00; */
   float: right;
@@ -165,7 +165,7 @@
 /* Section04 */
 .wrapper .sec4 .s4_block {
   width: 100%;
-  height: 1000px;
+  /* height: 1000px; */
 }
 
 .wrapper .sec4 .s4_block .textCloud1{
@@ -173,9 +173,6 @@
   height: 300px;
   padding: 0% 1%;
   box-sizing: border-box;
-  background-size:contain;
-  background-repeat: no-repeat;
-  background-image: url('/qucikSearch/img/文字雲假圖.png');
   float: left;
   }
 
@@ -183,9 +180,7 @@
   width: 48%;
   height: 300px;
   padding: 0% 1%;
-  background-size:contain;
-  background-repeat: no-repeat;
-  background-image: url('/qucikSearch/img/文字雲假圖.png');
+  box-sizing: border-box;
   float: right;
 }
 
@@ -193,14 +188,14 @@
 /* RWD內容 */
 @media all and (max-width:731px) {
   /* Sec01 */
-  .wrapper .sec1 .s1_search {
-    display: none;
-  }
-
   .wrapper .sec1 .s1_block .s1_inputer {
     padding: 17px 85px 15px 20px;
     width: 90%;
     margin: 20px 5px 0;
+  }
+  
+  .wrapper .sec1 .s1_search {
+    display: none;
   }
 
   .wrapper .sec1 .s1_block .s1_rwd_search {
@@ -213,7 +208,7 @@
     font-size: 18px;
     right: 3px;
     bottom: 0;
-    padding: 15px 22px;
+    padding: 16px 22px;
     display: block;
   }
 
@@ -243,7 +238,7 @@
     left: 50%;
     transform: translateX(50%);
   }
-  /* rwd超出畫面該如何處理 */
+
   .wrapper .sec2 .s2_block .s2_nav3 {
     position: absolute;
     left: 50%;
@@ -257,6 +252,7 @@
 
   .wrapper .sec3 .s3_block .s3_block_left {
     width: 100%;
+    margin:0;
   }
 
   .wrapper .sec3 .s3_block .s3_block_left h1 {
@@ -270,6 +266,7 @@
 
   .wrapper .sec3 .s3_block .s3_block_right {
     width: 100%;
+    margin:0;
   }
 
   /* Sec04 */
