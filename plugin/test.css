@@ -33,3 +33,11 @@
   height: 350px;
 }
 
+#main {
+  width: 600px;
+  height: 500px;
+}
+
+#barChar {
+  max-width: 600px;
+}

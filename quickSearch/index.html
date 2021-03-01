@@ -8,55 +8,63 @@
     <link rel="stylesheet" href="../plugin/jQCloud-master/jqcloud.min.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../plugin/jQCloud-master/jqcloud.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="index.js"></script>
 </head>
 
 <body>
-    <div class="wrapper">
+  <div class="wrapper">
 
-      <!-- 區塊01 -->
-      <section class="sec1">
-        <div class="s1_block">
-          <a href="" class="s1_block_logo">
-            <img src="" alt="">
-          </a>
-          <input type="text" class="s1_inputer" placeholder="輸入股票名稱或代號">
-          <div class="s1_rwd_search">搜尋</div>
+    <!-- 區塊01 -->
+    <section class="sec1">
+      <div class="s1_block">
+        <a href="" class="s1_block_logo">
+          <img src="" alt="">
+        </a>
+        <input type="text" class="s1_inputer" placeholder="輸入股票名稱或代號">
+        <div class="s1_rwd_search">搜尋</div>
+      </div>
+      <div class="s1_search">立即搜尋</div>
+    </section>
+
+
+    <!-- 區塊02 -->
+    <section class="sec2">
+      <div class="s2_block">
+        <nav class="s2_block_nav s2_nav1 js_active" data-mode="PTT">PTT</nav>
+        <nav class="s2_block_nav s2_nav2 " data-mode="Google">Google</nav>
+        <nav class="s2_block_nav s2_nav3 " data-mode="Yahoo">Yahoo</nav>
+      </div>
+    </section>
+
+
+    <!-- 區塊03 -->
+    <section class="sec3">
+      <div class="s3_block cf">
+        <div class="s3_block_left">
+          <h1>各家新聞 News</h1>
+          <ul class="s3_block_left_ul">
+          </ul>
         </div>
-        <div class="s1_search">立即搜尋</div>
-      </section>
+        <div class="s3_block_right"></div>
+      </div>
+    </section>
 
 
-      <!-- 區塊02 -->
-      <section class="sec2">
-        <div class="s2_block">
-          <nav class="s2_block_nav s2_nav1 js_active" data-mode="PTT">PTT</nav>
-          <nav class="s2_block_nav s2_nav2 " data-mode="Google">Google</nav>
-          <nav class="s2_block_nav s2_nav3 " data-mode="Yahoo">Yahoo</nav>
+    <!-- 區塊04 -->
+    <div class="sec4">
+      <div class="s4_block cf">
+        <div class="s4_block_left">
+          <div id="s4_block_left_cloud1" class="textCloud1"></div>
+          <canvas id="s4_block_left_barChart1"></canvas>
         </div>
-      </section>
-
-
-      <!-- 區塊03 -->
-      <section class="sec3">
-        <div class="s3_block cf">
-          <div class="s3_block_left">
-            <h1>各家新聞 News</h1>
-            <ul class="s3_block_left_ul">
-            </ul>
-          </div>
-          <div class="s3_block_right"></div>
-        </div>
-      </section>
-
-
-      <!-- 區塊04 -->
-      <div class="sec4">
-        <div class="s4_block cf">
-          <div id="cloud1" class="textCloud1"></div>
-          <div id="cloud2" class="textCloud2"></div>
+        <div class="s4_block_right">
+          <div id="s4_block_right_cloud2" class="textCloud2"></div>
+          <canvas id="s4_block_right_barChart2"></canvas>
         </div>
       </div>
     </div>
+  
+  </div>
 </body>
 </html>
