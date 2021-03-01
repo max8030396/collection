@@ -1,0 +1,12 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 100px;
+}
+
+.colorDiv {
+  width: 500px;
+  height: 500px;
+  background-color: #0d1;
+  transition: ease 3000ms;
+}
