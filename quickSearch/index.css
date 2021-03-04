@@ -187,13 +187,21 @@
   margin-left:2.5%;
   margin-right: 1.25%;
   /* background-color: #dbdbdb; */
-  vertical-align: top;/*為啥要用這個？*/
+  /* vertical-align: top;為啥要用這個？ */
 }
 
 .wrapper .sec4 .s4_block .s4_block_left .s4_block_left_box1 .textCloud1{
   height: 300px;
   padding: 0% 1%;
   box-sizing: border-box;
+}
+
+.textCloud1 span{
+  text-shadow: 0px 3px 6px rgba(229,229,229);
+}
+
+.textCloud2 span{
+  text-shadow: 0px 5px 6px rgba(229,229,229);
 }
 
 .wrapper .sec4 .s4_block .s4_block_left_box2 {
@@ -249,7 +257,7 @@
   margin-left:2.5%;
   margin-right: 1.25%;
   /* background-color: #dbdbdb; */
-  vertical-align: top;/*為啥要用這個？*/
+  /* vertical-align: top;為啥要用這個？ */
 }
 
 .wrapper .sec4 .s4_block .s4_block_right .s4_block_right_box1 .textCloud2{

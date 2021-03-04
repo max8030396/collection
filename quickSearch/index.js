@@ -24,10 +24,16 @@ $(document).ready(() => {
 
   $('#s4_block_left_box1_cloud1').jQCloud(words, {
     autoResize: true,
+    // shape: 'rectangular',
+    // fontSize: {
+    //   from: 0.23,
+    //   to: 0.001
+    // },
     colors: ["#e7228c", "#e7237c", "#e01671", "#dd0f6c", "#d90866", "#b5179e", "#a514a5", "#9410ab", "#8c0fae", "#830db1"],
     });
   $('#s4_block_right_box1_cloud2').jQCloud(words, {
-    // autoResize: true,
+    autoResize: true,
+    // shape: 'rectangular',
     colors: ["#800026","#6c757d", "#bd0026", "#00a", "#e31a1c", "#5E503F", "#fc4e2a", "#fd8d3c", "#0D6FB8", "#1b4332"],
     });
 
