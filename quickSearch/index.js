@@ -9,24 +9,24 @@ $(document).ready(() => {
     })
   }
   var words = [
-    {text: "台積電", weight: 11.5, link: 'http://github.com/mistic100/jQCloud'},
-    {text: "聯發科", weight: 8.5, link: 'http://www.strangeplanet.fr'},
-    {text: "中鋼", weight: 9.4, link: 'http://piwigo.org'},
-    {text: "富邦金", weight: 13, link: 'http://piwigo.org'},
-    {text: "玉山金", weight: 7.5, link: 'http://piwigo.org'},
-    {text: "中華", weight: 9.4, link: 'http://piwigo.org'},
-    {text: "遠傳", weight: 8, link: 'http://piwigo.org'},
-    {text: "台哥大", weight: 6.2, link: 'http://piwigo.org'},
-    {text: "華碩", weight: 16.9, link: 'http://piwigo.org'},
-    {text: "宏碁", weight: 11.3, link: 'http://piwigo.org'},
+    {text: "利益", weight: 11.5, link: 'http://github.com/mistic100/jQCloud'},
+    {text: "成長", weight: 8.5, link: 'http://www.strangeplanet.fr'},
+    {text: "效能", weight: 9.4, link: 'http://piwigo.org'},
+    {text: "高效", weight: 13, link: 'http://piwigo.org'},
+    {text: "高效能", weight: 7.5, link: 'http://piwigo.org'},
+    {text: "帶動", weight: 9.4, link: 'http://piwigo.org'},
+    {text: "穩定", weight: 8, link: 'http://piwigo.org'},
+    {text: "穩定的", weight: 6.2, link: 'http://piwigo.org'},
+    {text: "人傑", weight: 16.9, link: 'http://piwigo.org'},
+    {text: "上升", weight: 11.3, link: 'http://piwigo.org'},
     /* ... */
   ];
 
-  $('#s4_block_left_cloud1').jQCloud(words, {
+  $('#s4_block_left_box1_cloud1').jQCloud(words, {
     autoResize: true,
     colors: ["#e7228c", "#e7237c", "#e01671", "#dd0f6c", "#d90866", "#b5179e", "#a514a5", "#9410ab", "#8c0fae", "#830db1"],
     });
-  $('#s4_block_right_cloud2').jQCloud(words, {
+  $('#s4_block_right_box1_cloud2').jQCloud(words, {
     // autoResize: true,
     colors: ["#800026","#6c757d", "#bd0026", "#00a", "#e31a1c", "#5E503F", "#fc4e2a", "#fd8d3c", "#0D6FB8", "#1b4332"],
     });
@@ -34,7 +34,8 @@ $(document).ready(() => {
 
   function handleApiAjax() {
     var $insertDom = $('.s3_block_left_ul');
-
+    var $positive = $('.s4_block_left_box3_ul');
+    var $negative = $('.s4_block_right_box3_ul');
     $.ajax({
       url: "http://demo2740101.mockable.io/starklab/news/",
       dataType: "json",
@@ -49,6 +50,12 @@ $(document).ready(() => {
         for (var i = 0; i < res.news.length; i = i + 1 ) {
           $insertDom.append('<li>' + res.news[i] + '</li>')
         }
+        for (var j = 0; j < res.positive.length; j = j + 1 ) {
+          $positive.append('<li>' + res.positive[j] + '</li>')
+        }
+        for (var k = 0; k < res.negative.length; k = k + 1 ) {
+          $negative.append('<li>' + res.negative[k] + '</li>')
+        }
 
       },
       complete: function(res) {
@@ -61,7 +68,7 @@ $(document).ready(() => {
   }
 
   function barChart1() {
-    var ctx = document.getElementById('s4_block_left_barChart1');
+    var ctx = document.getElementById('s4_block_left_box2_barChart1');
     var s4_block_left_barChart1 = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -109,7 +116,7 @@ $(document).ready(() => {
   }
 
   function barChart2() {
-    var ctx = document.getElementById('s4_block_right_barChart2');
+    var ctx = document.getElementById('s4_block_right_box2_barChart2');
     var s4_block_right_barChart2 = new Chart(ctx, {
       type: 'bar',
       data: {
