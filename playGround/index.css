@@ -1,7 +1,6 @@
 * {
   padding: 0;
   margin: 0;
-  font-size: 10px;
 }
 
 .colorDiv {
@@ -13,4 +12,235 @@
 
 .last {
   transition: color 3000ms ease 3000ms;
+}
+
+
+/* 共用的css */
+.outSideCircle, .circle, .circleBg, .pointerHead{
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%);
+}
+/* 外框 */
+.outsideFrame {
+  /* width: 600px; 
+  height: 300px;  */
+  position: relative;
+  overflow: hidden;
+  margin:50px 0 0 100px;
+  position: relative;
+}
+/* 內圈背景色及基礎設定 */
+.outsideFrame .circleBg{
+  z-index: 11;
+  /* width: 504px;
+  height: 252px;
+  border-radius: 252px 252px 0 0 ; */
+ background-color: #6f6f6f;
+  bottom: 0;
+  box-shadow:inset 4px 4px 12px 2px rgba(20%,20%,40%,0.5)
+}
+/* 內圈霓虹文字 */
+.outsideFrame .circleBg .text {
+  z-index: 5;
+  padding: 10px;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%);
+  /* font-size: 30px; */
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  border: solid 1px white;
+  text-shadow: 0px 0px 7px #00ffff, 0px 0px 2px #00ffff, 0px 0px 2px #00ffff;
+  box-shadow: 0px 0px 0px #00ffff, 0px 0px 5px #00ffff, 0px 0px 10px #00ffff, inset 0px 0px 7px #00ffff;
+}
+/* 內圈指針 */
+.outsideFrame .circleBg .pointer {
+  z-index: 6;
+  width: 180px;
+  height: 10px;
+  border-radius:50px;
+  background-color: #d88a29;
+  box-shadow: 2px -1px 5px 0px #504e4e;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  /* transform: translateX(-100%); */
+  transform-origin: 0 50%;
+  transform: rotate(270deg);
+}
+/* 內圈針頭 */
+.outsideFrame .circleBg .pointerHead {
+  z-index: 7;
+  width: 50px;
+  height: 25px;
+  border-radius: 25px 25px 0 0;
+  background-color:white;
+}
+/* 圈顏色及基礎設定 */
+.outsideFrame .circle {
+  z-index: 9;
+  /* width: 540px;
+  height: 270px;
+  border-radius: 270px 270px 0 0 ; */
+  background: linear-gradient(90deg, rgb(76, 201, 240) 0%, rgb(72, 149, 239) 10%, rgb(67, 97, 238) 20%, rgb(63, 55, 201) 30%, rgb(58, 12, 163) 40%, rgb(72, 12, 168) 50%, rgb(86, 11, 173) 60%, rgb(114, 9, 183) 70%, rgb(181, 23, 158) 80%, rgb(247, 37, 133) 100%);
+}
+/* 外圈基礎設定 */
+.outsideFrame .outSideCircle {
+  z-index: 10;
+  /* width: 600px; 
+  height: 300px; 
+  border-radius: 300px 300px 0 0; */
+}
+/* 外圈數值間虛線 */
+.outsideFrame .outSideCircle .bar .line {
+  width: 89%;
+  height: 2px;
+  background-color: #fff6;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* 外圈數值角度 */
+.outsideFrame .outSideCircle .bar {
+  height: 10;
+  transform-origin: 100% 100%;
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+}
+
+.outsideFrame .outSideCircle span {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.outsideFrame .outSideCircle .bar0 {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.outsideFrame .outSideCircle .bar10 {
+  transform: rotate(18deg);
+}
+
+.outsideFrame .outSideCircle .bar10 span {
+  transform: rotate(342deg);
+}
+
+.outsideFrame .outSideCircle .bar20 {
+  transform: rotate(36deg);
+}
+
+.outsideFrame .outSideCircle .bar20 span {
+  transform: rotate(324deg);
+}
+
+.outsideFrame .outSideCircle .bar30 {
+  transform: rotate(54deg);
+}
+
+.outsideFrame .outSideCircle .bar30 span {
+  transform: rotate(306deg);
+}
+
+.outsideFrame .outSideCircle .bar40 {
+  transform: rotate(72deg);
+}
+
+.outsideFrame .outSideCircle .bar40 span {
+  transform: rotate(288deg);
+}
+
+.outsideFrame .outSideCircle .bar50 {
+  transform: rotate(90deg);
+}
+
+.outsideFrame .outSideCircle .bar50 span {
+  transform: rotate(270deg);
+}
+
+.outsideFrame .outSideCircle .bar60 {
+  transform: rotate(108deg);
+}
+
+.outsideFrame .outSideCircle .bar60 span {
+  transform: rotate(252deg);
+}
+
+.outsideFrame .outSideCircle .bar70 {
+  transform: rotate(126deg);
+}
+
+.outsideFrame .outSideCircle .bar70 span {
+  transform: rotate(234deg);
+}
+
+.outsideFrame .outSideCircle .bar80 {
+  transform: rotate(144deg);
+}
+
+.outsideFrame .outSideCircle .bar80 span {
+  transform: rotate(216deg);
+}
+
+.outsideFrame .outSideCircle .bar90 {
+  transform: rotate(162deg);
+}
+
+.outsideFrame .outSideCircle .bar90 span {
+  transform: rotate(198deg);
+}
+
+.outsideFrame .outSideCircle .bar100 {
+  margin-bottom: 10px;
+  transform: rotate(180deg);
+}
+
+.outsideFrame .outSideCircle .bar100 span {
+  width: 100%;
+  text-align: right;
+  transform: rotate(180deg);
+}
+
+.mobileActive {
+  width: 500px;
+  height: 500px;
+  background-color: #aaaaaa;
+}
+
+.mobileActive .topbar {
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bolder;
+  background-color: rgb(247, 37, 133, 0.5);
+}
+
+.mobileActive .textArea {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.mobileActive .textArea .textArea1 {
+  background-color: #a3ff;
+  height: 50px;
+}
+.mobileActive .textArea .textArea2 {
+  background-color: #5a2;
+  height: 50px;
+}
+.mobileActive .textArea .textArea3 {
+  background-color: #7128;
+  height: 50px;
+}
+.mobileActive .textArea .textArea4 {
+  background-color: #3fa;
+  height: 50px;
+}
+.mobileActive .textArea .textArea5 {
+  background-color: #faf;
+  height: 50px;
 }

@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "title": "StarkLab | 歷史觀察清單",
+    "keyword": "StarkLab",
+    "describe": "StarkLab"
+  },
+  "banner": {
+    "titleHL": "Stark月營收選股策略II",
+    "title": "歷史觀察清單"
+  },
+  "navMenu": [
+    {
+      "text": "歷史觀察清單",
+      "link": "botTechnicHistory.html",
+      "isActive": true
+    },
+    {
+      "text": "當前觀察清單",
+      "link": "botTechnicCurrent.html"
+    }
+  ]
+}

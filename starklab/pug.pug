@@ -1,0 +1,89 @@
+.wrapper
+  //- 區塊01
+  section.sec1
+    .s1_block
+      a.s1_block_logo
+        img(src="" alt="")
+      input.s1_inputer(type="text" placeholder="輸入股票名稱或代號")
+      .s1_rwd_search.searchBtn 搜尋
+    .s1_search.searchBtn
+  //- 區塊02
+  section.sec.sec2.js_hide
+    //- 新聞列表選擇區
+    .s2_block
+      nav.s2_block_nav.s2_nav1.js_active(data-mode="ptt" data-index="0") PTT
+      nav.s2_block_nav.s2_nav2.js_active(data-mode="google" data-index="0") Google
+      nav.s2_block_nav.s2_nav3.js_active(data-mode="yahoo" data-index="0") Yahoo
+  //- 區塊03
+  section.sec.sec3.js_hide
+    .s3_block
+      //- 各家新聞
+      .s3_block_left
+        h1 各家新聞 News
+        ul.s3_block_left_ul
+      //- 半圓形圖表
+      .s3_block_right
+        //- 半圓中間
+        .circle
+        //- 半圓外圈數字
+        .outSideCircle
+          .bar.bar0
+            span 0
+          .bar.bar10
+            span 10
+            .line
+          .bar.bar20
+            span 20
+            .line
+          .bar.bar30
+            span 30
+            .line
+          .bar.bar40
+            span 40
+            .line
+          .bar.bar50
+            span 50
+            .line
+          .bar.bar60
+            span 60
+            .line
+          .bar.bar70
+            span 70
+            .line
+          .bar.bar80
+            span 80
+            .line
+          .bar.bar90
+            span 90
+            .line
+          .bar.bar100
+            span 100
+        //- 半圓內部背景色
+        .circleBg
+          .pointer
+          .pointerHead
+  //- 區塊04
+  section.sec.sec4.js_hide
+    .s4_block
+      .s4_block_left
+        //- 文字雲
+        .s4_block_left_box1
+          #s4_block_left_box1_cloud1.textCloud1
+        //- 能量條
+        .s4_block_left_box2
+          canvas.s4_block_left_box2_barChart1
+        //- 正面情緒文章
+        .s4_block_left_box3
+          h1 😃 正面情緒
+          ul.s4_block_left_box3_ul.s4_block_positive
+      .s4_block_right
+        //- 文字雲
+        .s4_block_right_box1
+          #s4_block_right_box1_cloud1.textCloud2
+        //- 能量條
+        .s4_block_left_box2
+          canvas.s4_block_right_box2_barChart2
+        //- 負面情緒文章
+        .s4_block_right_box3
+          h1 😕 負面情緒
+          ul.s4_block_right_box3_ul.s4_block_negative

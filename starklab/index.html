@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>quickSearch</title>
     <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="../plugin/jQCloud-master/jqcloud.min.css">
+    <link rel="stylesheet" href="./plugin/jQCloud-master/jqcloud.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="../plugin/jQCloud-master/jqcloud.min.js"></script>
+    <script type="text/javascript" src="plugin/jquery.touchSwipe.min.js"></script>
+    <script type="text/javascript" src="./plugin/jQCloud-master/jqcloud.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script src="index.js"></script>
 </head>
 
@@ -18,41 +21,93 @@
     <!-- 區塊01 -->
     <section class="sec1">
       <div class="s1_block">
-        <a href="" class="s1_block_logo">
+        <!-- <a href="" class="s1_block_logo">
           <img src="" alt="">
-        </a>
+        </a> -->
         <input type="text" class="s1_inputer" placeholder="輸入股票名稱或代號">
-        <div class="s1_rwd_search">搜尋</div>
+        <div class="s1_rwd_search searchBtn">搜尋</div>
       </div>
-      <div class="s1_search">立即搜尋</div>
+      <div class="s1_search searchBtn">立即搜尋</div>
     </section>
 
 
     <!-- 區塊02 -->
-    <section class="sec2">
+    <section class="sec sec2 js_hide">
       <div class="s2_block">
-        <nav class="s2_block_nav s2_nav1 js_active" data-mode="PTT">PTT</nav>
-        <nav class="s2_block_nav s2_nav2 " data-mode="Google">Google</nav>
-        <nav class="s2_block_nav s2_nav3 " data-mode="Yahoo">Yahoo</nav>
+        <nav class="s2_block_nav s2_nav1 js_active" data-mode="ptt" data-index="0">PTT</nav>
+        <nav class="s2_block_nav s2_nav2 " data-mode="google" data-index="1">Google</nav>
+        <nav class="s2_block_nav s2_nav3 " data-mode="yahoo" data-index="2">Yahoo</nav>
       </div>
     </section>
 
 
     <!-- 區塊03 -->
-    <section class="sec3">
-      <div class="s3_block cf">
+    <section class="sec sec3 js_hide">
+      <div class="s3_block">
         <div class="s3_block_left">
           <h1>各家新聞 News</h1>
           <ul class="s3_block_left_ul">
           </ul>
         </div>
-        <div class="s3_block_right"></div>
+        <div class="s3_block_right">
+          <div class="circle"></div>
+          <div class="outSideCircle">
+            <div class="bar bar0">
+              <span>0</span>
+            </div>
+            <div class="bar bar10">
+              <span>10</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar20">
+              <span>20</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar30">
+            <span>30</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar40">
+              <span>40</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar50">
+              <span>50</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar60">
+              <span>60</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar70">
+              <span>70</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar80">
+              <span>80</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar90">
+              <span>90</span>
+              <div class="line"></div>
+            </div>
+            <div class="bar bar100">
+              <span>100</span>
+            </div>
+          </div>
+          <div class="circleBg">
+            <!-- <div class="text"> 霓虹文字－－－不使用
+              <span class="neonText">StarkLab</span>
+            </div> -->
+            <div class="pointer"></div>
+            <div class="pointerHead"></div>
+          </div>
+        </div>
       </div>
     </section>
 
-
     <!-- 區塊04 -->
-    <div class="sec4">
+    <div class="sec sec4 js_hide">
       <div class="s4_block">
         <div class="s4_block_left">
           <div class="s4_block_left_box1">
@@ -62,8 +117,8 @@
             <canvas id="s4_block_left_box2_barChart1"></canvas>
           </div>
           <div class="s4_block_left_box3">
-            <h1>正面情緒</h1>
-            <ul class="s4_block_left_box3_ul"></ul>
+            <h1>😃 正面情緒</h1>
+            <ul class="s4_block_left_box3_ul s4_block_positive"></ul>
           </div>
         </div>
 
@@ -75,12 +130,9 @@
             <canvas id="s4_block_right_box2_barChart2"></canvas>
           </div>
           <div class="s4_block_right_box3">
-            <h1>負面情緒</h1>
-            <ul class="s4_block_right_box3_ul"></ul>
+            <h1>😕 負面情緒</h1>
+            <ul class="s4_block_right_box3_ul s4_block_negative"></ul>
           </div>
-
-
-
         </div>
       </div>
     </div>

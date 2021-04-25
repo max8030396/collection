@@ -102,7 +102,54 @@ $(document).ready(() => {
     }
     lastTime();
   }
+  
+  let outSideFrame = $('.outSideFrame')
+  let outSideCircle = $('.outSideCircle');
+  let circle = $('.circle');
+  let circleBg = $('.circleBg');
+  let gaugeDeg = $('.pointer');
+  // const neonText = $('.text');
 
+
+  function gauge (diameter,deg){//需要是正方形等長等寬
+    outSideFrame.css('width',`${diameter}px`).css('height',`${diameter*0.5}px`);
+
+    outSideCircle.css('width',`${diameter}px`).css('height',`${diameter*0.5}px`).css('border-radius',`${diameter*0.5}px ${diameter*0.5}px 0px 0px`);
+   
+
+    circle.css('width',`${diameter*0.9}px`).css('height',`${diameter*0.45}px`).css('border-radius',`${diameter*0.45}px ${diameter*0.45}px 0px 0px`);
+
+    circleBg.css('width',`${diameter*0.84}px`).css('height',`${diameter*0.42}px`).css('border-radius',`${diameter*0.42}px ${diameter*0.42}px 0px 0px`);
+
+    gaugeDeg.css('transform',`rotate(${deg}deg)`).css('width',`${diameter*0.3}px`).css('height',`${diameter*0.02}`);
+
+    // neonText.css('font-size', `${diameter*0.05}px`);
+  }
+
+  gauge(490,272);
+
+
+  
+    const $textArea = $('.topbar');
+    const tap = $('.textArea1');
+    const tapHold = $('.textArea2');
+    const swipe = $('.textArea3');
+    const swipeLeft = $('.textArea4');
+    const swipeRight = $('.textArea5');
+
+    $(function() {
+      $("#test2").swipe( {
+        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+          $(this).text("You swiped " + direction );
+          if (direction === 'left') {
+            $textArea.css('background-color', 'white');
+          } else if (direction === 'right') {
+            $textArea.css('background-color', 'black');
+          }
+        }
+      });
+    });
+  
   倒數計時器();
   動態時鐘();
   要怎麼套入文字雲();
