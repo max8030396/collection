@@ -1,7 +1,11 @@
 const $ = require('jquery');
-const Chart = require('chart.js')
-
 require('jqcloud2');
+
+const script1 = document.createElement('script');
+const chartJs = "https://cdn.jsdelivr.net/npm/chart.js@2.8.0"
+script1.type = "text/javascript"
+script1.setAttribute("src", chartJs)
+$('head').prepend(script1);
 
 const axios = require('axios');
 const $searchBtn = $('.searchBtn');
@@ -12,6 +16,7 @@ const $newsNavBtn = $('.s2_block_nav');
 const $barChartDom1 = $('#s4_block_left_box2_barChart1');
 const $barChartDom2 = $('#s4_block_right_box2_barChart2');
 const $allSection = $('.sec');
+
 //fuc8
 let mobilePerBtnWidth = [];
 //fuc8 & 9
@@ -22,43 +27,80 @@ let currentSelectNewsBtn;
 let currentSelectNewsBtnIndex = 0;
 //fuc 5 & 6 & 9
 let currentClickMode = 'firstLoad'; // newsOnly
+let getNewsValue;
+let getChartBarValue;
 
-// 新聞類別選單
-const words = [
-  {text: "利益", weight: 11.5, link: 'http://github.com/mistic100/jQCloud'},
-  {text: "成長", weight: 8.5, link: 'http://www.strangeplanet.fr'},
-  {text: "效能", weight: 9.4, link: 'http://piwigo.org'},
-  {text: "高效", weight: 13, link: 'http://piwigo.org'},
-  {text: "高效能", weight: 7.5, link: 'http://piwigo.org'},
-  {text: "帶動", weight: 9.4, link: 'http://piwigo.org'},
-  {text: "穩定", weight: 8, link: 'http://piwigo.org'},
-  {text: "穩定的", weight: 6.2, link: 'http://piwigo.org'},
-  {text: "人傑", weight: 16.9, link: 'http://piwigo.org'},
-  {text: "上升", weight: 11.3, link: 'http://piwigo.org'},
-];
+//獲取能量條表底部文字、數值 "及" 文字雲欲顯示之文字的變數及函式
+let positiveLabelWord = [];
+let positiveBarValue = [];
+let negativeLabelWord =[];
+let negativeBarValue = [];
+let positiveWords = [
+  {text: "利益", weight: 11.5 },
+  {text: "成長", weight: 8.5},
+  {text: "效能", weight: 9.4},
+  {text: "高效", weight: 13},
+  {text: "高效能", weight: 7.5},
+  {text: "帶動", weight: 9.4},
+  {text: "穩定", weight: 8},
+  {text: "穩定的", weight: 6.2},
+  {text: "人傑", weight: 16.9},
+  {text: "上升", weight: 11.3},
+]
+let negativeWords = [
+  {text: "利益", weight: 11.5 },
+  {text: "成長", weight: 8.5},
+  {text: "效能", weight: 9.4},
+  {text: "高效", weight: 13},
+  {text: "高效能", weight: 7.5},
+  {text: "帶動", weight: 9.4},
+  {text: "穩定", weight: 8},
+  {text: "穩定的", weight: 6.2},
+  {text: "人傑", weight: 14.9},
+  {text: "上升", weight: 11.3},
+]
+function getChartBar_textCloudData(target, maxLen) {
+  for (let i = 0; i < maxLen; i = i + 1 ) {
+    
+    positiveLabelWord.push(target.positiveValue[i].text)
+    positiveBarValue.push(target.positiveValue[i].value)
+    positiveWords[i].text = target.positiveValue[i].text
 
-// 文字雲初始化01
-$('#s4_block_left_box1_cloud1').jQCloud(words, {
-  autoResize: true,
-  colors: ["#e7228c", "#e7237c", "#e01671", "#dd0f6c", "#d90866", "#b5179e", "#a514a5", "#9410ab", "#8c0fae", "#830db1"],
-  // shape: 'rectangular',
-  // fontSize: {
-  //   from: 0.23,
-  //   to: 0.001
-  // },
-});
+    negativeLabelWord.push(target.negativeValue[i].text)
+    negativeBarValue.push(target.negativeValue[i].value)
+    negativeWords[i].text = target.negativeValue[i].text
+  }
+  
+  barChart($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
+  barChart($barChartDom2, negativeBarValue, 1.5, negativeLabelWord);
+  console.log('positiveBarValue',positiveBarValue)
+  positiveCloud(positiveWords)
+  negativeCloud(negativeWords)
+} 
 
-// 文字雲初始化02
-$('#s4_block_right_box1_cloud2').jQCloud(words, {
-  colors: ["#800026","#6c757d", "#bd0026", "#00a", "#e31a1c", "#5E503F", "#fc4e2a", "#fd8d3c", "#0D6FB8", "#1b4332"],
-  autoResize: true,
-  // shape: 'rectangular',
-});
+//文字雲基礎設定
+function positiveCloud(words) {
+  $('#s4_block_left_box1_cloud1').jQCloud(words, {
+    autoResize: true,
+    colors: ["#800026","#6c757d", "#bd0026", "#00a", "#e31a1c", "#5E503F", "#fc4e2a", "#fd8d3c", "#0D6FB8", "#1b4332"],
+    // colors: ["#e7228c", "#e7237c", "#e01671", "#dd0f6c", "#d90866", "#b5179e", "#a514a5", "#9410ab", "#8c0fae", "#830db1"],
+    shape: 'rectangular',
+    // fontSize: {
+    //   from: 0.23,
+    //   to: 0.001
+    // },
+  });
+}
 
-//能量條表底部文字
-let labelWord = ['利益', '成長', '效能', '高效', '高效能', '帶動' , '穩定', '穩定的', '人傑' , '上升'];
+function negativeCloud(words) {
+  $('#s4_block_right_box1_cloud2').jQCloud(words, {
+    colors: ["#800026","#6c757d", "#bd0026", "#00a", "#e31a1c", "#5E503F", "#fc4e2a", "#fd8d3c", "#0D6FB8", "#1b4332"],
+    autoResize: true,
+    shape: 'rectangular',
+  });
+}
 
-//1.能量條表
+//1.能量條基礎設定
 function barChart(target, dataValue, borderWidth, labelWord) {
   var ctx = target;
   var barChart = new Chart(ctx, {
@@ -102,6 +144,9 @@ function barChart(target, dataValue, borderWidth, labelWord) {
                     beginAtZero: true
                 }
             }]
+        },
+        legend:{
+          display: false
         }
     }
   });
@@ -113,11 +158,11 @@ function gaugeResize () {
   const circleWrap = $('.s3_block_right');
   const circleBg = $('.circle');
   const circleGreyBg = $('.circleBg');
-  var halfCircle = circleBg.width() / 2;
-  var halfGreyCircle = circleGreyBg.width() / 2;
-  var wrapHeight = circleWrap.height();
-  var newTopMoveValue = wrapHeight - halfCircle;
-  var newGreyTopMoveValue = wrapHeight - halfGreyCircle;
+  let halfCircle = circleBg.width() / 2;
+  let halfGreyCircle = circleGreyBg.width() / 2;
+  let wrapHeight = circleWrap.height();
+  let newTopMoveValue = wrapHeight - halfCircle;
+  let newGreyTopMoveValue = wrapHeight - halfGreyCircle;
 
   // console.log('Check', halfCircle, wrapHeight, newTopMoveValue);
   circleBg.css('top', newTopMoveValue + 'px');
@@ -137,21 +182,14 @@ function initGaugePointerDeg(value) {
 function _appendDataList(target, maxLen, data) {
   for (let i = 0; i < maxLen; i = i + 1 ) {
     // console.log('check i', data[i]);
-    target.append('<li><a href = '+ data[i].link +'">' + data[i].value + '</a></li>')
+    target.append('<li><a href = '+ data[i].link +'>' + data[i].value + '</a></li>')
   }
 }
 
-let getNewsValue;
-let getChartBarValue;
-
 //5.AJAX Function
 function _handleApiAjax(dataType) {
-  // let getNewsValue;
-
-  // console.log('getNewsValue', getNewsValue);
-
   $.ajax({
-    url: "http://demo2740101.mockable.io/starklab/news/",
+    url: "http://starklab.tw/api/news_get/?search=",
     dataType: "json",
     async: true,
     type: "GET",
@@ -159,7 +197,6 @@ function _handleApiAjax(dataType) {
       // console.log('beforeSend');
     },
     success: function(res) {
-      getChartBarValue = res.chartBar;
       switch(dataType) {
         case 'ptt':
           getNewsValue = res.news.ptt;
@@ -179,17 +216,11 @@ function _handleApiAjax(dataType) {
         default:
         break;
       }
-      // console.log('getNewsValue', getNewsValue);
-      barChart($barChartDom1, res.chartBar.positiveValue, 1.5, labelWord);
-      // barChart($barChartDom2, res.chartBar.negativeValue, 1.5, labelWord);
       window.barChart;
       if (currentClickMode === 'firstLoad') {
         _appendDataList($insertDom, getNewsValue.length, getNewsValue);
-        _appendDataList($positiveDom, getChartBarValue.positiveNews.length, getChartBarValue.positiveNews);
-        _appendDataList($negativeDom, getChartBarValue.negativeNews.length, getChartBarValue.negativeNews);
         initGaugePointerDeg(res.news.emotionValue)
       } else if (currentClickMode === 'newsOnly') {
-        console.log('getNewsValue',dataType)
         _appendDataList($insertDom, getNewsValue.length, getNewsValue);
       }
       $allSection.removeClass('js_hide');
@@ -199,10 +230,58 @@ function _handleApiAjax(dataType) {
       // console.log('complete');
     },
     error: function() {
-      console.log('error');
+      // console.log('error');
     }
   });
+
 }
+
+function _handleApiAjax2() {
+  $.ajax({
+    url: "http://starklab.tw/api/sentiment_score/?search=",
+    dataType: "json",
+    async: true,
+    type: "GET",
+    beforeSend: function() {
+      // console.log('beforeSend');
+    },
+    success: function(res) {
+      getChartBarValue = res.chartBar;
+      window.barChart;
+      getChartBar_textCloudData(getChartBarValue,10)
+
+      if (currentClickMode === 'firstLoad') {
+        _appendDataList($positiveDom, 13, getChartBarValue.positiveNews);
+        _appendDataList($negativeDom, 13, getChartBarValue.negativeNews);
+        console.log('正在新增中')
+      }
+    },
+    complete: function(res) {
+      // console.log('complete');
+    },
+    error: function() {
+      // console.log('error');
+    }
+  });
+
+}
+_handleApiAjax2()
+
+
+$.when(_handleApiAjax(), _handleApiAjax2()).done(function(res1, res2) {
+
+//    getChartBarValue = res2;
+//    window.barChart;
+//    getChartBar_textCloudData(getChartBarValue,10)
+
+//    if (currentClickMode === 'firstLoad') {
+//      _appendDataList($positiveDom, 13, getChartBarValue.positiveNews);
+//      _appendDataList($negativeDom, 13, getChartBarValue.negativeNews);
+//      console.log('正在新增中')
+//     }
+// //   console.log('抓取中1',res1[0].news.google[0])
+  console.log('抓取中1',res2[0].chartBar)
+});
 
 //6.判斷是否第一次載入及清除目標中的li
 function cleanBlockElement(cleanType) {
@@ -248,7 +327,9 @@ function initMobileBtnWidth() {
 
 //9.新聞列表區選擇框、當前點選新聞的索引值判斷、debounce、判斷滑動位移的距離、告知上層任務僅需清除此區li非全域
 function newsNavBtnOnClick() {
-  $newsNavBtn.click(function() {
+  $newsNavBtn.on('click',function() {
+    console.log('hi1')
+    console.log('currentClickMode1',currentClickMode)
     currentSelectNewsBtn = $(this);
     $newsNavBtn.removeClass('js_active');
     $(this).addClass('js_active');
@@ -257,9 +338,11 @@ function newsNavBtnOnClick() {
       $('.s2_block').css('transform', `translateX(${mobilePerBtnPosX[currentSelectNewsBtnIndex]}px)`);
     }
   })
-  $newsNavBtn.click(debounce(function() {
+  $newsNavBtn.on('click', debounce(function() {
+    console.log('hi2')
     cleanBlockElement('news');
     currentClickMode = 'newsOnly';
+    console.log('currentClickMode2',currentClickMode)
     let dataType = currentSelectNewsBtn.attr('data-mode');
     console.log('dataType', dataType);
     // if ($(window).width() < 732) {
@@ -268,21 +351,35 @@ function newsNavBtnOnClick() {
     _handleApiAjax(dataType);
   }, 700));
 }
+
 //10.debounce程序,清除所有資料，並重新載入資料，預設載入資料為ptt
 function debounceProcess() {
   cleanBlockElement('all');
   _handleApiAjax('ptt');
+  _handleApiAjax2()
+  console.log('這是剛剛新增的barChart刪除就有資料的地方')
+  //解決1.刪除的陣列位置改成超高數值所以不管按幾次都會刪掉
+  positiveLabelWord.splice(0, 1000)
+  positiveBarValue.splice(0, 1000)
+  negativeLabelWord.splice(0, 1000)
+  negativeBarValue.splice(0, 1000)
+
+  console.log('hi4')
+  console.log('currentClickMode4',currentClickMode)
 }
 
 //11.搜尋按鈕debounce
 function searchBtnOnClick() {
-  $searchBtn.click(debounce(debounceProcess, 500))
+  $searchBtn.on('click',debounce(debounceProcess, 1000))
+  console.log('hi3')
+  console.log('currentClickMode3',currentClickMode)
 }
 
 //12.debounce
 function debounce(func, delay=250) {
   let timer = null;
-  
+  console.log('hi5')
+  console.log('currentClickMode5',currentClickMode)
   return () => {
     let context = this;
     let args = arguments;
@@ -302,10 +399,10 @@ function mobileSwipeEvent() {
       
       if (currentSelectNewsBtnIndex > 2) { 
         currentSelectNewsBtnIndex = 2;
-        console.log('swipeLeft', currentSelectNewsBtnIndex);
+        // console.log('swipeLeft', currentSelectNewsBtnIndex);
         return;
       }
-      console.log('swipeLeft', currentSelectNewsBtnIndex);
+      // console.log('swipeLeft', currentSelectNewsBtnIndex);
       $(`.s2_nav${currentSelectNewsBtnIndex + 1}`).trigger('click');
     },
     swipeRight: function(event, distance, duration, fingerCount, fingerData, currentDirection) {
@@ -313,10 +410,10 @@ function mobileSwipeEvent() {
 
       if (currentSelectNewsBtnIndex < 0) { 
         currentSelectNewsBtnIndex = 0;
-        console.log('swipeRight', currentSelectNewsBtnIndex);
+        // console.log('swipeRight', currentSelectNewsBtnIndex);
         return;
       }
-      console.log('swipeRight', currentSelectNewsBtnIndex);
+      // console.log('swipeRight', currentSelectNewsBtnIndex);
       $(`.s2_nav${currentSelectNewsBtnIndex + 1}`).trigger('click');
     },
     threshold: 30
@@ -330,7 +427,7 @@ initS2_blockWidth();
 
 if ($(window).width() < 730) {
   initMobileBtnWidth();
-  mobileSwipeEvent();
+  // mobileSwipeEvent();
 }
 
 $(window).on('resize', function() {
@@ -338,10 +435,9 @@ $(window).on('resize', function() {
   initS2_blockWidth();
   if($(window).width() < 730) {
     initMobileBtnWidth();
-    mobileSwipeEvent();
+    // mobileSwipeEvent();
   } else if ($(window).width() > 731) {
     $('.s2_block').css('transform', 'none');
   }
 })
-
-$searchBtn.trigger('click');
+// $searchBtn.trigger('click');

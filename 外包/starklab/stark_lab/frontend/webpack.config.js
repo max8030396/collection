@@ -175,7 +175,7 @@ module.exports = (env, argv) => {
       // 是否開啟https模式
       https: false,
       // 是否產生實體檔案到disk目錄
-      writeToDisk: false,
+      writeToDisk: true,
       open: true,
       openPage: `${initProject.openPage}.html`,
       compress: true,

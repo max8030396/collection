@@ -1,5 +1,4 @@
 const $ = require('jquery');
-
 const $window = $(window);
 const $topNavMenu = $('.topper .topper-navbar');
 const $topNavSwitcher = $('.topper-mobile-opener');

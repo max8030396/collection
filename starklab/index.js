@@ -333,7 +333,7 @@ $(document).ready(function() {
     initMobileBtnWidth();
     mobileSwipeEvent();
   }
-
+  mobileSwipeEvent();
   $(window).on('resize', function() {
     gaugeResize();
     initS2_blockWidth();
