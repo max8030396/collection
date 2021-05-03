@@ -8,11 +8,13 @@ __pycache__
 # FrontEnd #
 dist
 merge
+frontend/build
 node_modules
 npm-debug.log
 package-lock.json
 .*DS_Store
 vic.code-workspace
+build
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
