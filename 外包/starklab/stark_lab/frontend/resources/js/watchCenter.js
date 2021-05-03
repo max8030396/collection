@@ -17,6 +17,7 @@ const $barChartDom1 = $('#s4_block_left_box2_barChart1');
 const $barChartDom2 = $('#s4_block_right_box2_barChart2');
 const $allSection = $('.sec');
 
+
 //fuc8
 let mobilePerBtnWidth = [];
 //fuc8 & 9
@@ -29,6 +30,11 @@ let currentSelectNewsBtnIndex = 0;
 let currentClickMode = 'firstLoad'; // newsOnly
 let getNewsValue;
 let getChartBarValue;
+
+//測試功能中
+let inputer = $('.s1_inputer');
+let keyWords = '';
+
 
 //獲取能量條表底部文字、數值 "及" 文字雲欲顯示之文字的變數及函式
 let positiveLabelWord = [];
@@ -59,21 +65,30 @@ let negativeWords = [
   {text: "人傑", weight: 14.9},
   {text: "上升", weight: 11.3},
 ]
-function getChartBar_textCloudData(target, maxLen) {
-  for (let i = 0; i < maxLen; i = i + 1 ) {
-    
+
+function getChartBar_textCloudData(target, positiveLen, negativeLen) {
+  if(positiveLen > 10) {
+    positiveLen = 10;
+  }
+ 
+  for (let i = 0; i < positiveLen; i = i + 1 ) {
     positiveLabelWord.push(target.positiveValue[i].text)
     positiveBarValue.push(target.positiveValue[i].value)
-    positiveWords[i].text = target.positiveValue[i].text
+    // positiveWords.text = target.positiveValue[i].text
+  }
 
+  if(negativeLen > 10) {
+    negativeLen = 10;
+  }
+
+  for (let i = 0; i < negativeLen; i = i + 1 ) {
     negativeLabelWord.push(target.negativeValue[i].text)
     negativeBarValue.push(target.negativeValue[i].value)
-    negativeWords[i].text = target.negativeValue[i].text
+    // negativeWords[i].text = target.negativeValue[i].text
   }
   
   barChart($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
   barChart($barChartDom2, negativeBarValue, 1.5, negativeLabelWord);
-  console.log('positiveBarValue',positiveBarValue)
   positiveCloud(positiveWords)
   negativeCloud(negativeWords)
 } 
@@ -180,6 +195,9 @@ function initGaugePointerDeg(value) {
 
 //4.新增新聞列表
 function _appendDataList(target, maxLen, data) {
+  if (maxLen > 10) {
+    maxLen = 10;
+  }
   for (let i = 0; i < maxLen; i = i + 1 ) {
     // console.log('check i', data[i]);
     target.append('<li><a href = '+ data[i].link +'>' + data[i].value + '</a></li>')
@@ -187,9 +205,89 @@ function _appendDataList(target, maxLen, data) {
 }
 
 //5.AJAX Function
-function _handleApiAjax(dataType) {
+// function _handleApiAjax(dataType) {
+//   $.ajax({
+//     url: "http://starklab.tw/api/news_get/?search=",
+//     dataType: "json",
+//     async: true,
+//     type: "GET",
+//     beforeSend: function() {
+//       // console.log('beforeSend');
+//     },
+//     success: function(res) {
+//       switch(dataType) {
+//         case 'ptt':
+//           getNewsValue = res.news.ptt;
+//           console.log('AJAX GET PTT', getNewsValue);
+//         break;
+  
+//         case 'google':
+//           getNewsValue = res.news.google;
+//           // console.log('AJAX GET google', getNewsValue);
+//         break;
+
+//         case 'yahoo':
+//           getNewsValue = res.news.yahoo;
+//           // console.log('AJAX GET yahoo', getNewsValue);
+//         break;
+
+//         default:
+//         break;
+//       }
+//       window.barChart;
+//       if (currentClickMode === 'firstLoad') {
+//         _appendDataList($insertDom, getNewsValue.length, getNewsValue);
+//         initGaugePointerDeg(res.news.emotionValue)
+//       } else if (currentClickMode === 'newsOnly') {
+//         _appendDataList($insertDom, getNewsValue.length, getNewsValue);
+//       }
+//       $allSection.removeClass('js_hide');
+      
+//     },
+//     complete: function(res) {
+//       // console.log('complete');
+//     },
+//     error: function() {
+//       // console.log('error');
+//     }
+//   });
+
+// }
+
+// function _handleApiAjax2() {
+//   $.ajax({
+//     url: "http://starklab.tw/api/sentiment_score/?search=",
+//     dataType: "json",
+//     async: true,
+//     type: "GET",
+//     beforeSend: function() {
+//       // console.log('beforeSend');
+//     },
+//     success: function(res) {
+//       getChartBarValue = res.chartBar;
+//       window.barChart;
+//       getChartBar_textCloudData(getChartBarValue,10)
+
+//       if (currentClickMode === 'firstLoad') {
+//         _appendDataList($positiveDom, 13, getChartBarValue.positiveNews);
+//         _appendDataList($negativeDom, 13, getChartBarValue.negativeNews);
+//         console.log('正在新增中')
+//       }
+//     },
+//     complete: function(res) {
+//       // console.log('complete');
+//     },
+//     error: function() {
+//       // console.log('error');
+//     }
+//   });
+
+// }
+// _handleApiAjax2()
+
+function _handleApiAjax(dataType,keyWords) {
   $.ajax({
-    url: "http://starklab.tw/api/news_get/?search=",
+    url: `http://starklab.tw/api/news_get/?search=${keyWords}`,
     dataType: "json",
     async: true,
     type: "GET",
@@ -236,9 +334,9 @@ function _handleApiAjax(dataType) {
 
 }
 
-function _handleApiAjax2() {
+function _handleApiAjax2(keyWords) {
   $.ajax({
-    url: "http://starklab.tw/api/sentiment_score/?search=",
+    url: `http://starklab.tw/api/sentiment_score/?search=${keyWords}`,
     dataType: "json",
     async: true,
     type: "GET",
@@ -247,13 +345,12 @@ function _handleApiAjax2() {
     },
     success: function(res) {
       getChartBarValue = res.chartBar;
+      
       window.barChart;
-      getChartBar_textCloudData(getChartBarValue,10)
-
+      getChartBar_textCloudData(getChartBarValue, getChartBarValue.positiveValue.length, getChartBarValue.negativeValue.length)
       if (currentClickMode === 'firstLoad') {
-        _appendDataList($positiveDom, 13, getChartBarValue.positiveNews);
-        _appendDataList($negativeDom, 13, getChartBarValue.negativeNews);
-        console.log('正在新增中')
+        _appendDataList($positiveDom, getChartBarValue.positiveNews.length, getChartBarValue.positiveNews);
+        _appendDataList($negativeDom, getChartBarValue.negativeNews.length, getChartBarValue.negativeNews);
       }
     },
     complete: function(res) {
@@ -265,23 +362,6 @@ function _handleApiAjax2() {
   });
 
 }
-_handleApiAjax2()
-
-
-$.when(_handleApiAjax(), _handleApiAjax2()).done(function(res1, res2) {
-
-//    getChartBarValue = res2;
-//    window.barChart;
-//    getChartBar_textCloudData(getChartBarValue,10)
-
-//    if (currentClickMode === 'firstLoad') {
-//      _appendDataList($positiveDom, 13, getChartBarValue.positiveNews);
-//      _appendDataList($negativeDom, 13, getChartBarValue.negativeNews);
-//      console.log('正在新增中')
-//     }
-// //   console.log('抓取中1',res1[0].news.google[0])
-  console.log('抓取中1',res2[0].chartBar)
-});
 
 //6.判斷是否第一次載入及清除目標中的li
 function cleanBlockElement(cleanType) {
@@ -329,7 +409,6 @@ function initMobileBtnWidth() {
 function newsNavBtnOnClick() {
   $newsNavBtn.on('click',function() {
     console.log('hi1')
-    console.log('currentClickMode1',currentClickMode)
     currentSelectNewsBtn = $(this);
     $newsNavBtn.removeClass('js_active');
     $(this).addClass('js_active');
@@ -342,44 +421,47 @@ function newsNavBtnOnClick() {
     console.log('hi2')
     cleanBlockElement('news');
     currentClickMode = 'newsOnly';
-    console.log('currentClickMode2',currentClickMode)
     let dataType = currentSelectNewsBtn.attr('data-mode');
     console.log('dataType', dataType);
     // if ($(window).width() < 732) {
     //   selectorMobileNavBtn(dataType)
     // }
-    _handleApiAjax(dataType);
+    _handleApiAjax(dataType, keyWords);
   }, 700));
 }
 
 //10.debounce程序,清除所有資料，並重新載入資料，預設載入資料為ptt
 function debounceProcess() {
+  if(inputer.val() === '') {
+    alert('請輸入股票代號或名稱')
+    return
+  }
+
+  keyWords = inputer.val();
   cleanBlockElement('all');
-  _handleApiAjax('ptt');
-  _handleApiAjax2()
+  _handleApiAjax('ptt', keyWords);
+  _handleApiAjax2(keyWords)
+  inputer.val('');
   console.log('這是剛剛新增的barChart刪除就有資料的地方')
+
   //解決1.刪除的陣列位置改成超高數值所以不管按幾次都會刪掉
   positiveLabelWord.splice(0, 1000)
   positiveBarValue.splice(0, 1000)
   negativeLabelWord.splice(0, 1000)
   negativeBarValue.splice(0, 1000)
-
   console.log('hi4')
-  console.log('currentClickMode4',currentClickMode)
 }
 
 //11.搜尋按鈕debounce
 function searchBtnOnClick() {
   $searchBtn.on('click',debounce(debounceProcess, 1000))
   console.log('hi3')
-  console.log('currentClickMode3',currentClickMode)
 }
 
 //12.debounce
 function debounce(func, delay=250) {
   let timer = null;
   console.log('hi5')
-  console.log('currentClickMode5',currentClickMode)
   return () => {
     let context = this;
     let args = arguments;
