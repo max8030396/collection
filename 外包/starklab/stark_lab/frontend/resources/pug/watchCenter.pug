@@ -10,6 +10,8 @@ include ./modules/base
   //- css要改Container!!!!!
   main.container
     // 區塊01
+   
+
     section.sec1
       .s1_block
         a.s1_block_logo(href="")
@@ -17,6 +19,20 @@ include ./modules/base
         input.s1_inputer(type="text" placeholder=pageWords.words.sec1.placeholder)
         .s1_rwd_search.searchBtn!= pageWords.words.sec1.search
       .s1_search.searchBtn!= pageWords.words.sec1.search
+    
+    // 5/4新增介紹及功能說明
+    section.description
+      .description_introduce
+        span!= pageWords.words.description.introduce
+      .description_introduce_s3
+        a.description_introduce_s3.img(href="")
+        .description_introduce_s3.text
+          span!= pageWords.words.description.s3_text
+
+      .description_introduce_s4_description
+        a.description_introduce_s4.img(href="")
+        .description_introduce_s4.text
+          span!= pageWords.words.description.s4_text
 
     // 區塊02
     section.sec.sec2.js_hide

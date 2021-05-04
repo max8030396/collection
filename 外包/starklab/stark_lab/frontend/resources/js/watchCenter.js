@@ -17,6 +17,8 @@ const $barChartDom1 = $('#s4_block_left_box2_barChart1');
 const $barChartDom2 = $('#s4_block_right_box2_barChart2');
 const $allSection = $('.sec');
 
+//文字雲及能量條限制的顯示的數量，如欲更動需跳至getChartBar_textCloudData()做細部調整。.....5/4待補充說明
+const appendLen = 10;
 
 //fuc8
 let mobilePerBtnWidth = [];
@@ -52,7 +54,8 @@ let positiveWords = [
   {text: "穩定的", weight: 6.2},
   {text: "人傑", weight: 16.9},
   {text: "上升", weight: 11.3},
-]
+];
+
 let negativeWords = [
   {text: "利益", weight: 11.5 },
   {text: "成長", weight: 8.5},
@@ -64,34 +67,58 @@ let negativeWords = [
   {text: "穩定的", weight: 6.2},
   {text: "人傑", weight: 14.9},
   {text: "上升", weight: 11.3},
-]
+];
 
 function getChartBar_textCloudData(target, positiveLen, negativeLen) {
-  if(positiveLen > 10) {
-    positiveLen = 10;
+  if(positiveLen > appendLen) {
+    positiveLen = appendLen;
+  } else if (positiveLen < appendLen ) {
+    positiveWords.splice(positiveLen,10)
+    //
   }
- 
-  for (let i = 0; i < positiveLen; i = i + 1 ) {
+  // for (let i = 0; i < positiveLen; i = i + 1 ) {
+  //   positiveLabelWord.push(target.positiveValue[i].text)
+  //   positiveBarValue.push(target.positiveValue[i].value)
+  //   console.log('這裡的jqCloud要改')
+  //   positiveWords[i].text = target.positiveValue[i].text
+  // }
+
+  for (let i = 0; i < 10; i = i + 1 ) {
     positiveLabelWord.push(target.positiveValue[i].text)
     positiveBarValue.push(target.positiveValue[i].value)
-    // positiveWords.text = target.positiveValue[i].text
+    console.log('這裡的jqCloud要改1')
+    positiveWords[i].text = target.positiveValue[i].text
+
+    if (!positiveWords[i]) {
+      console.log('TEST GG')
+      positiveLabelWord.push('')
+      // positiveBarValue.push()
+    }
   }
 
-  if(negativeLen > 10) {
-    negativeLen = 10;
-  }
 
-  for (let i = 0; i < negativeLen; i = i + 1 ) {
-    negativeLabelWord.push(target.negativeValue[i].text)
-    negativeBarValue.push(target.negativeValue[i].value)
-    // negativeWords[i].text = target.negativeValue[i].text
+  if(negativeLen > appendLen) {
+    negativeLen = appendLen;
+  } else if (negativeLen < appendLen) {
+    negativeWords.splice(negativeLen,10)
   }
-  
+  for (let i = 0; i < 10; i = i + 1 ) {
+    if (!negativeWords[i]) {
+      console.log('TEST GG')
+      negativeLabelWord.push('')
+      // positiveBarValue.push()
+    } else {
+      negativeLabelWord.push(target.negativeValue[i].text)
+      negativeBarValue.push(target.negativeValue[i].value)
+      console.log('這裡的jqCloud要改')
+      negativeWords[i].text = target.negativeValue[i].text
+    }
+  }
   barChart($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
   barChart($barChartDom2, negativeBarValue, 1.5, negativeLabelWord);
   positiveCloud(positiveWords)
   negativeCloud(negativeWords)
-} 
+}
 
 //文字雲基礎設定
 function positiveCloud(words) {
@@ -345,7 +372,8 @@ function _handleApiAjax2(keyWords) {
     },
     success: function(res) {
       getChartBarValue = res.chartBar;
-      
+
+
       window.barChart;
       getChartBar_textCloudData(getChartBarValue, getChartBarValue.positiveValue.length, getChartBarValue.negativeValue.length)
       if (currentClickMode === 'firstLoad') {
@@ -401,8 +429,6 @@ function initMobileBtnWidth() {
   }
 
   $('.s2_block').css('transform', `translateX(-${mobilePerBtnWidth[0] / 2}px)`);
-  // $('.s2_block').css('transform', `translateX(-100px)`);
-  // console.log('mobilePerBtnWidth', mobilePerBtnWidth, mobilePerBtnPosX);
 }
 
 //9.新聞列表區選擇框、當前點選新聞的索引值判斷、debounce、判斷滑動位移的距離、告知上層任務僅需清除此區li非全域
@@ -432,30 +458,28 @@ function newsNavBtnOnClick() {
 
 //10.debounce程序,清除所有資料，並重新載入資料，預設載入資料為ptt
 function debounceProcess() {
-  if(inputer.val() === '') {
-    alert('請輸入股票代號或名稱')
-    return
-  }
+  // if(inputer.val() === '') {
+  //   alert('請輸入股票代號或名稱')
+  //   return
+  // }
 
+  //索引資料及清除搜尋欄
   keyWords = inputer.val();
+  inputer.val('');
+  
   cleanBlockElement('all');
   _handleApiAjax('ptt', keyWords);
   _handleApiAjax2(keyWords)
-  inputer.val('');
-  console.log('這是剛剛新增的barChart刪除就有資料的地方')
 
-  //解決1.刪除的陣列位置改成超高數值所以不管按幾次都會刪掉
-  positiveLabelWord.splice(0, 1000)
-  positiveBarValue.splice(0, 1000)
-  negativeLabelWord.splice(0, 1000)
-  negativeBarValue.splice(0, 1000)
-  console.log('hi4')
+  console.log('這裡要改')
+  positiveLabelWord = []
+  positiveBarValue = []
+  negativeLabelWord = []
+  negativeBarValue = []
 }
-
 //11.搜尋按鈕debounce
 function searchBtnOnClick() {
   $searchBtn.on('click',debounce(debounceProcess, 1000))
-  console.log('hi3')
 }
 
 //12.debounce
