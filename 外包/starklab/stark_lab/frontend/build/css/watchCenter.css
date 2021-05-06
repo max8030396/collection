@@ -431,7 +431,9 @@ div, span, a, input, textarea {
       text-align: center; }
     .wrapper main.container .js_hide {
       opacity: 0;
-      visibility: hidden; }
+      visibility: hidden;
+      height: 0;
+      overflow: hidden; }
     .wrapper main.container .sec1 .s1_block {
       width: 100%;
       max-width: 600px;
@@ -498,6 +500,60 @@ div, span, a, input, textarea {
             background-color: black;
             height: 3px;
             width: 100%; }
+    .wrapper main.container .description {
+      width: 100%;
+      padding-top: 1%;
+      display: flex;
+      flex-wrap: wrap; }
+      .wrapper main.container .description h1 {
+        color: #3b3b3b;
+        font-size: 36px;
+        letter-spacing: 2px; }
+      .wrapper main.container .description span {
+        color: #3b3b3b;
+        font-size: 24px;
+        letter-spacing: 3px;
+        line-height: 1.4; }
+      .wrapper main.container .description .description_introduce {
+        width: 100%;
+        margin: 0 auto 20px;
+        text-align: center; }
+      .wrapper main.container .description .description_introduce_s3 {
+        width: 49%;
+        display: inline-block;
+        margin-right: 1%;
+        text-align: center;
+        vertical-align: top; }
+        .wrapper main.container .description .description_introduce_s3 .description_introduce_s3_img {
+          background-image: url("../images/img/gauge.png");
+          background-repeat: no-repeat;
+          background-position: center top;
+          display: block;
+          width: 100%;
+          height: 0;
+          padding-bottom: 45.23%;
+          background-size: cover; }
+      .wrapper main.container .description .description_introduce_s4 {
+        width: 49%;
+        display: inline-block;
+        margin-left: 1%;
+        text-align: center;
+        vertical-align: top; }
+        .wrapper main.container .description .description_introduce_s4 .description_introduce_s4_img {
+          background-image: url("../images/img/barChart.png");
+          background-repeat: no-repeat;
+          background-position: center top;
+          display: block;
+          width: 100%;
+          height: 0;
+          padding-bottom: 45.23%;
+          background-size: cover; }
+    .wrapper main.container .description > div {
+      box-sizing: border-box;
+      padding: 20px;
+      border: 1px solid #dbdbdb;
+      border-radius: 30px;
+      box-shadow: 0px 25px 18px -14px #eee; }
     .wrapper main.container .sec3 {
       padding: 35px 0 30px 0; }
       .wrapper main.container .sec3 .s3_block {
@@ -517,6 +573,11 @@ div, span, a, input, textarea {
           display: inline-block;
           text-align: left;
           box-sizing: border-box; }
+          .wrapper main.container .sec3 .s3_block .s3_block_left .rwd_s3_block_left_h1 {
+            display: none; }
+          .wrapper main.container .sec3 .s3_block .s3_block_left ul {
+            height: 300px;
+            overflow: scroll; }
           .wrapper main.container .sec3 .s3_block .s3_block_left h1 {
             padding: 10px 20px;
             margin-bottom: 20px;
@@ -551,6 +612,13 @@ div, span, a, input, textarea {
           position: relative;
           display: inline-block;
           overflow: hidden; }
+          .wrapper main.container .sec3 .s3_block .s3_block_right .rwd_s3_block_right_h1 {
+            padding: 10px 12px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            background-color: #e7ebf1;
+            color: #216fb8; }
           .wrapper main.container .sec3 .s3_block .s3_block_right .circle {
             background: linear-gradient(90deg, #4cc9f0 0%, #4895ef 10%, #4361ee 20%, #3f37c9 30%, #3a0ca3 40%, #480ca8 50%, #560bad 60%, #7209b7 70%, #b5179e 80%, #f72585 100%);
             position: absolute;
@@ -671,21 +739,31 @@ div, span, a, input, textarea {
       border-radius: 30px; }
       .wrapper main.container .sec4 .s4_block .s4_block_left {
         width: 100%; }
-        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box1 {
+        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox {
           display: inline-block;
-          width: 23%;
-          margin: 0 1.25% 1.5% 2.5%; }
-          .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box1 .textCloud1 {
-            height: 300px;
-            padding: 0% 1%;
-            box-sizing: border-box; }
-            .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box1 .textCloud1span {
-              text-shadow: 0px 3px 6px #e5e5e5; }
-        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box2 {
-          display: inline-block;
-          width: 37%;
-          margin-left: 1.25%;
-          margin-right: 1.25%; }
+          width: 66%; }
+          .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox h1 {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            background-color: #e7f1ea;
+            color: #3faf86; }
+          .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box1 {
+            display: inline-block;
+            width: 40%;
+            margin: 0 1.25% 1.5% 2.5%; }
+            .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box1 .textCloud1 {
+              height: 300px;
+              padding: 0% 1%;
+              box-sizing: border-box; }
+              .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box1 .textCloud1span {
+                text-shadow: 0px 3px 6px #e5e5e5; }
+          .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box2 {
+            display: inline-block;
+            width: 50%;
+            margin-left: 1.25%;
+            margin-right: 1.25%; }
         .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 {
           display: inline-block;
           width: 30%;
@@ -697,8 +775,12 @@ div, span, a, input, textarea {
             margin-bottom: 20px;
             border-radius: 10px;
             font-size: 20px;
+            text-align: center;
             background-color: #e7f1ea;
             color: #3faf86; }
+          .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 ul {
+            height: 283px;
+            overflow: scroll; }
           .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 li {
             padding: 2px 20px;
             border-bottom: #dddddd solid 1px;
@@ -717,21 +799,31 @@ div, span, a, input, textarea {
       .wrapper main.container .sec4 .s4_block .s4_block_right {
         width: 100%;
         margin-top: 60px; }
-        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box1 {
+        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox {
           display: inline-block;
-          width: 23%;
-          margin: 0 1.25% 1.5% 2.5%; }
-          .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box1 .textCloud2 {
-            height: 300px;
-            padding: 0% 1%;
-            box-sizing: border-box; }
-            .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box1 .textCloud2span {
-              text-shadow: 0px 3px 6px #e5e5e5; }
-        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box2 {
-          display: inline-block;
-          width: 37%;
-          margin-left: 1.25%;
-          margin-right: 1.25%; }
+          width: 66%; }
+          .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox h1 {
+            padding: 10px 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            background-color: #f1e7eb;
+            color: #e3518e; }
+          .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box1 {
+            display: inline-block;
+            width: 40%;
+            margin: 0 1.25% 1.5% 2.5%; }
+            .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box1 .textCloud2 {
+              height: 300px;
+              padding: 0% 1%;
+              box-sizing: border-box; }
+              .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box1 .textCloud2span {
+                text-shadow: 0px 3px 6px #e5e5e5; }
+          .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box2 {
+            display: inline-block;
+            width: 50%;
+            margin-left: 1.25%;
+            margin-right: 1.25%; }
         .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box3 {
           display: inline-block;
           width: 30%;
@@ -743,8 +835,12 @@ div, span, a, input, textarea {
             margin-bottom: 20px;
             border-radius: 10px;
             font-size: 20px;
+            text-align: center;
             background-color: #f1e7eb;
             color: #e3518e; }
+          .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box3 ul {
+            height: 283px;
+            overflow: scroll; }
           .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box3 li {
             padding: 2px 20px;
             border-bottom: #dddddd solid 1px;
@@ -762,6 +858,10 @@ div, span, a, input, textarea {
               color: #0D6FB8; }
 
 @media all and (max-width: 1024px) and (min-width: 732px) {
+  .wrapper main.container .description h1 {
+    font-size: 28px; }
+  .wrapper main.container .description span {
+    font-size: 18px; }
   .wrapper main.container .sec4 .s4_block {
     padding: 0;
     border: none;
@@ -773,15 +873,18 @@ div, span, a, input, textarea {
       border: 1px solid #dbdbdb;
       box-shadow: 0px 25px 18px -14px #eee;
       border-radius: 30px; }
-      .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box1 {
-        margin: 10px 0;
-        width: 50%; }
-        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box1 .textCloud1 {
-          padding: 0;
-          height: 236px; }
-      .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box2 {
-        margin: 10px 0;
-        width: 50%; }
+      .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox {
+        width: 100%;
+        padding-top: 50px; }
+        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box1 {
+          margin: 10px 0;
+          width: 50%; }
+          .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box1 .textCloud1 {
+            padding: 0;
+            height: 236px; }
+        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box2 {
+          margin: 10px 0;
+          width: 50%; }
       .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 {
         margin: 10px 0;
         width: 100%;
@@ -795,15 +898,18 @@ div, span, a, input, textarea {
       border: 1px solid #dbdbdb;
       box-shadow: 0px 25px 18px -14px #eee;
       border-radius: 30px; }
-      .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box1 {
-        margin: 10px 0;
-        width: 50%; }
-        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box1 .textCloud2 {
-          padding: 0;
-          height: 236px; }
-      .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box2 {
-        margin: 10px 0;
-        width: 50%; }
+      .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox {
+        width: 100%;
+        padding-top: 50px; }
+        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box1 {
+          margin: 10px 0;
+          width: 50%; }
+          .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box1 .textCloud2 {
+            padding: 0;
+            height: 236px; }
+        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box2 {
+          margin: 10px 0;
+          width: 50%; }
       .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box3 {
         margin: 10px 0;
         width: 100%;
@@ -831,6 +937,17 @@ div, span, a, input, textarea {
     border-radius: 25px; }
   .wrapper main.container .sec1 .s1_search {
     display: none; }
+  .wrapper main.container .description h1 {
+    font-size: 20px; }
+  .wrapper main.container .description span {
+    font-size: 14px; }
+  .wrapper main.container .description .description_introduce {
+    width: 100%; }
+  .wrapper main.container .description .description_introduce_s3 {
+    width: 100%;
+    margin-bottom: 20px; }
+  .wrapper main.container .description .description_introduce_s4 {
+    width: 100%; }
   .wrapper main.container .sec2 {
     height: 50px;
     padding-top: 0px;
@@ -850,13 +967,19 @@ div, span, a, input, textarea {
       .wrapper main.container .sec3 .s3_block .s3_block_left {
         width: 100%;
         margin: 0; }
+        .wrapper main.container .sec3 .s3_block .s3_block_left .rwd_s3_block_left_h1 {
+          display: block;
+          margin-top: 10px; }
         .wrapper main.container .sec3 .s3_block .s3_block_left h1 {
           display: none; }
       .wrapper main.container .sec3 .s3_block .s3_block_right {
         width: 100%;
         max-width: 300px;
         height: 180px;
-        margin: 0; }
+        margin: 0;
+        padding-top: 15px; }
+        .wrapper main.container .sec3 .s3_block .s3_block_right .rwd_s3_block_right_h1 {
+          display: none; }
         .wrapper main.container .sec3 .s3_block .s3_block_right .outSideCircle .bar span {
           font-size: 15px; }
         .wrapper main.container .sec3 .s3_block .s3_block_right .outSideCircle .bar .line {
@@ -867,41 +990,45 @@ div, span, a, input, textarea {
     box-shadow: none;
     border-radius: none; }
     .wrapper main.container .sec4 .s4_block .s4_block_left {
-      padding: 0px 25px 25px;
+      padding: 15px 25px 25px;
       box-sizing: border-box;
       border: 1px solid #dbdbdb;
       box-shadow: 0px 25px 18px -14px #eee;
       border-radius: 30px; }
-      .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box1 {
-        width: 100%;
-        margin: 10px 0; }
-        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box1 .textCloud1 {
-          padding: 0;
-          height: 236px; }
-      .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box2 {
-        width: 100%;
-        margin: 10px 0; }
+      .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox {
+        width: 100%; }
+        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box1 {
+          width: 100%;
+          margin: 10px 0; }
+          .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box1 .textCloud1 {
+            padding: 0;
+            height: 236px; }
+        .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_innerBox .s4_block_left_box2 {
+          width: 100%;
+          margin: 10px 0; }
       .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 {
         width: 100%;
         margin: 10px 0; }
         .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 li {
           padding: 2px 5px; }
     .wrapper main.container .sec4 .s4_block .s4_block_right {
-      padding: 0px 25px 25px;
+      padding: 15px 25px 25px;
       margin-top: 15px;
       box-sizing: border-box;
       border: 1px solid #dbdbdb;
       box-shadow: 0px 25px 18px -14px #eee;
       border-radius: 30px; }
-      .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box1 {
-        width: 100%;
-        margin: 10px 0; }
-        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box1 .textCloud2 {
-          padding: 0;
-          height: 236px; }
-      .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box2 {
-        width: 100%;
-        margin: 10px 0; }
+      .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox {
+        width: 100%; }
+        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box1 {
+          width: 100%;
+          margin: 10px 0; }
+          .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box1 .textCloud2 {
+            padding: 0;
+            height: 236px; }
+        .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_innerBox .s4_block_right_box2 {
+          width: 100%;
+          margin: 10px 0; }
       .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box3 {
         width: 100%;
         margin: 10px 0; }

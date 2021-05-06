@@ -34,12 +34,16 @@
         </section>
         <!-- 5/4新增介紹及功能說明-->
         <section class="description">
-          <div class="description_introduce"><span>史塔克實驗室新功能風向觀測站網路上時常有眾多的新聞及輿論而我們使用文字探勘的技術把一些新聞資源整理到網頁上並讓大家可以簡單的看出現在市場上情緒的風向往哪邊吹在上面搜尋欄位 輸入你想查詢的關鍵字(公司名稱)來試用看看我們的新功能吧！</span></div>
-          <div class="description_introduce_s3"><a class="description_introduce_s3 img" href=""></a>
-            <div class="description_introduce_s3 text"><span>從PTT、Google、Yahoo的資料觀察二週內新聞來源對”關鍵字”的情緒風向是什麼？</span></div>
+          <div class="description_introduce">
+            <h1>史塔克實驗室新功能<br>風向觀測站</h1><span><br>網路上時常有眾多的新聞及輿論<br>這些新聞輿論資訊都會反映現在股價的短暫趨勢<br>而我們使用文字探勘的技術<br>把一些新聞資源整理到網頁上<br>並讓大家可以簡單的看出現在市場上情緒的風向往哪邊吹<br>在上面搜尋欄位輸入你想查詢的關鍵字(公司名稱)<br>來試用看看我們的新功能吧！</span>
           </div>
-          <div class="description_introduce_s4_description"><a class="description_introduce_s4 img" href=""></a>
-            <div class="description_introduce_s4 text"><span>看東-看空 資料分析打資料攤開來分析觀察現在看多-看空的文章個別有哪些我們也使用了文字雲讓大家看看他們寫了什麼正面、負面的用詞</span></div>
+          <div class="description_introduce_s3">
+            <h1>新聞情緒溫度計</h1><a class="description_introduce_s3_img"></a>
+            <div class="description_introduce_s3_text"><span><br>從PTT、Google、Yahoo的資料觀察<br>二週內新聞來源對'關鍵字'的情緒風向是什麼？</span></div>
+          </div>
+          <div class="description_introduce_s4">
+            <h1> 看多、看空資料分析</h1><a class="description_introduce_s4_img"></a>
+            <div class="description_introduce_s4_text"><span><br>使用文字雲 分析 抓出來的資料<br>視覺化正面,負面的用詞給大家觀察</span></div>
           </div>
         </section>
         <!-- 區塊02-->
@@ -56,8 +60,10 @@
             <div class="s3_block_left">
               <h1>各家新聞 News</h1>
               <ul class="s3_block_left_ul"></ul>
+              <h1 class="rwd_s3_block_left_h1">情緒溫度計(看空0-100看多)</h1>
             </div>
             <div class="s3_block_right">
+              <h1 class="rwd_s3_block_right_h1">情緒溫度計(看空0-100看多)</h1>
               <div class="circle"></div>
               <div class="outSideCircle">
                 <div class="bar bar0"><span>0</span></div>
@@ -101,11 +107,14 @@
         <section class="sec sec4 js_hide">
           <div class="s4_block">
             <div class="s4_block_left">
-              <div class="s4_block_left_box1">
-                <div class="textCloud1" id="s4_block_left_box1_cloud1"></div>
-              </div>
-              <div class="s4_block_left_box2">
-                <canvas id="s4_block_left_box2_barChart1"></canvas>
+              <div class="s4_block_left_innerBox">
+                <h1>看多情緒用詞 文字雲及長條圖</h1>
+                <div class="s4_block_left_box1">
+                  <div class="textCloud1" id="s4_block_left_box1_cloud1"></div>
+                </div>
+                <div class="s4_block_left_box2">
+                  <canvas id="s4_block_left_box2_barChart1"></canvas>
+                </div>
               </div>
               <div class="s4_block_left_box3">
                 <h1>看多文章列表</h1>
@@ -113,11 +122,16 @@
               </div>
             </div>
             <div class="s4_block_right">
-              <div class="s4_block_right_box1">
-                <div class="textCloud2" id="s4_block_right_box1_cloud2"></div>
-              </div>
-              <div class="s4_block_right_box2">
-                <canvas id="s4_block_right_box2_barChart2"></canvas>
+              <div class="s4_block_right_innerBox">
+                <div class="s4_block_righy_innerBox">
+                  <h1>看空情緒用詞 文字雲及長條圖</h1>
+                </div>
+                <div class="s4_block_right_box1">
+                  <div class="textCloud2" id="s4_block_right_box1_cloud2"></div>
+                </div>
+                <div class="s4_block_right_box2">
+                  <canvas id="s4_block_right_box2_barChart2"></canvas>
+                </div>
               </div>
               <div class="s4_block_right_box3">
                 <h1>看空文章列表</h1>

@@ -1,14 +1,10 @@
 const $ = require('jquery');
 require('jqcloud2');
-
 const script1 = document.createElement('script');
 const chartJs = "https://cdn.jsdelivr.net/npm/chart.js@2.8.0"
-script1.type = "text/javascript"
-script1.setAttribute("src", chartJs)
-$('head').prepend(script1);
-
 const axios = require('axios');
 const $searchBtn = $('.searchBtn');
+const $description = $('.description');
 const $insertDom = $('.s3_block_left_ul');
 const $positiveDom = $('.s4_block_positive');
 const $negativeDom = $('.s4_block_negative');
@@ -17,32 +13,35 @@ const $barChartDom1 = $('#s4_block_left_box2_barChart1');
 const $barChartDom2 = $('#s4_block_right_box2_barChart2');
 const $allSection = $('.sec');
 
-//文字雲及能量條限制的顯示的數量，如欲更動需跳至getChartBar_textCloudData()做細部調整。.....5/4待補充說明
+//文字雲及能量條限制的顯示的數量
 const appendLen = 10;
 
-//fuc8
+//手機模式預設
 let mobilePerBtnWidth = [];
-//fuc8 & 9
 let mobilePerBtnPosX = [];
-//fuc 9
+
+//當前NAV位置
 let currentSelectNewsBtn;
-//fuc9 & 13
 let currentSelectNewsBtnIndex = 0;
-//fuc 5 & 6 & 9
+
+//判斷當前是否為第一次載入資料
 let currentClickMode = 'firstLoad'; // newsOnly
+
+//用於API
 let getNewsValue;
 let getChartBarValue;
 
-//測試功能中
+//用於搜尋欄位
 let inputer = $('.s1_inputer');
 let keyWords = '';
 
-
-//獲取能量條表底部文字、數值 "及" 文字雲欲顯示之文字的變數及函式
+//預設能量條 數值、下方文字
 let positiveLabelWord = [];
 let positiveBarValue = [];
 let negativeLabelWord =[];
 let negativeBarValue = [];
+
+//預設文字雲，需有weight不然會顯示異常
 let positiveWords = [
   {text: "利益", weight: 11.5 },
   {text: "成長", weight: 8.5},
@@ -55,7 +54,6 @@ let positiveWords = [
   {text: "人傑", weight: 16.9},
   {text: "上升", weight: 11.3},
 ];
-
 let negativeWords = [
   {text: "利益", weight: 11.5 },
   {text: "成長", weight: 8.5},
@@ -69,6 +67,13 @@ let negativeWords = [
   {text: "上升", weight: 11.3},
 ];
 
+//強行寫入能量條PlugIn之CDN
+script1.type = "text/javascript"
+script1.setAttribute("src", chartJs)
+$('head').prepend(script1);
+
+
+//透過API取得並將資料導入“文字雲”、“能量條之中”,版面關係故限制最多顯示十筆資料
 function getChartBar_textCloudData(target, positiveLen, negativeLen) {
   if(positiveLen > appendLen) {
     positiveLen = appendLen;
@@ -76,17 +81,10 @@ function getChartBar_textCloudData(target, positiveLen, negativeLen) {
     positiveWords.splice(positiveLen,10)
     //
   }
-  // for (let i = 0; i < positiveLen; i = i + 1 ) {
-  //   positiveLabelWord.push(target.positiveValue[i].text)
-  //   positiveBarValue.push(target.positiveValue[i].value)
-  //   console.log('這裡的jqCloud要改')
-  //   positiveWords[i].text = target.positiveValue[i].text
-  // }
-
   for (let i = 0; i < 10; i = i + 1 ) {
     positiveLabelWord.push(target.positiveValue[i].text)
     positiveBarValue.push(target.positiveValue[i].value)
-    console.log('這裡的jqCloud要改1')
+    console.log('這裡的jqCloud要改1', positiveBarValue)
     positiveWords[i].text = target.positiveValue[i].text
 
     if (!positiveWords[i]) {
@@ -96,12 +94,12 @@ function getChartBar_textCloudData(target, positiveLen, negativeLen) {
     }
   }
 
-
   if(negativeLen > appendLen) {
     negativeLen = appendLen;
   } else if (negativeLen < appendLen) {
     negativeWords.splice(negativeLen,10)
   }
+
   for (let i = 0; i < 10; i = i + 1 ) {
     if (!negativeWords[i]) {
       console.log('TEST GG')
@@ -114,6 +112,7 @@ function getChartBar_textCloudData(target, positiveLen, negativeLen) {
       negativeWords[i].text = target.negativeValue[i].text
     }
   }
+  //取得資料後執行並帶入指定的任務中
   barChart($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
   barChart($barChartDom2, negativeBarValue, 1.5, negativeLabelWord);
   positiveCloud(positiveWords)
@@ -133,7 +132,6 @@ function positiveCloud(words) {
     // },
   });
 }
-
 function negativeCloud(words) {
   $('#s4_block_right_box1_cloud2').jQCloud(words, {
     colors: ["#800026","#6c757d", "#bd0026", "#00a", "#e31a1c", "#5E503F", "#fc4e2a", "#fd8d3c", "#0D6FB8", "#1b4332"],
@@ -142,10 +140,11 @@ function negativeCloud(words) {
   });
 }
 
-//1.能量條基礎設定
+//預設能量條設定
 function barChart(target, dataValue, borderWidth, labelWord) {
   var ctx = target;
-  var barChart = new Chart(ctx, {
+  console.log('chaerttweqweqwe', chartJs)
+  barChartItem = new Chart(ctx, {
     type: 'bar',
     data: {
         labels: labelWord,
@@ -192,10 +191,9 @@ function barChart(target, dataValue, borderWidth, labelWord) {
         }
     }
   });
-  // console.log(s4_block_left_barChart1.data.datasets[0].data[1])
 }
 
-//2.自動計算半圓形的寬高
+//自動計算半圓形的寬高
 function gaugeResize () {
   const circleWrap = $('.s3_block_right');
   const circleBg = $('.circle');
@@ -211,7 +209,7 @@ function gaugeResize () {
   circleGreyBg.css('top', newGreyTopMoveValue + 'px');
 }
 
-//3.半圓基礎設定
+//半圓基礎設定
 function initGaugePointerDeg(value) {
   const $pointer = $('.pointer');
   let valueToDegree = value * 1.8;
@@ -220,98 +218,15 @@ function initGaugePointerDeg(value) {
   }, 200);
 }
 
-//4.新增新聞列表
+//新增新聞列表
 function _appendDataList(target, maxLen, data) {
-  if (maxLen > 10) {
-    maxLen = 10;
-  }
   for (let i = 0; i < maxLen; i = i + 1 ) {
     // console.log('check i', data[i]);
     target.append('<li><a href = '+ data[i].link +'>' + data[i].value + '</a></li>')
   }
 }
 
-//5.AJAX Function
-// function _handleApiAjax(dataType) {
-//   $.ajax({
-//     url: "http://starklab.tw/api/news_get/?search=",
-//     dataType: "json",
-//     async: true,
-//     type: "GET",
-//     beforeSend: function() {
-//       // console.log('beforeSend');
-//     },
-//     success: function(res) {
-//       switch(dataType) {
-//         case 'ptt':
-//           getNewsValue = res.news.ptt;
-//           console.log('AJAX GET PTT', getNewsValue);
-//         break;
-  
-//         case 'google':
-//           getNewsValue = res.news.google;
-//           // console.log('AJAX GET google', getNewsValue);
-//         break;
-
-//         case 'yahoo':
-//           getNewsValue = res.news.yahoo;
-//           // console.log('AJAX GET yahoo', getNewsValue);
-//         break;
-
-//         default:
-//         break;
-//       }
-//       window.barChart;
-//       if (currentClickMode === 'firstLoad') {
-//         _appendDataList($insertDom, getNewsValue.length, getNewsValue);
-//         initGaugePointerDeg(res.news.emotionValue)
-//       } else if (currentClickMode === 'newsOnly') {
-//         _appendDataList($insertDom, getNewsValue.length, getNewsValue);
-//       }
-//       $allSection.removeClass('js_hide');
-      
-//     },
-//     complete: function(res) {
-//       // console.log('complete');
-//     },
-//     error: function() {
-//       // console.log('error');
-//     }
-//   });
-
-// }
-
-// function _handleApiAjax2() {
-//   $.ajax({
-//     url: "http://starklab.tw/api/sentiment_score/?search=",
-//     dataType: "json",
-//     async: true,
-//     type: "GET",
-//     beforeSend: function() {
-//       // console.log('beforeSend');
-//     },
-//     success: function(res) {
-//       getChartBarValue = res.chartBar;
-//       window.barChart;
-//       getChartBar_textCloudData(getChartBarValue,10)
-
-//       if (currentClickMode === 'firstLoad') {
-//         _appendDataList($positiveDom, 13, getChartBarValue.positiveNews);
-//         _appendDataList($negativeDom, 13, getChartBarValue.negativeNews);
-//         console.log('正在新增中')
-//       }
-//     },
-//     complete: function(res) {
-//       // console.log('complete');
-//     },
-//     error: function() {
-//       // console.log('error');
-//     }
-//   });
-
-// }
-// _handleApiAjax2()
-
+//上方新聞列表及情緒溫度計專用API
 function _handleApiAjax(dataType,keyWords) {
   $.ajax({
     url: `http://starklab.tw/api/news_get/?search=${keyWords}`,
@@ -322,26 +237,25 @@ function _handleApiAjax(dataType,keyWords) {
       // console.log('beforeSend');
     },
     success: function(res) {
+      //判斷當前新聞列表所屬平台
       switch(dataType) {
         case 'ptt':
           getNewsValue = res.news.ptt;
-          console.log('AJAX GET PTT', getNewsValue);
         break;
   
         case 'google':
           getNewsValue = res.news.google;
-          // console.log('AJAX GET google', getNewsValue);
         break;
 
         case 'yahoo':
           getNewsValue = res.news.yahoo;
-          // console.log('AJAX GET yahoo', getNewsValue);
         break;
 
         default:
         break;
       }
-      window.barChart;
+
+      //判斷為第一次載入or僅更新上方新聞列表
       if (currentClickMode === 'firstLoad') {
         _appendDataList($insertDom, getNewsValue.length, getNewsValue);
         initGaugePointerDeg(res.news.emotionValue)
@@ -361,6 +275,7 @@ function _handleApiAjax(dataType,keyWords) {
 
 }
 
+//下方文字雲、能量條、看多看空新聞專用API
 function _handleApiAjax2(keyWords) {
   $.ajax({
     url: `http://starklab.tw/api/sentiment_score/?search=${keyWords}`,
@@ -373,8 +288,7 @@ function _handleApiAjax2(keyWords) {
     success: function(res) {
       getChartBarValue = res.chartBar;
 
-
-      window.barChart;
+      //取得資料後導入文字雲及能量條專用任務中並執行並顯示
       getChartBar_textCloudData(getChartBarValue, getChartBarValue.positiveValue.length, getChartBarValue.negativeValue.length)
       if (currentClickMode === 'firstLoad') {
         _appendDataList($positiveDom, getChartBarValue.positiveNews.length, getChartBarValue.positiveNews);
@@ -391,7 +305,7 @@ function _handleApiAjax2(keyWords) {
 
 }
 
-//6.判斷是否第一次載入及清除目標中的li
+//判斷是否第一次載入及清除目標中的li
 function cleanBlockElement(cleanType) {
   currentClickMode = 'firstLoad';
 
@@ -404,7 +318,7 @@ function cleanBlockElement(cleanType) {
   }
 }
 
-//7.自動計算共有幾個S2_blockNav及各自的寬度
+//自動計算共有幾個S2_blockNav及給予各自的寬度
 function initS2_blockWidth() {
   let s2_blockWidth = $('.s2_block').width();
   let countItem = $('.s2_block_nav').length;
@@ -412,7 +326,7 @@ function initS2_blockWidth() {
   $('.s2_block_nav').css('width',`${s2_navWidth}`);
 }
 
-//8.自動計算手機版s2_block初始位置、各個nav位置、移動距離計算
+//自動計算手機版s2_block初始位置、各個nav位置、移動距離計算
 function initMobileBtnWidth() {
   let firstPosX = -($('.s2_nav1').width() / 2);
   let movePosX = firstPosX;
@@ -431,7 +345,7 @@ function initMobileBtnWidth() {
   $('.s2_block').css('transform', `translateX(-${mobilePerBtnWidth[0] / 2}px)`);
 }
 
-//9.新聞列表區選擇框、當前點選新聞的索引值判斷、debounce、判斷滑動位移的距離、告知上層任務僅需清除此區li非全域
+//新聞列表區選擇框、當前點選新聞的索引值判斷、debounce、判斷滑動位移的距離、告知上層任務僅需清除此區li非全域
 function newsNavBtnOnClick() {
   $newsNavBtn.on('click',function() {
     console.log('hi1')
@@ -443,6 +357,7 @@ function newsNavBtnOnClick() {
       $('.s2_block').css('transform', `translateX(${mobilePerBtnPosX[currentSelectNewsBtnIndex]}px)`);
     }
   })
+
   $newsNavBtn.on('click', debounce(function() {
     console.log('hi2')
     cleanBlockElement('news');
@@ -456,8 +371,9 @@ function newsNavBtnOnClick() {
   }, 700));
 }
 
-//10.debounce程序,清除所有資料，並重新載入資料，預設載入資料為ptt
+//用戶輸入資料並取得相對應之API、清除說明文字並載入資料、重新點擊搜尋後清除所有資料再載入
 function debounceProcess() {
+  //此段為預防用戶輸入空資料
   // if(inputer.val() === '') {
   //   alert('請輸入股票代號或名稱')
   //   return
@@ -466,23 +382,20 @@ function debounceProcess() {
   //索引資料及清除搜尋欄
   keyWords = inputer.val();
   inputer.val('');
-  
+
+  //清除預設說明文字
+  $description.css('display','none')
   cleanBlockElement('all');
   _handleApiAjax('ptt', keyWords);
   _handleApiAjax2(keyWords)
-
-  console.log('這裡要改')
-  positiveLabelWord = []
-  positiveBarValue = []
-  negativeLabelWord = []
-  negativeBarValue = []
 }
-//11.搜尋按鈕debounce
+
+//搜尋按鈕debounce
 function searchBtnOnClick() {
   $searchBtn.on('click',debounce(debounceProcess, 1000))
 }
 
-//12.debounce
+//debounce
 function debounce(func, delay=250) {
   let timer = null;
   console.log('hi5')
@@ -497,7 +410,7 @@ function debounce(func, delay=250) {
   }
 }
 
-//13.手機版滑動套件,設定滑動之基礎配置
+//手機版滑動套件,設定滑動之基礎配置
 function mobileSwipeEvent() {
   $('.s2_block').swipe({
     swipeLeft: function(event, distance, duration, fingerCount, fingerData, currentDirection) {

@@ -23,16 +23,19 @@ include ./modules/base
     // 5/4新增介紹及功能說明
     section.description
       .description_introduce
-        span!= pageWords.words.description.introduce
+        h1 史塔克實驗室新功能<br>風向觀測站
+        span <br>網路上時常有眾多的新聞及輿論<br>這些新聞輿論資訊都會反映現在股價的短暫趨勢<br>而我們使用文字探勘的技術<br>把一些新聞資源整理到網頁上<br>並讓大家可以簡單的看出現在市場上情緒的風向往哪邊吹<br>在上面搜尋欄位輸入你想查詢的關鍵字(公司名稱)<br>來試用看看我們的新功能吧！
       .description_introduce_s3
-        a.description_introduce_s3.img(href="")
-        .description_introduce_s3.text
-          span!= pageWords.words.description.s3_text
+        h1 新聞情緒溫度計
+        a.description_introduce_s3_img
+        .description_introduce_s3_text
+          span <br>從PTT、Google、Yahoo的資料觀察<br>二週內新聞來源對'關鍵字'的情緒風向是什麼？
 
-      .description_introduce_s4_description
-        a.description_introduce_s4.img(href="")
-        .description_introduce_s4.text
-          span!= pageWords.words.description.s4_text
+      .description_introduce_s4
+        h1  看多、看空資料分析
+        a.description_introduce_s4_img
+        .description_introduce_s4_text
+          span <br>使用文字雲 分析 抓出來的資料<br>視覺化正面,負面的用詞給大家觀察
 
     // 區塊02
     section.sec.sec2.js_hide
@@ -50,7 +53,9 @@ include ./modules/base
         .s3_block_left
           h1!= pageWords.words.sec3.title
           ul.s3_block_left_ul
+          h1.rwd_s3_block_left_h1 情緒溫度計(看空0-100看多)
         .s3_block_right
+          h1.rwd_s3_block_right_h1 情緒溫度計(看空0-100看多)
           //- 半圓中間
           .circle
           //- 半圓外圈數字
@@ -95,23 +100,42 @@ include ./modules/base
     section.sec.sec4.js_hide
       .s4_block
         .s4_block_left
-          //- 文字雲
-          .s4_block_left_box1
-            #s4_block_left_box1_cloud1.textCloud1
-          //- 能量條
-          .s4_block_left_box2
-            canvas#s4_block_left_box2_barChart1
+          //- 文字雲及長條圖標題
+          .s4_block_left_innerBox
+            h1 看多情緒用詞 文字雲及長條圖
+            //- 文字雲
+            .s4_block_left_box1
+              #s4_block_left_box1_cloud1.textCloud1
+            //- 能量條
+            .s4_block_left_box2
+              canvas#s4_block_left_box2_barChart1
+
+          //- //- 文字雲
+          //- .s4_block_left_box1
+          //-   #s4_block_left_box1_cloud1.textCloud1
+          //- //- 能量條
+          //- .s4_block_left_box2
+          //-   canvas#s4_block_left_box2_barChart1
           //- 正面情緒文章
           .s4_block_left_box3
             h1!= pageWords.words.sec4.positive
             ul.s4_block_left_box3_ul.s4_block_positive
         .s4_block_right
-          //- 文字雲
-          .s4_block_right_box1
-            #s4_block_right_box1_cloud2.textCloud2
-          //- 能量條
-          .s4_block_right_box2
-            canvas#s4_block_right_box2_barChart2
+          .s4_block_right_innerBox
+            .s4_block_righy_innerBox
+              h1 看空情緒用詞 文字雲及長條圖
+            //- 文字雲
+            .s4_block_right_box1
+              #s4_block_right_box1_cloud2.textCloud2
+            //- 能量條
+            .s4_block_right_box2
+              canvas#s4_block_right_box2_barChart2
+          //- //- 文字雲
+          //- .s4_block_right_box1
+          //-   #s4_block_right_box1_cloud2.textCloud2
+          //- //- 能量條
+          //- .s4_block_right_box2
+          //-   canvas#s4_block_right_box2_barChart2
           //- 負面情緒文章
           .s4_block_right_box3
             h1!= pageWords.words.sec4.negative
