@@ -13,6 +13,9 @@ const $barChartDom1 = $('#s4_block_left_box2_barChart1');
 const $barChartDom2 = $('#s4_block_right_box2_barChart2');
 const $allSection = $('.sec');
 
+window.barChartItem1 = null;
+window.barChartItem2 = null;
+
 //文字雲及能量條限制的顯示的數量
 const appendLen = 10;
 
@@ -75,6 +78,12 @@ $('head').prepend(script1);
 
 //透過API取得並將資料導入“文字雲”、“能量條之中”,版面關係故限制最多顯示十筆資料
 function getChartBar_textCloudData(target, positiveLen, negativeLen) {
+
+  positiveLabelWord = [];
+  positiveBarValue = [];
+  negativeLabelWord =[];
+  negativeBarValue = [];
+
   if(positiveLen > appendLen) {
     positiveLen = appendLen;
   } else if (positiveLen < appendLen ) {
@@ -113,14 +122,17 @@ function getChartBar_textCloudData(target, positiveLen, negativeLen) {
     }
   }
   //取得資料後執行並帶入指定的任務中
-  barChart($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
-  barChart($barChartDom2, negativeBarValue, 1.5, negativeLabelWord);
+  barChart1($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
+  barChart2($barChartDom2, negativeBarValue, 1.5, negativeLabelWord);
+
+  // 文字雲
   positiveCloud(positiveWords)
   negativeCloud(negativeWords)
 }
 
 //文字雲基礎設定
 function positiveCloud(words) {
+  // $('#s4_block_left_box1_cloud1').html('');
   $('#s4_block_left_box1_cloud1').jQCloud(words, {
     autoResize: true,
     colors: ["#800026","#6c757d", "#bd0026", "#00a", "#e31a1c", "#5E503F", "#fc4e2a", "#fd8d3c", "#0D6FB8", "#1b4332"],
@@ -131,6 +143,8 @@ function positiveCloud(words) {
     //   to: 0.001
     // },
   });
+
+  $('#s4_block_left_box1_cloud1').jQCloud('update', words);
 }
 function negativeCloud(words) {
   $('#s4_block_right_box1_cloud2').jQCloud(words, {
@@ -138,59 +152,227 @@ function negativeCloud(words) {
     autoResize: true,
     shape: 'rectangular',
   });
+
+  $('#s4_block_right_box1_cloud2').jQCloud('update', words);
 }
 
 //預設能量條設定
-function barChart(target, dataValue, borderWidth, labelWord) {
+function barChart1(target, dataValue, borderWidth, labelWord) {
   var ctx = target;
-  console.log('chaerttweqweqwe', chartJs)
-  barChartItem = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: labelWord,
-        datasets: [{
-          label: '',
-          data: dataValue,//數值
-          backgroundColor: [
-              'rgba(45, 0, 247, 0.7)',//主顏色
-              'rgba(106, 0, 244, 0.7)',
-              'rgba(137, 0, 242, 0.7)',
-              'rgba(161, 0, 242, 0.7)',
-              'rgba(177, 0, 232, 0.7)',
-              'rgba(188, 0, 221, 0.7)',
-              'rgba(209, 0, 209, 0.7)',
-              'rgba(219, 0, 182, 0.7)',
-              'rgba(229, 0, 164, 0.7)',
-              'rgba(242, 0, 137, 0.7)'
-          ],
-          borderColor: [
-              'rgba(45, 0, 247, 1)',//外框顏色
-              'rgba(106, 0, 244, 1)',
-              'rgba(137, 0, 242, 1)',
-              'rgba(161, 0, 242, 1)',
-              'rgba(177, 0, 232, 1)',
-              'rgba(188, 0, 221, 1)',
-              'rgba(209, 0, 209, 1)',
-              'rgba(219, 0, 182, 1)',
-              'rgba(229, 0, 164, 1)',
-              'rgba(242, 0, 137, 1)'
-          ],
-          borderWidth: borderWidth//外框粗度
-      }]
-      },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+  console.log('barChart1-1', window.barChartItem1);
+  if(window.barChartItem1 !== null) {
+    window.barChartItem1.destroy();
+    console.log('barChart1-2');
+    window.barChartItem1 = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: labelWord,
+          datasets: [{
+            label: '',
+            data: dataValue,//數值
+            backgroundColor: [
+                'rgba(45, 0, 247, 0.7)',//主顏色
+                'rgba(106, 0, 244, 0.7)',
+                'rgba(137, 0, 242, 0.7)',
+                'rgba(161, 0, 242, 0.7)',
+                'rgba(177, 0, 232, 0.7)',
+                'rgba(188, 0, 221, 0.7)',
+                'rgba(209, 0, 209, 0.7)',
+                'rgba(219, 0, 182, 0.7)',
+                'rgba(229, 0, 164, 0.7)',
+                'rgba(242, 0, 137, 0.7)'
+            ],
+            borderColor: [
+                'rgba(45, 0, 247, 1)',//外框顏色
+                'rgba(106, 0, 244, 1)',
+                'rgba(137, 0, 242, 1)',
+                'rgba(161, 0, 242, 1)',
+                'rgba(177, 0, 232, 1)',
+                'rgba(188, 0, 221, 1)',
+                'rgba(209, 0, 209, 1)',
+                'rgba(219, 0, 182, 1)',
+                'rgba(229, 0, 164, 1)',
+                'rgba(242, 0, 137, 1)'
+            ],
+            borderWidth: borderWidth//外框粗度
+        }]
         },
-        legend:{
-          display: false
-        }
-    }
-  });
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          },
+          legend:{
+            display: false
+          },
+          interaction: {
+            mode: 'point'
+          }
+      }
+    });
+  } else {
+    window.barChartItem1 = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: labelWord,
+          datasets: [{
+            label: '',
+            data: dataValue,//數值
+            backgroundColor: [
+                'rgba(45, 0, 247, 0.7)',//主顏色
+                'rgba(106, 0, 244, 0.7)',
+                'rgba(137, 0, 242, 0.7)',
+                'rgba(161, 0, 242, 0.7)',
+                'rgba(177, 0, 232, 0.7)',
+                'rgba(188, 0, 221, 0.7)',
+                'rgba(209, 0, 209, 0.7)',
+                'rgba(219, 0, 182, 0.7)',
+                'rgba(229, 0, 164, 0.7)',
+                'rgba(242, 0, 137, 0.7)'
+            ],
+            borderColor: [
+                'rgba(45, 0, 247, 1)',//外框顏色
+                'rgba(106, 0, 244, 1)',
+                'rgba(137, 0, 242, 1)',
+                'rgba(161, 0, 242, 1)',
+                'rgba(177, 0, 232, 1)',
+                'rgba(188, 0, 221, 1)',
+                'rgba(209, 0, 209, 1)',
+                'rgba(219, 0, 182, 1)',
+                'rgba(229, 0, 164, 1)',
+                'rgba(242, 0, 137, 1)'
+            ],
+            borderWidth: borderWidth//外框粗度
+        }]
+        },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          },
+          legend:{
+            display: false
+          },
+          interaction: {
+            mode: 'point'
+          }
+      }
+    });
+  }
+}
+
+function barChart2(target, dataValue, borderWidth, labelWord) {
+  var ctx = target;
+  if(window.barChartItem2 !== null) {
+    window.barChartItem2.destroy();
+    window.barChartItem2 = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: labelWord,
+          datasets: [{
+            label: '',
+            data: dataValue,//數值
+            backgroundColor: [
+                'rgba(45, 0, 247, 0.7)',//主顏色
+                'rgba(106, 0, 244, 0.7)',
+                'rgba(137, 0, 242, 0.7)',
+                'rgba(161, 0, 242, 0.7)',
+                'rgba(177, 0, 232, 0.7)',
+                'rgba(188, 0, 221, 0.7)',
+                'rgba(209, 0, 209, 0.7)',
+                'rgba(219, 0, 182, 0.7)',
+                'rgba(229, 0, 164, 0.7)',
+                'rgba(242, 0, 137, 0.7)'
+            ],
+            borderColor: [
+                'rgba(45, 0, 247, 1)',//外框顏色
+                'rgba(106, 0, 244, 1)',
+                'rgba(137, 0, 242, 1)',
+                'rgba(161, 0, 242, 1)',
+                'rgba(177, 0, 232, 1)',
+                'rgba(188, 0, 221, 1)',
+                'rgba(209, 0, 209, 1)',
+                'rgba(219, 0, 182, 1)',
+                'rgba(229, 0, 164, 1)',
+                'rgba(242, 0, 137, 1)'
+            ],
+            borderWidth: borderWidth//外框粗度
+        }]
+        },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          },
+          legend:{
+            display: false
+          },
+          interaction: {
+            mode: 'point'
+          }
+      }
+    });
+  } else {
+    window.barChartItem2 = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: labelWord,
+          datasets: [{
+            label: '',
+            data: dataValue,//數值
+            backgroundColor: [
+                'rgba(45, 0, 247, 0.7)',//主顏色
+                'rgba(106, 0, 244, 0.7)',
+                'rgba(137, 0, 242, 0.7)',
+                'rgba(161, 0, 242, 0.7)',
+                'rgba(177, 0, 232, 0.7)',
+                'rgba(188, 0, 221, 0.7)',
+                'rgba(209, 0, 209, 0.7)',
+                'rgba(219, 0, 182, 0.7)',
+                'rgba(229, 0, 164, 0.7)',
+                'rgba(242, 0, 137, 0.7)'
+            ],
+            borderColor: [
+                'rgba(45, 0, 247, 1)',//外框顏色
+                'rgba(106, 0, 244, 1)',
+                'rgba(137, 0, 242, 1)',
+                'rgba(161, 0, 242, 1)',
+                'rgba(177, 0, 232, 1)',
+                'rgba(188, 0, 221, 1)',
+                'rgba(209, 0, 209, 1)',
+                'rgba(219, 0, 182, 1)',
+                'rgba(229, 0, 164, 1)',
+                'rgba(242, 0, 137, 1)'
+            ],
+            borderWidth: borderWidth//外框粗度
+        }]
+        },
+      options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      beginAtZero: true
+                  }
+              }]
+          },
+          legend:{
+            display: false
+          },
+          interaction: {
+            mode: 'point'
+          }
+      }
+    });
+  }
 }
 
 //自動計算半圓形的寬高
