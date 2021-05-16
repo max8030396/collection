@@ -52,6 +52,8 @@ include ./modules/base
         .s3_block_left
           h1!= pageWords.words.sec3.title
           ul.s3_block_left_ul
+          .apiNoData.eachNews
+              span 暫無資料
           h1.rwd_s3_block_left_h1 情緒溫度計(看空0-100看多)
         .s3_block_right
           h1.rwd_s3_block_right_h1 情緒溫度計(看空0-100看多)
@@ -108,7 +110,8 @@ include ./modules/base
             //- 能量條
             .s4_block_left_box2
               canvas#s4_block_left_box2_barChart1
-
+            .apiNoData.positiveNews
+              span 查無資料
           //- //- 文字雲
           //- .s4_block_left_box1
           //-   #s4_block_left_box1_cloud1.textCloud1
@@ -119,16 +122,20 @@ include ./modules/base
           .s4_block_left_box3
             h1!= pageWords.words.sec4.positive
             ul.s4_block_left_box3_ul.s4_block_positive
+            .apiNoData.positiveNews
+              span 查無資料
         .s4_block_right
+          //- 文字雲及長條圖標題
           .s4_block_right_innerBox
-            .s4_block_righy_innerBox
-              h1 看空情緒用詞 文字雲及長條圖
+            h1 看空情緒用詞 文字雲及長條圖
             //- 文字雲
             .s4_block_right_box1
               #s4_block_right_box1_cloud2.textCloud2
             //- 能量條
             .s4_block_right_box2
               canvas#s4_block_right_box2_barChart2
+            .apiNoData.negativeNews
+              span 查無資料
           //- //- 文字雲
           //- .s4_block_right_box1
           //-   #s4_block_right_box1_cloud2.textCloud2
@@ -139,6 +146,8 @@ include ./modules/base
           .s4_block_right_box3
             h1!= pageWords.words.sec4.negative
             ul.s4_block_right_box3_ul.s4_block_negative
+            .apiNoData.negativeNews
+              span 查無資料
 
 
 

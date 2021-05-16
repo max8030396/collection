@@ -429,6 +429,19 @@ div, span, a, input, textarea {
     padding-bottom: 50px; }
     .wrapper main.container section {
       text-align: center; }
+    .wrapper main.container .apiNoData {
+      text-align: center; }
+      .wrapper main.container .apiNoData span {
+        font-size: 30px;
+        color: red; }
+    .wrapper main.container .apiNoDataHide {
+      display: none; }
+    .wrapper main.container .eachNews {
+      display: none; }
+    .wrapper main.container .positiveNews {
+      display: none; }
+    .wrapper main.container .negativeNews {
+      display: none; }
     .wrapper main.container .js_hide {
       opacity: 0;
       visibility: hidden;
@@ -588,10 +601,10 @@ div, span, a, input, textarea {
           .wrapper main.container .sec3 .s3_block .s3_block_left li {
             padding: 4px 20px;
             border-bottom: #ddd solid 1px;
-            color: #181717;
+            color: #999999;
             cursor: pointer;
             display: block;
-            font-size: 19px;
+            font-size: 10px;
             white-space: nowrap;
             text-overflow: ellipsis;
             letter-spacing: 3px;
@@ -604,13 +617,13 @@ div, span, a, input, textarea {
               color: #0D6FB8; }
         .wrapper main.container .sec3 .s3_block .s3_block_right {
           vertical-align: top;
+          margin-left: 2%;
+          margin-right: 2%;
           width: 46%;
           max-width: 600px;
           height: 333px;
-          margin-left: 2%;
-          margin-right: 2%;
-          position: relative;
           display: inline-block;
+          position: relative;
           overflow: hidden; }
           .wrapper main.container .sec3 .s3_block .s3_block_right .rwd_s3_block_right_h1 {
             padding: 10px 12px;
@@ -782,13 +795,16 @@ div, span, a, input, textarea {
             height: 283px;
             overflow: scroll; }
           .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 li {
+            text-align: left;
             padding: 2px 20px;
             border-bottom: #dddddd solid 1px;
             cursor: pointer;
+            color: #999999;
+            font-size: 10px;
             white-space: nowrap;
             text-overflow: ellipsis;
-            overflow: hidden;
             letter-spacing: 3px;
+            overflow: hidden;
             box-sizing: border-box; }
           .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 a {
             font-size: 15px;
@@ -842,11 +858,14 @@ div, span, a, input, textarea {
             height: 283px;
             overflow: scroll; }
           .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box3 li {
+            text-align: left;
             padding: 2px 20px;
             border-bottom: #dddddd solid 1px;
+            color: #999999;
             cursor: pointer;
             white-space: nowrap;
             text-overflow: ellipsis;
+            font-size: 10px;
             letter-spacing: 3px;
             overflow: hidden;
             box-sizing: border-box; }
@@ -1010,7 +1029,8 @@ div, span, a, input, textarea {
         width: 100%;
         margin: 10px 0; }
         .wrapper main.container .sec4 .s4_block .s4_block_left .s4_block_left_box3 li {
-          padding: 2px 5px; }
+          padding: 2px 5px;
+          text-align: left; }
     .wrapper main.container .sec4 .s4_block .s4_block_right {
       padding: 15px 25px 25px;
       margin-top: 15px;
@@ -1033,5 +1053,6 @@ div, span, a, input, textarea {
         width: 100%;
         margin: 10px 0; }
         .wrapper main.container .sec4 .s4_block .s4_block_right .s4_block_right_box3 li {
-          padding: 2px 5px; } }
+          padding: 2px 5px;
+          text-align: left; } }
 

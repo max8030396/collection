@@ -16,121 +16,53 @@ const $allSection = $('.sec');
 window.barChartItem1 = null;
 window.barChartItem2 = null;
 
-//文字雲及能量條限制的顯示的數量
-const appendLen = 10;
 
-//手機模式預設
-let mobilePerBtnWidth = [];
-let mobilePerBtnPosX = [];
-
-//當前NAV位置
+//判斷當前NAV位置
 let currentSelectNewsBtn;
 let currentSelectNewsBtnIndex = 0;
 
 //判斷當前是否為第一次載入資料
 let currentClickMode = 'firstLoad'; // newsOnly
 
-//用於API
-let getNewsValue;
-let getChartBarValue;
-
 //用於搜尋欄位
 let inputer = $('.s1_inputer');
 let keyWords = '';
 
-//預設能量條 數值、下方文字
+//用於API
+let getNewsValue;
+let getChartBarValue;
+
+//預設能量條 數值、下方文字、文字雲
 let positiveLabelWord = [];
 let positiveBarValue = [];
 let negativeLabelWord =[];
 let negativeBarValue = [];
+let positiveWords = [];
+let negativeWords = [];
 
-//預設文字雲，需有weight不然會顯示異常
-let positiveWords = [
-  {text: "利益", weight: 11.5 },
-  {text: "成長", weight: 8.5},
-  {text: "效能", weight: 9.4},
-  {text: "高效", weight: 13},
-  {text: "高效能", weight: 7.5},
-  {text: "帶動", weight: 9.4},
-  {text: "穩定", weight: 8},
-  {text: "穩定的", weight: 6.2},
-  {text: "人傑", weight: 16.9},
-  {text: "上升", weight: 11.3},
-];
-let negativeWords = [
-  {text: "利益", weight: 11.5 },
-  {text: "成長", weight: 8.5},
-  {text: "效能", weight: 9.4},
-  {text: "高效", weight: 13},
-  {text: "高效能", weight: 7.5},
-  {text: "帶動", weight: 9.4},
-  {text: "穩定", weight: 8},
-  {text: "穩定的", weight: 6.2},
-  {text: "人傑", weight: 14.9},
-  {text: "上升", weight: 11.3},
-];
+//判斷顯示區域
+let allNewsApi = false;
+let positiveApi = false;
+let negativeApi = false;
 
-//強行寫入能量條PlugIn之CDN
+//手機模式預設
+let mobilePerBtnWidth = [];
+let mobilePerBtnPosX = [];
+
+//NPM導入失敗，疑似版本問題故強行寫入能量條PlugIn之CDN
 script1.type = "text/javascript"
 script1.setAttribute("src", chartJs)
 $('head').prepend(script1);
 
-
-//透過API取得並將資料導入“文字雲”、“能量條之中”,版面關係故限制最多顯示十筆資料
-function getChartBar_textCloudData(target, positiveLen, negativeLen) {
-
-  positiveLabelWord = [];
-  positiveBarValue = [];
-  negativeLabelWord =[];
-  negativeBarValue = [];
-
-  if(positiveLen > appendLen) {
-    positiveLen = appendLen;
-  } else if (positiveLen < appendLen ) {
-    positiveWords.splice(positiveLen,10)
-    //
-  }
-  for (let i = 0; i < 10; i = i + 1 ) {
-    positiveLabelWord.push(target.positiveValue[i].text)
-    positiveBarValue.push(target.positiveValue[i].value)
-    console.log('這裡的jqCloud要改1', positiveBarValue)
-    positiveWords[i].text = target.positiveValue[i].text
-
-    if (!positiveWords[i]) {
-      console.log('TEST GG')
-      positiveLabelWord.push('')
-      // positiveBarValue.push()
-    }
-  }
-
-  if(negativeLen > appendLen) {
-    negativeLen = appendLen;
-  } else if (negativeLen < appendLen) {
-    negativeWords.splice(negativeLen,10)
-  }
-
-  for (let i = 0; i < 10; i = i + 1 ) {
-    if (!negativeWords[i]) {
-      console.log('TEST GG')
-      negativeLabelWord.push('')
-      // positiveBarValue.push()
-    } else {
-      negativeLabelWord.push(target.negativeValue[i].text)
-      negativeBarValue.push(target.negativeValue[i].value)
-      console.log('這裡的jqCloud要改')
-      negativeWords[i].text = target.negativeValue[i].text
-    }
-  }
-  //取得資料後執行並帶入指定的任務中
-  barChart1($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
-  barChart2($barChartDom2, negativeBarValue, 1.5, negativeLabelWord);
-
-  // 文字雲
-  positiveCloud(positiveWords)
-  negativeCloud(negativeWords)
+//--------------文字雲、能量條相關設定-----------------------//
+let cloudFontSizeMax = 1;
+let cloudFontSizeMin = 5;
+//取得文字雲隨機大小 預設 1-5
+function  getRandomValue(cloudFontSizeMin, cloudFontSizeMax) {
+  console.log(cloudFontSizeMin,cloudFontSizeMax)
+  return Math.floor((Math.random() * (cloudFontSizeMax - cloudFontSizeMin) + cloudFontSizeMin) * 100)/100;
 }
-
-//文字雲基礎設定
+//看多、看空文字雲基礎設定
 function positiveCloud(words) {
   // $('#s4_block_left_box1_cloud1').html('');
   $('#s4_block_left_box1_cloud1').jQCloud(words, {
@@ -151,12 +83,16 @@ function negativeCloud(words) {
     colors: ["#800026","#6c757d", "#bd0026", "#00a", "#e31a1c", "#5E503F", "#fc4e2a", "#fd8d3c", "#0D6FB8", "#1b4332"],
     autoResize: true,
     shape: 'rectangular',
+    // fontSize: {
+    //   from: 0.23,
+    //   to: 0.001
+    // },
   });
 
   $('#s4_block_right_box1_cloud2').jQCloud('update', words);
 }
 
-//預設能量條設定
+//預設看多、看空能量條設定
 function barChart1(target, dataValue, borderWidth, labelWord) {
   var ctx = target;
   console.log('barChart1-1', window.barChartItem1);
@@ -266,7 +202,6 @@ function barChart1(target, dataValue, borderWidth, labelWord) {
     });
   }
 }
-
 function barChart2(target, dataValue, borderWidth, labelWord) {
   var ctx = target;
   if(window.barChartItem2 !== null) {
@@ -375,6 +310,68 @@ function barChart2(target, dataValue, borderWidth, labelWord) {
   }
 }
 
+//透過API取得並將資料導入“文字雲”、“能量條”
+function getChartBar_textCloudData(target, positiveLen, negativeLen,cloudFontSizeMin,cloudFontSizeMax) {
+  //每次callApi清空舊有資料
+  positiveLabelWord = [];
+  positiveBarValue = [];
+  negativeLabelWord =[];
+  negativeBarValue = [];
+  positiveWords = [];
+  negativeWords = [];
+
+  //看多版面文字雲能量條資料帶入
+  for (let i = 0; i < positiveLen; i = i + 1 ) {
+    //版面不足故設定最多只顯示10筆能量條
+    if(positiveLen > 10) {
+      positiveLen = 10
+    }
+    //從api中取得text、value後推入能量條的陣列中
+    positiveLabelWord.push(target.positiveValue[i].text)
+    positiveBarValue.push(target.positiveValue[i].value)
+
+    //建立空物件，內涵文字雲所需屬性
+    let positiveObj = {
+      text: '',
+      weight: 0
+    }
+    //每迴圈一次變更屬性後推入，再迴圈一次再變更再推入
+    //變更text屬性
+    positiveObj.text = target.positiveValue[i].text;
+    //透過getRandomValue取得隨機數值，變更weight屬性
+    positiveObj.weight = getRandomValue(cloudFontSizeMin,cloudFontSizeMax);
+    //推入文字雲的陣列中
+    positiveWords.push(positiveObj)
+    console.log(positiveObj)
+  }
+
+  //看空版面文字雲能量條資料帶入，使用方式同上
+  for (let i = 0; i < negativeLen; i = i + 1 ) {
+    if(negativeLen > 10) {
+      negativeLen = 10;
+    }
+    negativeLabelWord.push(target.negativeValue[i].text)
+    negativeBarValue.push(target.negativeValue[i].value)
+    let negativeObj = {
+      text: '',
+      weight: 0
+    }
+    negativeObj.text = target.negativeValue[i].text;
+    negativeObj.weight = getRandomValue(cloudFontSizeMin,cloudFontSizeMax);
+    negativeWords.push(negativeObj)
+    console.log(negativeObj)
+  }
+  //取得資料後執行並帶入指定的任務中
+  barChart1($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
+  barChart2($barChartDom2, negativeBarValue, 1.5, negativeLabelWord);
+
+  // 文字雲
+  positiveCloud(positiveWords)
+  negativeCloud(negativeWords)
+}
+
+//--------------情緒溫度計相關設定-----------------------//
+
 //自動計算半圓形的寬高
 function gaugeResize () {
   const circleWrap = $('.s3_block_right');
@@ -390,7 +387,6 @@ function gaugeResize () {
   circleBg.css('top', newTopMoveValue + 'px');
   circleGreyBg.css('top', newGreyTopMoveValue + 'px');
 }
-
 //半圓基礎設定
 function initGaugePointerDeg(value) {
   const $pointer = $('.pointer');
@@ -399,16 +395,16 @@ function initGaugePointerDeg(value) {
     $pointer.css('transform','translate(-100%) rotate(' + valueToDegree + 'deg');
   }, 200);
 }
-
 //新增新聞列表
 function _appendDataList(target, maxLen, data) {
   for (let i = 0; i < maxLen; i = i + 1 ) {
-    // console.log('check i', data[i]);
-    target.append('<li><a href = '+ data[i].link +'>' + data[i].value + '</a></li>')
+    target.append('<li><a href = '+ data[i].link +' target="_blank">' + data[i].value + '</a><br><span> ' + data[i].date + ' </span></li>')
   }
 }
 
-//上方新聞列表及情緒溫度計專用API
+//--------------兩組API相關設定-----------------------//
+
+//Api 1上方新聞列表及情緒溫度計專用API
 function _handleApiAjax(dataType,keyWords) {
   $.ajax({
     url: `http://starklab.tw/api/news_get/?search=${keyWords}`,
@@ -419,7 +415,7 @@ function _handleApiAjax(dataType,keyWords) {
       // console.log('beforeSend');
     },
     success: function(res) {
-      //判斷當前新聞列表所屬平台
+      //判斷當前新聞選擇區
       switch(dataType) {
         case 'ptt':
           getNewsValue = res.news.ptt;
@@ -430,22 +426,29 @@ function _handleApiAjax(dataType,keyWords) {
         break;
 
         case 'yahoo':
-          getNewsValue = res.news.yahoo;
+          getNewsValue = res.news.google;
         break;
 
         default:
         break;
       }
 
-      //判斷為第一次載入or僅更新上方新聞列表
-      if (currentClickMode === 'firstLoad') {
-        _appendDataList($insertDom, getNewsValue.length, getNewsValue);
-        initGaugePointerDeg(res.news.emotionValue)
-      } else if (currentClickMode === 'newsOnly') {
-        _appendDataList($insertDom, getNewsValue.length, getNewsValue);
+      if (getNewsValue === 'false') {
+        //要馬無資料要碼輸入錯誤
+        allNewsApi = true;
+      } else {
+        //資料正常透過API帶入所有資料
+        allNewsApi = false;
+        $('.eachNews').css('display','none')
+        if (currentClickMode === 'firstLoad') {
+          _appendDataList($insertDom, getNewsValue.length, getNewsValue);
+          initGaugePointerDeg(res.news.emotionValue)
+        } else if (currentClickMode === 'newsOnly') {
+          _appendDataList($insertDom, getNewsValue.length, getNewsValue);
+        }
+        $allSection.removeClass('js_hide');
       }
-      $allSection.removeClass('js_hide');
-      
+      noDataFound(allNewsApi,positiveApi,negativeApi);
     },
     complete: function(res) {
       // console.log('complete');
@@ -456,8 +459,7 @@ function _handleApiAjax(dataType,keyWords) {
   });
 
 }
-
-//下方文字雲、能量條、看多看空新聞專用API
+//Api 2下方文字雲、能量條、看多看空新聞專用API
 function _handleApiAjax2(keyWords) {
   $.ajax({
     url: `http://starklab.tw/api/sentiment_score/?search=${keyWords}`,
@@ -469,13 +471,35 @@ function _handleApiAjax2(keyWords) {
     },
     success: function(res) {
       getChartBarValue = res.chartBar;
-
-      //取得資料後導入文字雲及能量條專用任務中並執行並顯示
-      getChartBar_textCloudData(getChartBarValue, getChartBarValue.positiveValue.length, getChartBarValue.negativeValue.length)
-      if (currentClickMode === 'firstLoad') {
-        _appendDataList($positiveDom, getChartBarValue.positiveNews.length, getChartBarValue.positiveNews);
-        _appendDataList($negativeDom, getChartBarValue.negativeNews.length, getChartBarValue.negativeNews);
+      if (getChartBarValue.positiveValue === 'false' && getChartBarValue.positiveNews === 'false' && getChartBarValue.negativeValue === 'false' && getChartBarValue.negativeNews === 'false') {
+        //要馬無資料要馬輸入錯誤
+        positiveApi = true;
+        negativeApi = true;
+      } else if (getChartBarValue.positiveValue === 'false' || getChartBarValue.positiveNews === 'false') {
+        //看多無資料
+        positiveApi = true;
+        getChartBar_textCloudData(getChartBarValue, getChartBarValue.positiveValue.length, getChartBarValue.negativeValue.length,cloudFontSizeMin, cloudFontSizeMax)
+        if (currentClickMode === 'firstLoad') {
+          _appendDataList($negativeDom, getChartBarValue.negativeNews.length, getChartBarValue.negativeNews);
+        }
+      } else if (getChartBarValue.negativeValue === 'false' || getChartBarValue.negativeNews === 'false') {
+        //看空無資料
+        negativeApi = true;
+        getChartBar_textCloudData(getChartBarValue, getChartBarValue.positiveValue.length, getChartBarValue.negativeValue.length,cloudFontSizeMin, cloudFontSizeMax)
+        if (currentClickMode === 'firstLoad') {
+          _appendDataList($positiveDom, getChartBarValue.positiveNews.length, getChartBarValue.positiveNews);
+        }
+      } else {
+        //資料正常，取得資料後導入文字雲及能量條專用任務中並執行並顯示
+        positiveApi = false;
+        negativeApi = false;
+        getChartBar_textCloudData(getChartBarValue, getChartBarValue.positiveValue.length, getChartBarValue.negativeValue.length,cloudFontSizeMin, cloudFontSizeMax)
+        if (currentClickMode === 'firstLoad') {
+          _appendDataList($positiveDom, getChartBarValue.positiveNews.length, getChartBarValue.positiveNews);
+          _appendDataList($negativeDom, getChartBarValue.negativeNews.length, getChartBarValue.negativeNews);
+        }
       }
+      noDataFound(allNewsApi,positiveApi,negativeApi);
     },
     complete: function(res) {
       // console.log('complete');
@@ -484,7 +508,56 @@ function _handleApiAjax2(keyWords) {
       // console.log('error');
     }
   });
+}
 
+//--------------功能性設定-----------------------//
+
+//防呆，用戶輸入錯誤返回開始畫面、判斷無資料時顯示畫面
+function noDataFound (allNewsApi,positiveApi,negativeApi) {
+  if (allNewsApi === true && positiveApi === true && negativeApi === true) {
+    alert('輸入錯誤請重新輸入')
+    $description.css('display','block')
+    $allSection.addClass('js_hide');
+    return
+  }
+
+  if (allNewsApi === true) {
+    $insertDom.css('display','none')
+    $('.eachNews').css('display','block')
+    // console.log('綜合新聞沒資料')
+  } else {
+    $description.css('display','none')
+    $insertDom.css('display','block')
+    // console.log('綜合新聞有資料')
+  }
+
+  if (positiveApi === true) {
+    $('.s4_block_left_box1').css('display','none')
+    $('.s4_block_left_box2').css('display','none')
+    $('.s4_block_left_box3_ul').css('display','none')
+    $('.positiveNews').css('display','block')
+    // console.log('看多沒資料')
+  } else {
+    $('.s4_block_left_box1').css('display','inline-block')
+    $('.s4_block_left_box2').css('display','inline-block')
+    $('.s4_block_left_box3_ul').css('display','block ')
+    $('.positiveNews').css('display','none')
+    // console.log('看多有資料')
+  }
+
+  if (negativeApi === true) {
+    $('.s4_block_right_box1').css('display','none')
+    $('.s4_block_right_box2').css('display','none')
+    $('.s4_block_right_box3_ul').css('display','none')
+    $('.negativeNews').css('display','block')
+    // console.log('看空沒資料')
+  } else {
+    $('.s4_block_right_box1').css('display','inline-block')
+    $('.s4_block_right_box2').css('display','inline-block')
+    $('.s4_block_right_box3_ul').css('display','block')
+    $('.negativeNews').css('display','none')
+    // console.log('看空有資料')
+  }
 }
 
 //判斷是否第一次載入及清除目標中的li
@@ -500,7 +573,7 @@ function cleanBlockElement(cleanType) {
   }
 }
 
-//自動計算共有幾個S2_blockNav及給予各自的寬度
+//自動計算共有幾個“新聞選擇區（s2）”及給予各自的寬度
 function initS2_blockWidth() {
   let s2_blockWidth = $('.s2_block').width();
   let countItem = $('.s2_block_nav').length;
@@ -508,7 +581,7 @@ function initS2_blockWidth() {
   $('.s2_block_nav').css('width',`${s2_navWidth}`);
 }
 
-//自動計算手機版s2_block初始位置、各個nav位置、移動距離計算
+//自動計算手機版“新聞選擇區(s2)“初始位置、各個nav位置、移動距離計算
 function initMobileBtnWidth() {
   let firstPosX = -($('.s2_nav1').width() / 2);
   let movePosX = firstPosX;
@@ -527,10 +600,9 @@ function initMobileBtnWidth() {
   $('.s2_block').css('transform', `translateX(-${mobilePerBtnWidth[0] / 2}px)`);
 }
 
-//新聞列表區選擇框、當前點選新聞的索引值判斷、debounce、判斷滑動位移的距離、告知上層任務僅需清除此區li非全域
+//新聞選擇區之選擇框當前位置及移動判斷、//debounce、//判斷索引資料無變更，僅切換“新聞選擇區”顯示的內容
 function newsNavBtnOnClick() {
   $newsNavBtn.on('click',function() {
-    console.log('hi1')
     currentSelectNewsBtn = $(this);
     $newsNavBtn.removeClass('js_active');
     $(this).addClass('js_active');
@@ -541,32 +613,24 @@ function newsNavBtnOnClick() {
   })
 
   $newsNavBtn.on('click', debounce(function() {
-    console.log('hi2')
     cleanBlockElement('news');
     currentClickMode = 'newsOnly';
     let dataType = currentSelectNewsBtn.attr('data-mode');
-    console.log('dataType', dataType);
-    // if ($(window).width() < 732) {
-    //   selectorMobileNavBtn(dataType)
-    // }
     _handleApiAjax(dataType, keyWords);
   }, 700));
 }
 
-//用戶輸入資料並取得相對應之API、清除說明文字並載入資料、重新點擊搜尋後清除所有資料再載入
+//防呆預防用戶輸入空資料、//用戶輸入資料並取得相對應之API內容、//清除說明文字並載入資料
 function debounceProcess() {
-  //此段為預防用戶輸入空資料
-  // if(inputer.val() === '') {
-  //   alert('請輸入股票代號或名稱')
-  //   return
-  // }
-
+  // 此段為預防用戶輸入空資料
+  if(inputer.val() === '') {
+    alert('請輸入股票代號或名稱')
+    return
+  }
   //索引資料及清除搜尋欄
   keyWords = inputer.val();
   inputer.val('');
-
-  //清除預設說明文字
-  $description.css('display','none')
+  //用戶重新輸入股票代號或名稱，清除所有資料再重新載入
   cleanBlockElement('all');
   _handleApiAjax('ptt', keyWords);
   _handleApiAjax2(keyWords)
@@ -580,7 +644,6 @@ function searchBtnOnClick() {
 //debounce
 function debounce(func, delay=250) {
   let timer = null;
-  console.log('hi5')
   return () => {
     let context = this;
     let args = arguments;
@@ -641,4 +704,3 @@ $(window).on('resize', function() {
     $('.s2_block').css('transform', 'none');
   }
 })
-// $searchBtn.trigger('click');

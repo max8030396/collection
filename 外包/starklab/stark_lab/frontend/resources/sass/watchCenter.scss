@@ -22,6 +22,28 @@
       text-align: center;
     }
 
+    .apiNoData {
+      // display: none;
+      text-align: center;
+      span {
+        font-size: 30px;
+        color: red;
+      }
+    }
+
+    .apiNoDataHide {
+      display: none;
+    }
+    .eachNews {
+      display: none;
+    }
+    .positiveNews {
+      display: none;
+    }
+    .negativeNews {
+      display: none;
+    }
+
     .js_hide {
       opacity: 0;
       visibility: hidden;
@@ -244,10 +266,10 @@
           li {
             padding: 4px 20px;
             border-bottom: #ddd solid 1px;
-            color: rgb(24, 23, 23);
+            color: #999999;
             cursor: pointer;
             display: block;
-            font-size: 19px;
+            font-size: 10px;
             white-space: nowrap;
             text-overflow: ellipsis;
             letter-spacing: 3px;
@@ -268,13 +290,13 @@
 
         .s3_block_right {
           vertical-align: top;
+          margin-left: 2%;
+          margin-right: 2%;
           width: 46%;
           max-width: 600px;
           height: 333px;
-          margin-left: 2%;
-          margin-right: 2%;
-          position: relative;
           display: inline-block;
+          position: relative;
           overflow: hidden;
 
 
@@ -477,6 +499,7 @@
           .s4_block_left_innerBox {
             display: inline-block;
             width: 66%;
+
             h1 {
               padding: 10px 20px;
               margin-bottom: 20px;
@@ -510,30 +533,6 @@
             }
           }
 
-          // .s4_block_left_box1 {
-          //   display: inline-block;
-          //   width: 23%;
-          //   margin: 0 1.25% 1.5% 2.5%;
-
-          //   .textCloud1{
-          //     height: 300px;
-          //     padding: 0% 1%;
-          //     box-sizing: border-box;
-
-          //     &span{
-          //       text-shadow: 0px 3px 6px rgb(229,229,229);
-          //     }
-          //   }
-
-          // }
-
-          // .s4_block_left_box2 {
-          //   display: inline-block;
-          //   width: 37%;
-          //   margin-left:1.25%;
-          //   margin-right: 1.25%;
-          // }
-
           .s4_block_left_box3 {
             display: inline-block;
             width: 30%;
@@ -557,13 +556,16 @@
             }
 
             li {
+              text-align: left;
               padding: 2px 20px;
               border-bottom: #dddddd solid 1px;
               cursor: pointer;
+              color: #999999;
+              font-size: 10px;
               white-space: nowrap;
               text-overflow: ellipsis;
-              overflow: hidden;
               letter-spacing: 3px;
+              overflow: hidden;
               box-sizing: border-box;
             }
 
@@ -588,6 +590,7 @@
           .s4_block_right_innerBox {
             display: inline-block;
             width: 66%;
+
             h1 {
               padding: 10px 20px;
               margin-bottom: 20px;
@@ -621,30 +624,6 @@
             }
           }
 
-          // .s4_block_right_box1 {
-          //   display: inline-block;
-          //   width: 23%;
-          //   margin: 0 1.25% 1.5% 2.5%;
-
-          //   .textCloud2{
-          //     height: 300px;
-          //     padding: 0% 1%;
-          //     box-sizing: border-box;
-
-          //     &span{
-          //       text-shadow: 0px 3px 6px rgb(229,229,229);
-          //     }
-
-          //   }
-          // }
-
-          // .s4_block_right_box2 {
-          //   display: inline-block;
-          //   width: 37%;
-          //   margin-left:1.25%;
-          //   margin-right: 1.25%;
-          // }
-
           .s4_block_right_box3 {
             display: inline-block;
             width: 30%;
@@ -658,7 +637,6 @@
               border-radius: 10px;
               font-size: 20px;
               text-align: center;
-
               background-color: #f1e7eb;
               color:#e3518e;
             }
@@ -669,11 +647,14 @@
             }
 
             li {
+              text-align: left;
               padding: 2px 20px;
               border-bottom: #dddddd solid 1px;
+              color: #999999;
               cursor: pointer;
               white-space: nowrap;
               text-overflow: ellipsis;
+              font-size: 10px;
               letter-spacing: 3px;
               overflow: hidden;
               box-sizing: border-box;
@@ -689,15 +670,10 @@
               }
 
             }
-
           }
-
         }
-
       }
-
     }
-
   }
 }
 
@@ -937,7 +913,6 @@
             h1 {
               display: none;
             }
-
           }
 
           .s3_block_right {
@@ -978,11 +953,6 @@
           box-shadow: none;
           border-radius: none;
 
-          // > div {
-          //   width: 100%;
-          //   margin: 10px 0;
-          // }
-
           .s4_block_left {
             padding: 15px 25px 25px;
             box-sizing: border-box;
@@ -1001,31 +971,13 @@
                   padding: 0;
                   height: 236px;
                 }
-  
               }
   
               .s4_block_left_box2 {
                 width: 100%;
                 margin: 10px 0;
-  
               }
             }
-            // .s4_block_left_box1 {
-            //   width: 100%;
-            //   margin: 10px 0;
-
-            //   .textCloud1 {
-            //     padding: 0;
-            //     height: 236px;
-            //   }
-
-            // }
-
-            // .s4_block_left_box2 {
-            //   width: 100%;
-            //   margin: 10px 0;
-
-            // }
 
             .s4_block_left_box3 {
               width: 100%;
@@ -1033,10 +985,9 @@
 
               li {
                 padding: 2px 5px;
+                text-align: left;
               }
-
             }
-
           }
 
           .s4_block_right {
@@ -1058,32 +1009,13 @@
                   padding: 0;
                   height: 236px;
                 }
-  
               }
   
               .s4_block_right_box2  {
                 width: 100%;
                 margin: 10px 0;
-  
               }
             }
-
-            // .s4_block_right_box1 {
-            //   width: 100%;
-            //   margin: 10px 0;
-              
-            //   .textCloud2 {
-            //     padding: 0;
-            //     height: 236px;
-            //   }
-
-            // }
-
-            // .s4_block_right_box2  {
-            //   width: 100%;
-            //   margin: 10px 0;
-
-            // }
 
             .s4_block_right_box3 {
               width: 100%;
@@ -1091,16 +1023,12 @@
 
               li {
                 padding: 2px 5px;
+                text-align: left;
               }
-
             }
-
           }
-
         }
-
       }
-
     }
   }
 }
