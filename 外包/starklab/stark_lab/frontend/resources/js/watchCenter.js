@@ -59,7 +59,6 @@ let cloudFontSizeMax = 1;
 let cloudFontSizeMin = 5;
 //取得文字雲隨機大小 預設 1-5
 function  getRandomValue(cloudFontSizeMin, cloudFontSizeMax) {
-  console.log(cloudFontSizeMin,cloudFontSizeMax)
   return Math.floor((Math.random() * (cloudFontSizeMax - cloudFontSizeMin) + cloudFontSizeMin) * 100)/100;
 }
 //看多、看空文字雲基礎設定
@@ -342,7 +341,6 @@ function getChartBar_textCloudData(target, positiveLen, negativeLen,cloudFontSiz
     positiveObj.weight = getRandomValue(cloudFontSizeMin,cloudFontSizeMax);
     //推入文字雲的陣列中
     positiveWords.push(positiveObj)
-    console.log(positiveObj)
   }
 
   //看空版面文字雲能量條資料帶入，使用方式同上
@@ -359,7 +357,6 @@ function getChartBar_textCloudData(target, positiveLen, negativeLen,cloudFontSiz
     negativeObj.text = target.negativeValue[i].text;
     negativeObj.weight = getRandomValue(cloudFontSizeMin,cloudFontSizeMax);
     negativeWords.push(negativeObj)
-    console.log(negativeObj)
   }
   //取得資料後執行並帶入指定的任務中
   barChart1($barChartDom1, positiveBarValue, 1.5, positiveLabelWord);
@@ -389,6 +386,7 @@ function gaugeResize () {
 }
 //半圓基礎設定
 function initGaugePointerDeg(value) {
+  console.log(value)
   const $pointer = $('.pointer');
   let valueToDegree = value * 1.8;
   setTimeout(() => {
@@ -426,7 +424,7 @@ function _handleApiAjax(dataType,keyWords) {
         break;
 
         case 'yahoo':
-          getNewsValue = res.news.google;
+          getNewsValue = res.news.yahoo;
         break;
 
         default:
@@ -442,7 +440,7 @@ function _handleApiAjax(dataType,keyWords) {
         $('.eachNews').css('display','none')
         if (currentClickMode === 'firstLoad') {
           _appendDataList($insertDom, getNewsValue.length, getNewsValue);
-          initGaugePointerDeg(res.news.emotionValue)
+          initGaugePointerDeg(res.emotionValue)
         } else if (currentClickMode === 'newsOnly') {
           _appendDataList($insertDom, getNewsValue.length, getNewsValue);
         }
